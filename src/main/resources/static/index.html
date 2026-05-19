@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Alpha Laser Login System</title>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
 
@@ -23,422 +18,194 @@
         }
 
         body{
-
             min-height:100vh;
-
-            display:flex;
-
-            justify-content:center;
-
-            align-items:center;
-
-            background:
-            linear-gradient(
-                135deg,
-                #020617,
-                #001233,
-                #003566,
-                #2563eb
-            );
-
-            body{
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:
-    linear-gradient(
-        135deg,
-        #020617,
-        #001233,
-        #003566,
-        #2563eb
-    );
-
-    padding:20px;
-
-    overflow-y:auto;
-}
-
-/* MOBILE FIX */
-
-@media(max-width:1100px){
-
-    body{
-
-        padding:10px;
-
-        align-items:flex-start;
-    }
-
-    .container{
-
-        flex-direction:column;
-
-        min-height:auto;
-
-        border-radius:25px;
-    }
-
-    .left,
-    .right{
-
-        width:100%;
-    }
-
-    .left{
-
-        padding:20px;
-    }
-
-    .right{
-
-        padding:20px;
-    }
-
-    .title{
-
-        font-size:34px;
-    }
-
-    .logo h1{
-
-        font-size:36px;
-    }
-
-    .logo h2{
-
-        font-size:20px;
-    }
-
-    .machine img{
-
-        width:100%;
-
-        max-width:350px;
-    }
-
-    .input-box input{
-
-        padding:14px;
-
-        font-size:14px;
-    }
-
-    .btn{
-
-        padding:15px;
-
-        font-size:18px;
-    }
-
-    .switch{
-
-        margin-bottom:20px;
-    }
-}
-
-            padding:20px;
+            background:linear-gradient(135deg,#020617,#001233,#003566,#2563eb);
+            padding:15px;
+            overflow-y:auto;
         }
 
+        /* MAIN */
+
         .container{
-
             width:100%;
-
-            max-width:1450px;
-
-            min-height:750px;
-
-            background:white;
-
-            border-radius:35px;
-
+            max-width:1400px;
+            margin:auto;
+            background:#fff;
+            border-radius:30px;
             overflow:hidden;
-
             display:flex;
-
-            box-shadow:
-            0 25px 60px rgba(0,0,0,0.7);
+            min-height:750px;
+            box-shadow:0 25px 60px rgba(0,0,0,0.6);
         }
 
         /* LEFT */
 
         .left{
-
-            width:55%;
-
-            background:
-            linear-gradient(
-                135deg,
-                #001845,
-                #003566,
-                #00509d
-            );
-
+            width:50%;
+            background:linear-gradient(135deg,#001845,#003566,#00509d);
             display:flex;
-
             flex-direction:column;
-
             justify-content:center;
-
             align-items:center;
-
-            position:relative;
-
-            overflow:hidden;
-
             padding:40px;
+            position:relative;
         }
 
         .left::before{
-
             content:"";
-
             position:absolute;
-
-            width:300px;
-
-            height:300px;
-
+            width:250px;
+            height:250px;
             border-radius:50%;
-
-            background:
-            rgba(255,255,255,0.06);
-
-            top:-100px;
-
-            left:-100px;
+            background:rgba(255,255,255,0.05);
+            top:-80px;
+            left:-80px;
         }
 
         .left::after{
-
             content:"";
-
             position:absolute;
-
             width:250px;
-
             height:250px;
-
             border-radius:50%;
-
-            background:
-            rgba(255,255,255,0.05);
-
+            background:rgba(255,255,255,0.05);
             bottom:-80px;
-
             right:-80px;
         }
 
         .logo{
-
-            z-index:5;
-
             text-align:center;
+            z-index:5;
         }
 
         .logo img{
-
-            width:140px;
-
+            width:120px;
             background:white;
-
             padding:10px;
-
             border-radius:20px;
         }
 
         .logo h1{
-
             color:white;
-
             font-size:52px;
-
             margin-top:20px;
-
             font-weight:900;
         }
 
         .logo h2{
-
             color:#38bdf8;
-
-            font-size:28px;
-
             margin-top:10px;
+            font-size:26px;
         }
 
         .machine{
-
             width:100%;
-
             display:flex;
-
             justify-content:center;
-
             margin-top:40px;
-
             z-index:5;
         }
 
         .machine img{
-
-            width:90%;
-
-            max-width:700px;
-
-            border-radius:25px;
+            width:100%;
+            max-width:550px;
+            border-radius:20px;
         }
 
         /* RIGHT */
 
         .right{
-
-            width:45%;
-
+            width:50%;
             background:#f8fafc;
-
             display:flex;
-
             justify-content:center;
-
             align-items:center;
-
             padding:40px;
         }
 
         .card{
-
             width:100%;
+            max-width:500px;
         }
 
         .title{
-
             text-align:center;
-
             font-size:55px;
-
             font-weight:900;
-
             color:#001845;
         }
 
         .line{
-
             width:120px;
-
             height:5px;
-
             background:#2563eb;
-
             margin:15px auto 35px auto;
-
             border-radius:20px;
         }
 
-        .input-box{
+        /* FORM */
 
+        .input-box{
             margin-bottom:18px;
         }
 
         .input-box label{
-
             display:block;
-
             margin-bottom:8px;
-
-            font-size:16px;
-
             font-weight:bold;
-
             color:#001845;
         }
 
         .input-box input{
-
             width:100%;
-
             padding:18px;
-
             border:none;
-
             border-radius:18px;
-
             background:#dbeafe;
-
             font-size:16px;
-
             outline:none;
+            transition:0.3s;
         }
 
         .input-box input:focus{
-
             background:white;
-
-            box-shadow:
-            0 0 15px rgba(37,99,235,0.3);
+            box-shadow:0 0 15px rgba(37,99,235,0.3);
         }
 
         .btn{
-
             width:100%;
-
             padding:18px;
-
             border:none;
-
             border-radius:20px;
-
-            background:
-            linear-gradient(
-                135deg,
-                #0b5cff,
-                #0047ff
-            );
-
+            background:linear-gradient(135deg,#0b5cff,#0047ff);
             color:white;
-
-            font-size:24px;
-
+            font-size:22px;
             font-weight:bold;
-
             cursor:pointer;
+            transition:0.3s;
+        }
 
-            margin-top:10px;
+        .btn:hover{
+            transform:scale(1.02);
         }
 
         .switch{
-
             text-align:center;
-
             margin-top:25px;
-
             font-size:18px;
         }
 
         .switch span{
-
             color:#0047ff;
-
             font-weight:bold;
-
             cursor:pointer;
         }
 
         .message{
-
-            margin-top:18px;
-
+            margin-top:20px;
             text-align:center;
-
-            font-size:17px;
-
             font-weight:bold;
+            font-size:17px;
         }
 
         .success{
@@ -453,12 +220,17 @@
             display:none;
         }
 
-        /* MOBILE */
+        /* MOBILE RESPONSIVE */
 
-        @media(max-width:1100px){
+        @media(max-width:1000px){
+
+            body{
+                padding:10px;
+            }
 
             .container{
                 flex-direction:column;
+                min-height:auto;
             }
 
             .left,
@@ -466,13 +238,46 @@
                 width:100%;
             }
 
+            .left{
+                padding:25px 15px;
+            }
+
+            .right{
+                padding:25px 15px;
+            }
+
+            .logo h1{
+                font-size:34px;
+            }
+
+            .logo h2{
+                font-size:20px;
+            }
+
             .title{
-                font-size:42px;
+                font-size:36px;
+            }
+
+            .machine img{
+                max-width:280px;
+            }
+
+            .input-box input{
+                padding:15px;
+                font-size:14px;
+            }
+
+            .btn{
+                padding:15px;
+                font-size:18px;
+            }
+
+            .switch{
+                margin-bottom:20px;
             }
         }
 
     </style>
-
 </head>
 
 <body>
@@ -507,155 +312,103 @@
 
         <div class="card">
 
-            <div class="title"
-                 id="formTitle">
-
+            <div class="title" id="formTitle">
                 Login
-
             </div>
 
             <div class="line"></div>
 
-            <form id="authForm"
-                  onsubmit="submitForm(event)">
+            <form id="authForm" onsubmit="submitForm(event)">
 
                 <!-- REGISTER -->
 
                 <div class="input-box register-field">
-
                     <label>Name</label>
-
-                    <input type="text"
-                           id="name">
-
+                    <input type="text" id="name">
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Address</label>
-
-                    <input type="text"
-                           id="address">
-
+                    <input type="text" id="address">
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Mobile</label>
-
-                    <input type="text"
-                           id="mobile">
-
+                    <input type="text" id="mobile">
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Machine Make</label>
-
-                    <input type="text"
-                           id="make">
-
+                    <input type="text" id="make">
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Remarks</label>
-
-                    <input type="text"
-                           id="remarks">
-
+                    <input type="text" id="remarks">
                 </div>
 
                 <!-- COMMON -->
 
                 <div class="input-box">
-
                     <label>Email</label>
-
-                    <input type="email"
-                           id="email"
-                           required>
-
+                    <input type="email" id="email" required>
                 </div>
 
                 <div class="input-box">
-
                     <label>Password</label>
-
-                    <input type="password"
-                           id="password"
-                           required>
-
+                    <input type="password" id="password" required>
                 </div>
 
-                <button type="submit"
-                        class="btn"
-                        id="mainBtn">
-
+                <button type="submit" class="btn" id="mainBtn">
                     Login
-
                 </button>
 
             </form>
 
             <div class="switch">
-
-            <span onclick="toggleForm()"
-                  id="switchText">
-
-                Register
-
-            </span>
-
+                <span onclick="toggleForm()" id="switchText">
+                    Register
+                </span>
             </div>
 
-            <div class="message"
-                 id="loginMessage"></div>
+            <div class="message" id="loginMessage"></div>
 
         </div>
 
     </div>
 
 </div>
+
 <script>
 
     /* AUTO LOGIN */
 
-    const savedToken =
-    localStorage.getItem("token");
-
-    const savedRole =
-    localStorage.getItem("role");
+    const savedToken = localStorage.getItem("token");
+    const savedRole = localStorage.getItem("role");
 
     if(savedToken){
 
-        if(
-            savedRole === "ADMIN" ||
-            savedRole === "ROLE_ADMIN"
-        ){
+        if(savedRole === "ADMIN" || savedRole === "ROLE_ADMIN"){
 
-            window.location.replace(
-                "admin.html"
-            );
+            window.location.replace("admin.html");
 
         }else{
 
-            window.location.replace(
-                "user.html"
-            );
+            window.location.replace("user.html");
         }
     }
 
-    let isLogin = true;
+    /* API */
 
-    const BASE_URL =
-    "https://laser-project-k6tt.onrender.com";
+    const BASE_URL = "https://laser-project-k6tt.onrender.com";
 
     const LOGIN_API =
     `${BASE_URL}/rajeshroy/auth/login`;
 
     const REGISTER_API =
     `${BASE_URL}/rajeshroy/auth/register`;
+
+    let isLogin = true;
 
     /* TOGGLE */
 
@@ -664,32 +417,20 @@
         isLogin = !isLogin;
 
         const fields =
-        document.querySelectorAll(
-            ".register-field"
-        );
+        document.querySelectorAll(".register-field");
 
         const title =
-        document.getElementById(
-            "formTitle"
-        );
+        document.getElementById("formTitle");
 
         const button =
-        document.getElementById(
-            "mainBtn"
-        );
+        document.getElementById("mainBtn");
 
         const switchText =
-        document.getElementById(
-            "switchText"
-        );
+        document.getElementById("switchText");
 
-        document.getElementById(
-            "authForm"
-        ).reset();
+        document.getElementById("authForm").reset();
 
-        document.getElementById(
-            "loginMessage"
-        ).innerHTML = "";
+        document.getElementById("loginMessage").innerHTML = "";
 
         if(isLogin){
 
@@ -697,30 +438,22 @@
 
             button.innerHTML = "Login";
 
-            switchText.innerHTML =
-            "Register";
+            switchText.innerHTML = "Register";
 
-            fields.forEach(field => {
-
-                field.style.display =
-                "none";
+            fields.forEach(field=>{
+                field.style.display="none";
             });
 
         }else{
 
-            title.innerHTML =
-            "Register";
+            title.innerHTML = "Register";
 
-            button.innerHTML =
-            "Register";
+            button.innerHTML = "Register";
 
-            switchText.innerHTML =
-            "Back To Login";
+            switchText.innerHTML = "Back To Login";
 
-            fields.forEach(field => {
-
-                field.style.display =
-                "block";
+            fields.forEach(field=>{
+                field.style.display="block";
             });
         }
     }
@@ -732,90 +465,61 @@
         event.preventDefault();
 
         const button =
-        document.getElementById(
-            "mainBtn"
-        );
+        document.getElementById("mainBtn");
 
-        const originalText =
-        button.innerHTML;
+        const originalText = button.innerHTML;
 
         button.disabled = true;
 
-        button.innerHTML =
-        "Processing...";
+        button.innerHTML = "Processing...";
 
         if(isLogin){
 
-            loginUser(
-                button,
-                originalText
-            );
+            loginUser(button,originalText);
 
         }else{
 
-            registerUser(
-                button,
-                originalText
-            );
+            registerUser(button,originalText);
         }
     }
 
     /* LOGIN */
 
-    async function loginUser(
-        button,
-        originalText
-    ){
+    async function loginUser(button,originalText){
 
         const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
+        document.getElementById("email").value.trim();
 
         const password =
-        document.getElementById(
-            "password"
-        ).value.trim();
+        document.getElementById("password").value.trim();
 
         const message =
-        document.getElementById(
-            "loginMessage"
-        );
+        document.getElementById("loginMessage");
 
         try{
 
-            const response =
-            await fetch(LOGIN_API,{
+            const response = await fetch(LOGIN_API,{
 
                 method:"POST",
 
                 headers:{
-                    "Content-Type":
-                    "application/json"
+                    "Content-Type":"application/json"
                 },
 
                 body:JSON.stringify({
-
-                    email:email,
-                    password:password
+                    email,
+                    password
                 })
             });
 
-            const data =
-            await response.json();
-
-            console.log(data);
+            const data = await response.json();
 
             if(!response.ok){
 
                 throw new Error(
-
-                    data.message ||
-                    "Invalid Login"
+                    data.message || "Invalid Login"
                 );
             }
-
-            /* SAVE LOGIN DATA */
 
             localStorage.setItem(
                 "token",
@@ -827,46 +531,6 @@
                 data.role || ""
             );
 
-            /* USER ID */
-
-            if(
-                data.data &&
-                data.data.id
-            ){
-
-                localStorage.setItem(
-                    "userId",
-                    data.data.id
-                );
-
-            }else if(data.id){
-
-                localStorage.setItem(
-                    "userId",
-                    data.id
-                );
-            }
-
-            /* USER NAME */
-
-            if(
-                data.data &&
-                data.data.name
-            ){
-
-                localStorage.setItem(
-                    "userName",
-                    data.data.name
-                );
-
-            }else if(data.name){
-
-                localStorage.setItem(
-                    "userName",
-                    data.name
-                );
-            }
-
             message.innerHTML =
             "⚡ Login Successful";
 
@@ -875,10 +539,9 @@
 
             button.disabled = false;
 
-            button.innerHTML =
-            originalText;
+            button.innerHTML = originalText;
 
-            setTimeout(() => {
+            setTimeout(()=>{
 
                 if(
                     data.role === "ADMIN" ||
@@ -898,11 +561,7 @@
 
             },1000);
 
-        }
-
-        catch(error){
-
-            console.log(error);
+        }catch(error){
 
             message.innerHTML =
             error.message;
@@ -912,60 +571,40 @@
 
             button.disabled = false;
 
-            button.innerHTML =
-            originalText;
+            button.innerHTML = originalText;
         }
     }
 
     /* REGISTER */
 
-    async function registerUser(
-        button,
-        originalText
-    ){
+    async function registerUser(button,originalText){
 
         const body = {
 
             name:
-            document.getElementById(
-                "name"
-            ).value.trim(),
+            document.getElementById("name").value.trim(),
 
             address:
-            document.getElementById(
-                "address"
-            ).value.trim(),
+            document.getElementById("address").value.trim(),
 
             mobile:
-            document.getElementById(
-                "mobile"
-            ).value.trim(),
+            document.getElementById("mobile").value.trim(),
 
             make:
-            document.getElementById(
-                "make"
-            ).value.trim(),
+            document.getElementById("make").value.trim(),
 
             remarks:
-            document.getElementById(
-                "remarks"
-            ).value.trim(),
+            document.getElementById("remarks").value.trim(),
 
             email:
-            document.getElementById(
-                "email"
-            ).value.trim(),
+            document.getElementById("email").value.trim(),
 
             password:
-            document.getElementById(
-                "password"
-            ).value.trim()
+            document.getElementById("password").value.trim()
         };
 
         const message =
-        document.getElementById(
-            "loginMessage"
-        );
+        document.getElementById("loginMessage");
 
         try{
 
@@ -975,8 +614,7 @@
                 method:"POST",
 
                 headers:{
-                    "Content-Type":
-                    "application/json"
+                    "Content-Type":"application/json"
                 },
 
                 body:JSON.stringify(body)
@@ -1001,20 +639,15 @@
 
             button.disabled = false;
 
-            button.innerHTML =
-            originalText;
+            button.innerHTML = originalText;
 
-            setTimeout(() => {
+            setTimeout(()=>{
 
                 toggleForm();
 
             },1200);
 
-        }
-
-        catch(error){
-
-            console.log(error);
+        }catch(error){
 
             message.innerHTML =
             error.message;
@@ -1024,8 +657,7 @@
 
             button.disabled = false;
 
-            button.innerHTML =
-            originalText;
+            button.innerHTML = originalText;
         }
     }
 
