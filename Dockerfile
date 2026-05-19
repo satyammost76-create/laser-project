@@ -1,6 +1,4 @@
-FROM eclipse-temurin:21git add .
-                       git commit -m "java 21 fix"
-                       git push -f origin main
+FROM eclipse-temurin:21
 
 WORKDIR /app
 
