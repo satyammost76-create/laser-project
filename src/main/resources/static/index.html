@@ -3,11 +3,12 @@
 
 <head>
 
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Alpha Laser Login & Register</title>
+    <title>Alpha Laser Login System</title>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -15,343 +16,379 @@
     <style>
 
         *{
-          margin:0;
-          padding:0;
-          box-sizing:border-box;
-          font-family:Arial, Helvetica, sans-serif;
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
         }
 
         body{
-          min-height:100vh;
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          background:
-          linear-gradient(
-            135deg,
-            #020617,
-            #001233,
-            #003566,
-            #2563eb
-          );
-          padding:15px;
-          overflow-x:hidden;
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            background:
+            linear-gradient(
+                135deg,
+                #020617,
+                #001233,
+                #003566,
+                #2563eb
+            );
+
+            overflow:hidden;
+
+            padding:20px;
         }
 
         .container{
-          width:100%;
-          max-width:1450px;
-          min-height:760px;
-          background:white;
-          border-radius:35px;
-          overflow:hidden;
-          display:flex;
-          box-shadow:
-          0px 25px 70px rgba(0,0,0,0.7);
-          backdrop-filter:blur(15px);
+
+            width:100%;
+
+            max-width:1450px;
+
+            min-height:750px;
+
+            background:white;
+
+            border-radius:35px;
+
+            overflow:hidden;
+
+            display:flex;
+
+            box-shadow:
+            0 25px 60px rgba(0,0,0,0.7);
         }
+
+        /* LEFT */
 
         .left{
-          width:55%;
-          background:
-          linear-gradient(
-            135deg,
-            #001133,
-            #002966,
-            #0055ff
-          );
-          position:relative;
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          overflow:hidden;
-          padding:40px 20px;
+
+            width:55%;
+
+            background:
+            linear-gradient(
+                135deg,
+                #001845,
+                #003566,
+                #00509d
+            );
+
+            display:flex;
+
+            flex-direction:column;
+
+            justify-content:center;
+
+            align-items:center;
+
+            position:relative;
+
+            overflow:hidden;
+
+            padding:40px;
         }
 
-        .circle1,
-        .circle2{
-          position:absolute;
-          border-radius:50%;
-          background:
-          rgba(0,0,0,0.15);
+        .left::before{
+
+            content:"";
+
+            position:absolute;
+
+            width:300px;
+
+            height:300px;
+
+            border-radius:50%;
+
+            background:
+            rgba(255,255,255,0.06);
+
+            top:-100px;
+
+            left:-100px;
         }
 
-        .circle1{
-          width:250px;
-          height:250px;
-          top:-100px;
-          left:-100px;
-        }
+        .left::after{
 
-        .circle2{
-          width:220px;
-          height:220px;
-          bottom:-100px;
-          left:-100px;
-        }
+            content:"";
 
-        .dots,
-        .dots2{
-          position:absolute;
-          width:120px;
-          height:120px;
-          background-image:
-          radial-gradient(
-            #38bdf8 2px,
-            transparent 2px
-          );
-          background-size:16px 16px;
-        }
+            position:absolute;
 
-        .dots{
-          top:35px;
-          left:20px;
-        }
+            width:250px;
 
-        .dots2{
-          right:35px;
-          bottom:70px;
-          width:140px;
-          height:140px;
+            height:250px;
+
+            border-radius:50%;
+
+            background:
+            rgba(255,255,255,0.05);
+
+            bottom:-80px;
+
+            right:-80px;
         }
 
         .logo{
-          z-index:5;
+
+            z-index:5;
+
+            text-align:center;
         }
 
         .logo img{
-          width:140px;
-          background:white;
-          padding:8px;
-          border-radius:12px;
-          box-shadow:
-          0px 8px 20px rgba(0,0,0,0.4);
+
+            width:140px;
+
+            background:white;
+
+            padding:10px;
+
+            border-radius:20px;
+
+            box-shadow:
+            0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .logo h1{
+
+            color:white;
+
+            font-size:52px;
+
+            margin-top:20px;
+
+            font-weight:900;
+        }
+
+        .logo h2{
+
+            color:#38bdf8;
+
+            font-size:28px;
+
+            margin-top:10px;
+
+            letter-spacing:3px;
+        }
+
+        .machine{
+
+            width:100%;
+
+            display:flex;
+
+            justify-content:center;
+
+            margin-top:40px;
+
+            z-index:5;
+        }
+
+        .machine img{
+
+            width:90%;
+
+            max-width:700px;
+
+            border-radius:25px;
+
+            box-shadow:
+            0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* RIGHT */
+
+        .right{
+
+            width:45%;
+
+            background:#f8fafc;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            padding:40px;
+        }
+
+        .card{
+
+            width:100%;
         }
 
         .title{
-          margin-top:15px;
-          text-align:center;
-          z-index:5;
-        }
 
-        .title h1{
-          color:white;
-          font-size:46px;
-          font-weight:900;
-          text-shadow:
-          0px 5px 10px rgba(0,0,0,0.6);
-        }
+            text-align:center;
 
-        .system-row{
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          gap:14px;
-          margin-top:8px;
+            font-size:55px;
+
+            font-weight:900;
+
+            color:#001845;
         }
 
         .line{
-          width:70px;
-          height:4px;
-          background:#00bfff;
-          border-radius:20px;
-          box-shadow:
-          0px 0px 15px #00bfff;
-        }
 
-        .system{
-          color:#00bfff;
-          font-size:28px;
-          font-weight:900;
-        }
+            width:120px;
 
-        .subtext{
-          margin-top:8px;
-          color:white;
-          font-size:22px;
-          font-weight:bold;
-          letter-spacing:1px;
-          z-index:5;
-        }
+            height:5px;
 
-        .machine-box{
-          width:100%;
-          flex-grow:1;
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          position:relative;
-          margin-top:30px;
-          z-index:5;
-        }
+            background:#2563eb;
 
-        .machine-box img{
-          width:270px;
-          max-width:95%;
-          object-fit:contain;
-          border-radius:15px;
-          filter:
-          drop-shadow(
-            0px 14px 28px rgba(0,0,0,0.7)
-          );
-        }
+            margin:15px auto 35px auto;
 
-        .glow{
-          position:absolute;
-          width:180px;
-          height:35px;
-          background:
-          radial-gradient(
-            circle,
-            #00bfff,
-            transparent
-          );
-          left:50%;
-          bottom:10px;
-          transform:translateX(-50%);
-          filter:blur(12px);
-        }
-
-        .right{
-          width:45%;
-          background:#f8fafc;
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          padding:35px;
-        }
-
-        .login-card{
-          width:100%;
-          animation:fadeIn 1s ease;
-        }
-
-        @keyframes fadeIn{
-          from{
-            opacity:0;
-            transform:
-            translateY(20px);
-          }
-          to{
-            opacity:1;
-            transform:
-            translateY(0);
-          }
-        }
-
-        .login-title{
-          text-align:center;
-          font-size:55px;
-          font-weight:900;
-          color:#001845;
-        }
-
-        .small-line{
-          width:100px;
-          height:5px;
-          background:#2563eb;
-          margin:10px auto 28px auto;
-          border-radius:20px;
+            border-radius:20px;
         }
 
         .input-box{
-          margin-bottom:15px;
+
+            margin-bottom:18px;
         }
 
         .input-box label{
-          display:block;
-          margin-bottom:6px;
-          font-size:17px;
-          font-weight:bold;
-          color:#001845;
+
+            display:block;
+
+            margin-bottom:8px;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            color:#001845;
         }
 
         .input-box input{
-          width:100%;
-          padding:16px;
-          border:none;
-          border-radius:15px;
-          background:#dbe7f5;
-          outline:none;
-          font-size:15px;
-          transition:0.3s;
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:18px;
+
+            background:#dbeafe;
+
+            font-size:16px;
+
+            outline:none;
+
+            transition:0.3s;
         }
 
         .input-box input:focus{
-          transform:scale(1.02);
-          background:#ffffff;
-          box-shadow:
-          0px 0px 15px rgba(37,99,235,0.4);
+
+            background:white;
+
+            transform:scale(1.02);
+
+            box-shadow:
+            0 0 15px rgba(37,99,235,0.3);
         }
 
         .btn{
-          width:100%;
-          padding:16px;
-          border:none;
-          border-radius:18px;
-          background:
-          linear-gradient(
-            90deg,
-            #0b5cff,
-            #0047ff
-          );
-          color:white;
-          font-size:26px;
-          font-weight:bold;
-          cursor:pointer;
-          margin-top:8px;
-          transition:0.3s;
-          position:relative;
-          overflow:hidden;
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:20px;
+
+            background:
+            linear-gradient(
+                135deg,
+                #0b5cff,
+                #0047ff
+            );
+
+            color:white;
+
+            font-size:24px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            margin-top:10px;
+
+            transition:0.3s;
         }
 
         .btn:hover{
-          transform:translateY(-3px);
-          box-shadow:
-          0px 15px 25px rgba(37,99,235,0.4);
+
+            transform:translateY(-3px);
+
+            box-shadow:
+            0 15px 25px rgba(37,99,235,0.4);
         }
 
         .switch{
-          margin-top:20px;
-          text-align:center;
-          font-size:17px;
+
+            text-align:center;
+
+            margin-top:25px;
+
+            font-size:18px;
         }
 
         .switch span{
-          color:#0047ff;
-          font-weight:bold;
-          cursor:pointer;
+
+            color:#0047ff;
+
+            font-weight:bold;
+
+            cursor:pointer;
         }
 
         .message{
-          margin-top:15px;
-          text-align:center;
-          font-size:16px;
-          font-weight:bold;
+
+            margin-top:18px;
+
+            text-align:center;
+
+            font-size:17px;
+
+            font-weight:bold;
         }
 
         .success{
-          color:#16a34a;
+            color:#16a34a;
         }
 
         .error{
-          color:red;
+            color:red;
+        }
+
+        .register-field{
+            display:none;
         }
 
         @media(max-width:1100px){
 
-          .container{
-            flex-direction:column;
-          }
+            .container{
+                flex-direction:column;
+            }
 
-          .left,
-          .right{
-            width:100%;
-          }
+            .left,
+            .right{
+                width:100%;
+            }
 
-          .login-title{
-            font-size:42px;
-          }
+            .title{
+                font-size:42px;
+            }
         }
 
     </style>
@@ -362,98 +399,145 @@
 
 <div class="container">
 
+    <!-- LEFT -->
+
     <div class="left">
 
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="dots"></div>
-        <div class="dots2"></div>
-
         <div class="logo">
-            <img src="logo.png" alt="Logo">
-        </div>
 
-        <div class="title">
+            <img src="logo.png">
+
             <h1>ALPHA LASER</h1>
+
+            <h2>SYSTEM</h2>
+
         </div>
 
-        <div class="system-row">
-            <div class="line"></div>
-            <div class="system">SYSTEM</div>
-            <div class="line"></div>
-        </div>
+        <div class="machine">
 
-        <div class="subtext">
-            Precision • Power • Performance
-        </div>
+            <img src="machine.png">
 
-        <div class="machine-box">
-            <img src="machine.png" alt="Machine">
-            <div class="glow"></div>
         </div>
 
     </div>
 
+    <!-- RIGHT -->
+
     <div class="right">
 
-        <div class="login-card">
+        <div class="card">
 
-            <div class="login-title" id="formTitle">
+            <div class="title"
+                 id="formTitle">
+
                 Login
+
             </div>
 
-            <div class="small-line"></div>
+            <div class="line"></div>
 
-            <form id="authForm" onsubmit="submitForm(event)">
+            <form id="authForm"
+                  onsubmit="submitForm(event)">
 
-                <div class="input-box register-field" style="display:none;">
+                <!-- REGISTER -->
+
+                <div class="input-box register-field">
+
                     <label>Name</label>
-                    <input type="text" id="name" placeholder="Enter Name">
+
+                    <input type="text"
+                           id="name"
+                           placeholder="Enter Name">
+
                 </div>
 
-                <div class="input-box register-field" style="display:none;">
+                <div class="input-box register-field">
+
                     <label>Address</label>
-                    <input type="text" id="address" placeholder="Enter Address">
+
+                    <input type="text"
+                           id="address"
+                           placeholder="Enter Address">
+
                 </div>
 
-                <div class="input-box register-field" style="display:none;">
+                <div class="input-box register-field">
+
                     <label>Mobile</label>
-                    <input type="text" id="mobile" placeholder="Enter Mobile">
+
+                    <input type="text"
+                           id="mobile"
+                           placeholder="Enter Mobile">
+
                 </div>
 
-                <div class="input-box register-field" style="display:none;">
+                <div class="input-box register-field">
+
                     <label>Machine Make</label>
-                    <input type="text" id="make" placeholder="Enter Machine Make">
+
+                    <input type="text"
+                           id="make"
+                           placeholder="Enter Machine Make">
+
                 </div>
 
-                <div class="input-box register-field" style="display:none;">
+                <div class="input-box register-field">
+
                     <label>Remarks</label>
-                    <input type="text" id="remarks" placeholder="Enter Remarks">
+
+                    <input type="text"
+                           id="remarks"
+                           placeholder="Enter Remarks">
+
                 </div>
 
+                <!-- COMMON -->
+
                 <div class="input-box">
+
                     <label>Email</label>
-                    <input type="email" id="email" placeholder="Enter Email" required>
+
+                    <input type="email"
+                           id="email"
+                           placeholder="Enter Email"
+                           required>
+
                 </div>
 
                 <div class="input-box">
+
                     <label>Password</label>
-                    <input type="password" id="password" placeholder="Enter Password" required>
+
+                    <input type="password"
+                           id="password"
+                           placeholder="Enter Password"
+                           required>
+
                 </div>
 
-                <button type="submit" class="btn" id="mainBtn">
+                <button type="submit"
+                        class="btn"
+                        id="mainBtn">
+
                     Login
+
                 </button>
 
             </form>
 
             <div class="switch">
-          <span onclick="toggleForm()" id="switchText">
-            Register
-          </span>
+
+                <span onclick="toggleForm()"
+                      id="switchText">
+
+                    Register
+
+                </span>
+
             </div>
 
-            <div class="message" id="loginMessage"></div>
+            <div class="message"
+                 id="loginMessage"></div>
 
         </div>
 
@@ -474,262 +558,292 @@
     const REGISTER_API =
     `${BASE_URL}/rajeshroy/auth/register`;
 
+    /* TOGGLE */
+
     function toggleForm(){
 
-      isLogin = !isLogin;
+        isLogin = !isLogin;
 
-      const fields =
-      document.querySelectorAll(".register-field");
+        const fields =
+        document.querySelectorAll(".register-field");
 
-      const inputs =
-      document.querySelectorAll(".register-field input");
+        const title =
+        document.getElementById("formTitle");
 
-      document.getElementById("authForm").reset();
+        const button =
+        document.getElementById("mainBtn");
 
-      document.getElementById("loginMessage").innerHTML = "";
+        const switchText =
+        document.getElementById("switchText");
 
-      if(isLogin){
+        document.getElementById("authForm").reset();
 
-        document.getElementById("formTitle").innerHTML = "Login";
+        document.getElementById("loginMessage").innerHTML = "";
 
-        document.getElementById("mainBtn").innerHTML = "Login";
+        if(isLogin){
 
-        document.getElementById("switchText").innerHTML = "Register";
+            title.innerHTML = "Login";
 
-        fields.forEach(field => {
-          field.style.display = "none";
-        });
+            button.innerHTML = "Login";
 
-        inputs.forEach(input => {
-          input.removeAttribute("required");
-        });
+            switchText.innerHTML = "Register";
 
-      } else {
+            fields.forEach(field => {
+                field.style.display = "none";
+            });
 
-        document.getElementById("formTitle").innerHTML = "Register";
+        } else {
 
-        document.getElementById("mainBtn").innerHTML = "Register";
+            title.innerHTML = "Register";
 
-        document.getElementById("switchText").innerHTML = "Back To Login";
+            button.innerHTML = "Register";
 
-        fields.forEach(field => {
-          field.style.display = "block";
-        });
+            switchText.innerHTML = "Back To Login";
 
-        inputs.forEach(input => {
-          input.setAttribute("required","true");
-        });
-      }
+            fields.forEach(field => {
+                field.style.display = "block";
+            });
+        }
     }
+
+    /* SUBMIT */
 
     function submitForm(event){
 
-      event.preventDefault();
+        event.preventDefault();
 
-      const button =
-      document.getElementById("mainBtn");
+        const button =
+        document.getElementById("mainBtn");
 
-      const originalText =
-      button.innerHTML;
+        const originalText =
+        button.innerHTML;
 
-      button.disabled = true;
+        button.disabled = true;
 
-      button.innerHTML = "Processing...";
+        button.innerHTML = "Processing...";
 
-      if(isLogin){
-        loginUser(button,originalText);
-      } else {
-        registerUser(button,originalText);
-      }
+        if(isLogin){
+
+            loginUser(button,originalText);
+
+        } else {
+
+            registerUser(button,originalText);
+        }
     }
 
-    function loginUser(button,originalText){
+    /* LOGIN */
 
-      const email =
-      document.getElementById("email").value.trim();
+    async function loginUser(button,originalText){
 
-      const password =
-      document.getElementById("password").value.trim();
+        const email =
+        document.getElementById("email").value.trim();
 
-      const message =
-      document.getElementById("loginMessage");
+        const password =
+        document.getElementById("password").value.trim();
 
-      fetch(LOGIN_API,{
+        const message =
+        document.getElementById("loginMessage");
 
-        method:"POST",
+        try{
 
-        headers:{
-          "Content-Type":"application/json"
-        },
+            const response =
+            await fetch(LOGIN_API,{
 
-        body:JSON.stringify({
-          email:email,
-          password:password
-        })
+                method:"POST",
 
-      })
+                headers:{
+                    "Content-Type":"application/json"
+                },
 
-      .then(async response => {
+                body:JSON.stringify({
+                    email:email,
+                    password:password
+                })
+            });
 
-        const data = await response.json();
+            const data =
+            await response.json();
 
-        if(!response.ok){
+            console.log(data);
 
-          throw new Error(
-            data.message ||
-            "Invalid Email or Password"
-          );
+            if(!response.ok){
+
+                throw new Error(
+                    data.message ||
+                    "Invalid Email Or Password"
+                );
+            }
+
+            /* SAVE LOGIN DATA */
+
+            localStorage.setItem(
+                "token",
+                data.token || ""
+            );
+
+            localStorage.setItem(
+                "role",
+                data.role || ""
+            );
+
+            if(data.data && data.data.id){
+
+                localStorage.setItem(
+                    "userId",
+                    data.data.id
+                );
+
+            } else if(data.id){
+
+                localStorage.setItem(
+                    "userId",
+                    data.id
+                );
+            }
+
+            if(data.data && data.data.name){
+
+                localStorage.setItem(
+                    "userName",
+                    data.data.name
+                );
+            }
+
+            message.innerHTML =
+            "⚡ Login Successful";
+
+            message.className =
+            "message success";
+
+            button.disabled = false;
+
+            button.innerHTML = originalText;
+
+            setTimeout(() => {
+
+                if(
+                    data.role === "ADMIN" ||
+                    data.role === "ROLE_ADMIN"
+                ){
+
+                    window.location.href =
+                    "admin.html";
+
+                } else {
+
+                    window.location.href =
+                    "user.html";
+                }
+
+            },1000);
+
         }
 
-        return data;
-      })
+        catch(error){
 
-      .then(data => {
+            console.log(error);
 
-        localStorage.setItem(
-          "token",
-          data.token || ""
-        );
+            message.innerHTML =
+            error.message;
 
-        localStorage.setItem(
-          "role",
-          data.role || ""
-        );
+            message.className =
+            "message error";
 
-        message.innerHTML =
-        "⚡ Login Successful!";
+            button.disabled = false;
 
-        message.className =
-        "message success";
-
-        button.disabled = false;
-
-        button.innerHTML = originalText;
-
-        setTimeout(() => {
-
-          if(
-            data.role === "ADMIN" ||
-            data.role === "ROLE_ADMIN"
-          ){
-
-            window.location.href =
-            "admin.html";
-
-          } else {
-
-            window.location.href =
-            "user.html";
-          }
-
-        },1000);
-
-      })
-
-      .catch(error => {
-
-        message.innerHTML =
-        error.message;
-
-        message.className =
-        "message error";
-
-        button.disabled = false;
-
-        button.innerHTML = originalText;
-
-      });
+            button.innerHTML = originalText;
+        }
     }
 
-    function registerUser(button,originalText){
+    /* REGISTER */
 
-      const body = {
+    async function registerUser(button,originalText){
 
-        name:
-        document.getElementById("name").value.trim(),
+        const body = {
 
-        address:
-        document.getElementById("address").value.trim(),
+            name:
+            document.getElementById("name").value.trim(),
 
-        mobile:
-        document.getElementById("mobile").value.trim(),
+            address:
+            document.getElementById("address").value.trim(),
 
-        make:
-        document.getElementById("make").value.trim(),
+            mobile:
+            document.getElementById("mobile").value.trim(),
 
-        remarks:
-        document.getElementById("remarks").value.trim(),
+            make:
+            document.getElementById("make").value.trim(),
 
-        email:
-        document.getElementById("email").value.trim(),
+            remarks:
+            document.getElementById("remarks").value.trim(),
 
-        password:
-        document.getElementById("password").value.trim()
-      };
+            email:
+            document.getElementById("email").value.trim(),
 
-      const message =
-      document.getElementById("loginMessage");
+            password:
+            document.getElementById("password").value.trim()
+        };
 
-      fetch(REGISTER_API,{
+        const message =
+        document.getElementById("loginMessage");
 
-        method:"POST",
+        try{
 
-        headers:{
-          "Content-Type":"application/json"
-        },
+            const response =
+            await fetch(REGISTER_API,{
 
-        body:JSON.stringify(body)
+                method:"POST",
 
-      })
+                headers:{
+                    "Content-Type":"application/json"
+                },
 
-      .then(async response => {
+                body:JSON.stringify(body)
+            });
 
-        const textData =
-        await response.text();
+            const textData =
+            await response.text();
 
-        if(!response.ok){
+            if(!response.ok){
 
-          throw new Error(
-            textData ||
-            "Registration Failed"
-          );
+                throw new Error(
+                    textData ||
+                    "Registration Failed"
+                );
+            }
+
+            message.innerHTML =
+            "⚡ Registration Successful";
+
+            message.className =
+            "message success";
+
+            button.disabled = false;
+
+            button.innerHTML = originalText;
+
+            setTimeout(() => {
+
+                toggleForm();
+
+            },1200);
+
         }
 
-        return textData;
+        catch(error){
 
-      })
+            console.log(error);
 
-      .then(() => {
+            message.innerHTML =
+            error.message;
 
-        message.innerHTML =
-        "⚡ Registration Successful!";
+            message.className =
+            "message error";
 
-        message.className =
-        "message success";
+            button.disabled = false;
 
-        button.disabled = false;
-
-        button.innerHTML = originalText;
-
-        setTimeout(() => {
-          toggleForm();
-        },1200);
-
-      })
-
-      .catch(error => {
-
-        message.innerHTML =
-        error.message;
-
-        message.className =
-        "message error";
-
-        button.disabled = false;
-
-        button.innerHTML = originalText;
-
-      });
+            button.innerHTML = originalText;
+        }
     }
 
 </script>
