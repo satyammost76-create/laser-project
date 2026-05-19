@@ -8,9 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>
-        ALPHA LASER ADMIN PANEL
-    </title>
+    <title>Alpha Laser Admin Panel</title>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -269,6 +267,11 @@
         font-size:16px;
         }
 
+        .search-box input::placeholder{
+
+        color:#cbd5e1;
+        }
+
         .search-btn,
         .reset-btn{
 
@@ -297,6 +300,15 @@
         background:#16a34a;
 
         color:white;
+        }
+
+        .search-btn:hover,
+        .reset-btn:hover{
+
+        transform:translateY(-5px);
+
+        box-shadow:
+        0 0 20px rgba(255,255,255,0.2);
         }
 
         .table-container{
@@ -348,6 +360,11 @@
         color:#e2e8f0;
         }
 
+        tbody tr{
+
+        transition:0.4s;
+        }
+
         tbody tr:hover{
 
         background:
@@ -367,6 +384,15 @@
         font-weight:600;
 
         margin-right:8px;
+
+        transition:0.4s;
+        }
+
+        .update-btn{
+
+        background:#f59e0b;
+
+        color:white;
         }
 
         .delete-btn{
@@ -374,6 +400,11 @@
         background:#ef4444;
 
         color:white;
+        }
+
+        .action-btn:hover{
+
+        transform:scale(1.05);
         }
 
         .loading{
@@ -411,6 +442,21 @@
         0 0 25px rgba(22,163,74,0.5);
 
         z-index:9999;
+
+        animation:slide 0.5s ease;
+        }
+
+        @keyframes slide{
+
+        from{
+        transform:translateX(100px);
+        opacity:0;
+        }
+
+        to{
+        transform:translateX(0);
+        opacity:1;
+        }
         }
 
         @media(max-width:768px){
@@ -555,7 +601,7 @@
 
 <script>
 
-    /* ================= LOGIN CHECK ================= */
+    /* LOGIN CHECK */
 
     const token =
     localStorage.getItem("token");
@@ -581,22 +627,22 @@
     );
     }
 
-    /* ================= API ================= */
+    /* API */
 
     const BASE_URL =
-    "https://laser-project-k6tt.onrender.com";
+    "http://localhost:8000";
 
     const API_URL =
     `${BASE_URL}/rajeshroy/all`;
 
-    /* ================= LOAD PAGE ================= */
+    /* LOAD PAGE */
 
     window.onload = function(){
 
     loadData();
     };
 
-    /* ================= LOAD DATA ================= */
+    /* LOAD DATA */
 
     async function loadData(){
 
@@ -660,7 +706,7 @@
     }
     }
 
-    /* ================= SHOW DATA ================= */
+    /* SHOW DATA */
 
     function showData(users){
 
@@ -708,7 +754,7 @@
     });
     }
 
-    /* ================= SEARCH USER ================= */
+    /* SEARCH USER */
 
     async function searchById(){
 
@@ -758,7 +804,7 @@
     }
     }
 
-    /* ================= DELETE USER ================= */
+    /* DELETE USER */
 
     async function deleteUser(id){
 
@@ -798,11 +844,13 @@
     }
     }
 
-    /* ================= LOGOUT ================= */
+    /* LOGOUT */
 
     function logout(){
 
-    localStorage.clear();
+    localStorage.removeItem("token");
+
+    localStorage.removeItem("role");
 
     const popup =
     document.createElement("div");
@@ -829,7 +877,7 @@
     },1200);
     }
 
-    /* ================= BLOCK BACK ================= */
+    /* BLOCK BACK BUTTON */
 
     history.pushState(
     null,
