@@ -151,9 +151,6 @@
             padding:10px;
 
             border-radius:20px;
-
-            box-shadow:
-            0 10px 30px rgba(0,0,0,0.4);
         }
 
         .logo h1{
@@ -174,8 +171,6 @@
             font-size:28px;
 
             margin-top:10px;
-
-            letter-spacing:3px;
         }
 
         .machine{
@@ -198,9 +193,6 @@
             max-width:700px;
 
             border-radius:25px;
-
-            box-shadow:
-            0 20px 40px rgba(0,0,0,0.5);
         }
 
         /* RIGHT */
@@ -282,15 +274,11 @@
             font-size:16px;
 
             outline:none;
-
-            transition:0.3s;
         }
 
         .input-box input:focus{
 
             background:white;
-
-            transform:scale(1.02);
 
             box-shadow:
             0 0 15px rgba(37,99,235,0.3);
@@ -322,16 +310,6 @@
             cursor:pointer;
 
             margin-top:10px;
-
-            transition:0.3s;
-        }
-
-        .btn:hover{
-
-            transform:translateY(-3px);
-
-            box-shadow:
-            0 15px 25px rgba(37,99,235,0.4);
         }
 
         .switch{
@@ -374,6 +352,8 @@
         .register-field{
             display:none;
         }
+
+        /* MOBILE */
 
         @media(max-width:1100px){
 
@@ -446,8 +426,7 @@
                     <label>Name</label>
 
                     <input type="text"
-                           id="name"
-                           placeholder="Enter Name">
+                           id="name">
 
                 </div>
 
@@ -456,8 +435,7 @@
                     <label>Address</label>
 
                     <input type="text"
-                           id="address"
-                           placeholder="Enter Address">
+                           id="address">
 
                 </div>
 
@@ -466,8 +444,7 @@
                     <label>Mobile</label>
 
                     <input type="text"
-                           id="mobile"
-                           placeholder="Enter Mobile">
+                           id="mobile">
 
                 </div>
 
@@ -476,8 +453,7 @@
                     <label>Machine Make</label>
 
                     <input type="text"
-                           id="make"
-                           placeholder="Enter Machine Make">
+                           id="make">
 
                 </div>
 
@@ -486,8 +462,7 @@
                     <label>Remarks</label>
 
                     <input type="text"
-                           id="remarks"
-                           placeholder="Enter Remarks">
+                           id="remarks">
 
                 </div>
 
@@ -499,7 +474,6 @@
 
                     <input type="email"
                            id="email"
-                           placeholder="Enter Email"
                            required>
 
                 </div>
@@ -510,7 +484,6 @@
 
                     <input type="password"
                            id="password"
-                           placeholder="Enter Password"
                            required>
 
                 </div>
@@ -527,12 +500,12 @@
 
             <div class="switch">
 
-                <span onclick="toggleForm()"
-                      id="switchText">
+            <span onclick="toggleForm()"
+                  id="switchText">
 
-                    Register
+                Register
 
-                </span>
+            </span>
 
             </div>
 
@@ -544,8 +517,34 @@
     </div>
 
 </div>
-
 <script>
+
+    /* AUTO LOGIN */
+
+    const savedToken =
+    localStorage.getItem("token");
+
+    const savedRole =
+    localStorage.getItem("role");
+
+    if(savedToken){
+
+        if(
+            savedRole === "ADMIN" ||
+            savedRole === "ROLE_ADMIN"
+        ){
+
+            window.location.replace(
+                "admin.html"
+            );
+
+        }else{
+
+            window.location.replace(
+                "user.html"
+            );
+        }
+    }
 
     let isLogin = true;
 
@@ -565,20 +564,32 @@
         isLogin = !isLogin;
 
         const fields =
-        document.querySelectorAll(".register-field");
+        document.querySelectorAll(
+            ".register-field"
+        );
 
         const title =
-        document.getElementById("formTitle");
+        document.getElementById(
+            "formTitle"
+        );
 
         const button =
-        document.getElementById("mainBtn");
+        document.getElementById(
+            "mainBtn"
+        );
 
         const switchText =
-        document.getElementById("switchText");
+        document.getElementById(
+            "switchText"
+        );
 
-        document.getElementById("authForm").reset();
+        document.getElementById(
+            "authForm"
+        ).reset();
 
-        document.getElementById("loginMessage").innerHTML = "";
+        document.getElementById(
+            "loginMessage"
+        ).innerHTML = "";
 
         if(isLogin){
 
@@ -586,22 +597,30 @@
 
             button.innerHTML = "Login";
 
-            switchText.innerHTML = "Register";
+            switchText.innerHTML =
+            "Register";
 
             fields.forEach(field => {
-                field.style.display = "none";
+
+                field.style.display =
+                "none";
             });
 
-        } else {
+        }else{
 
-            title.innerHTML = "Register";
+            title.innerHTML =
+            "Register";
 
-            button.innerHTML = "Register";
+            button.innerHTML =
+            "Register";
 
-            switchText.innerHTML = "Back To Login";
+            switchText.innerHTML =
+            "Back To Login";
 
             fields.forEach(field => {
-                field.style.display = "block";
+
+                field.style.display =
+                "block";
             });
         }
     }
@@ -613,37 +632,55 @@
         event.preventDefault();
 
         const button =
-        document.getElementById("mainBtn");
+        document.getElementById(
+            "mainBtn"
+        );
 
         const originalText =
         button.innerHTML;
 
         button.disabled = true;
 
-        button.innerHTML = "Processing...";
+        button.innerHTML =
+        "Processing...";
 
         if(isLogin){
 
-            loginUser(button,originalText);
+            loginUser(
+                button,
+                originalText
+            );
 
-        } else {
+        }else{
 
-            registerUser(button,originalText);
+            registerUser(
+                button,
+                originalText
+            );
         }
     }
 
     /* LOGIN */
 
-    async function loginUser(button,originalText){
+    async function loginUser(
+        button,
+        originalText
+    ){
 
         const email =
-        document.getElementById("email").value.trim();
+        document.getElementById(
+            "email"
+        ).value.trim();
 
         const password =
-        document.getElementById("password").value.trim();
+        document.getElementById(
+            "password"
+        ).value.trim();
 
         const message =
-        document.getElementById("loginMessage");
+        document.getElementById(
+            "loginMessage"
+        );
 
         try{
 
@@ -653,10 +690,12 @@
                 method:"POST",
 
                 headers:{
-                    "Content-Type":"application/json"
+                    "Content-Type":
+                    "application/json"
                 },
 
                 body:JSON.stringify({
+
                     email:email,
                     password:password
                 })
@@ -670,8 +709,9 @@
             if(!response.ok){
 
                 throw new Error(
+
                     data.message ||
-                    "Invalid Email Or Password"
+                    "Invalid Login"
                 );
             }
 
@@ -687,14 +727,19 @@
                 data.role || ""
             );
 
-            if(data.data && data.data.id){
+            /* USER ID */
+
+            if(
+                data.data &&
+                data.data.id
+            ){
 
                 localStorage.setItem(
                     "userId",
                     data.data.id
                 );
 
-            } else if(data.id){
+            }else if(data.id){
 
                 localStorage.setItem(
                     "userId",
@@ -702,11 +747,23 @@
                 );
             }
 
-            if(data.data && data.data.name){
+            /* USER NAME */
+
+            if(
+                data.data &&
+                data.data.name
+            ){
 
                 localStorage.setItem(
                     "userName",
                     data.data.name
+                );
+
+            }else if(data.name){
+
+                localStorage.setItem(
+                    "userName",
+                    data.name
                 );
             }
 
@@ -718,7 +775,8 @@
 
             button.disabled = false;
 
-            button.innerHTML = originalText;
+            button.innerHTML =
+            originalText;
 
             setTimeout(() => {
 
@@ -727,13 +785,15 @@
                     data.role === "ROLE_ADMIN"
                 ){
 
-                    window.location.href =
-                    "admin.html";
+                    window.location.replace(
+                        "admin.html"
+                    );
 
-                } else {
+                }else{
 
-                    window.location.href =
-                    "user.html";
+                    window.location.replace(
+                        "user.html"
+                    );
                 }
 
             },1000);
@@ -752,40 +812,60 @@
 
             button.disabled = false;
 
-            button.innerHTML = originalText;
+            button.innerHTML =
+            originalText;
         }
     }
 
     /* REGISTER */
 
-    async function registerUser(button,originalText){
+    async function registerUser(
+        button,
+        originalText
+    ){
 
         const body = {
 
             name:
-            document.getElementById("name").value.trim(),
+            document.getElementById(
+                "name"
+            ).value.trim(),
 
             address:
-            document.getElementById("address").value.trim(),
+            document.getElementById(
+                "address"
+            ).value.trim(),
 
             mobile:
-            document.getElementById("mobile").value.trim(),
+            document.getElementById(
+                "mobile"
+            ).value.trim(),
 
             make:
-            document.getElementById("make").value.trim(),
+            document.getElementById(
+                "make"
+            ).value.trim(),
 
             remarks:
-            document.getElementById("remarks").value.trim(),
+            document.getElementById(
+                "remarks"
+            ).value.trim(),
 
             email:
-            document.getElementById("email").value.trim(),
+            document.getElementById(
+                "email"
+            ).value.trim(),
 
             password:
-            document.getElementById("password").value.trim()
+            document.getElementById(
+                "password"
+            ).value.trim()
         };
 
         const message =
-        document.getElementById("loginMessage");
+        document.getElementById(
+            "loginMessage"
+        );
 
         try{
 
@@ -795,7 +875,8 @@
                 method:"POST",
 
                 headers:{
-                    "Content-Type":"application/json"
+                    "Content-Type":
+                    "application/json"
                 },
 
                 body:JSON.stringify(body)
@@ -820,7 +901,8 @@
 
             button.disabled = false;
 
-            button.innerHTML = originalText;
+            button.innerHTML =
+            originalText;
 
             setTimeout(() => {
 
@@ -842,12 +924,12 @@
 
             button.disabled = false;
 
-            button.innerHTML = originalText;
+            button.innerHTML =
+            originalText;
         }
     }
 
 </script>
 
 </body>
-
 </html>
