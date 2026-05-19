@@ -863,12 +863,36 @@
 
 </div>
 
+
 <script>
 
     const BASE_URL = "https://laser-project-k6tt.onrender.com";
 
+    /* ================= TOKEN ================= */
+
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
+
+    /* ================= LOGIN CHECK ================= */
+
+    if (!token) {
+
+        alert("Please Login First");
+
+        window.location.replace("index.html");
+    }
+
+    /* ================= AUTO REFRESH FIX ================= */
+
+    window.addEventListener("pageshow", function () {
+
+        const checkToken = localStorage.getItem("token");
+
+        if (!checkToken) {
+
+            window.location.replace("index.html");
+        }
+    });
 
     /* ================= CLOCK ================= */
 
@@ -876,33 +900,25 @@
 
         const now = new Date();
 
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-        let seconds = now.getSeconds();
+        let h = now.getHours();
+        let m = now.getMinutes();
+        let s = now.getSeconds();
 
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
 
         document.getElementById("liveClock").innerHTML =
-            `${hours}:${minutes}:${seconds}`;
+            `${h}:${m}:${s}`;
     }
 
     setInterval(updateClock, 1000);
+
     updateClock();
 
     /* ================= PAGE LOAD ================= */
 
-    window.onload = async () => {
-
-        if (!token || !userId) {
-
-            alert("Please Login First");
-
-            window.location.href = "index.html";
-
-            return;
-        }
+    window.onload = async function () {
 
         await fetchProfile();
 
@@ -916,9 +932,10 @@
         try {
 
             const response = await fetch(
-                `${BASE_URL}/rajeshroy/get/${userId}?t=${new Date().getTime()}`,
+                `${BASE_URL}/rajeshroy/get/${userId}?t=${Date.now()}`,
                 {
                     method: "GET",
+
                     cache: "no-store",
 
                     headers: {
@@ -928,14 +945,24 @@
                 }
             );
 
+            if (response.status === 401 ||
+                response.status === 403) {
+
+                localStorage.clear();
+
+                alert("Session Expired");
+
+                window.location.replace("index.html");
+
+                return;
+            }
+
             if (!response.ok) {
 
-                throw new Error("API FAILED");
+                throw new Error("Profile Fetch Failed");
             }
 
             const data = await response.json();
-
-            console.log(data);
 
             const user = data.data || data;
 
@@ -977,13 +1004,10 @@
 
         } catch (error) {
 
-            console.log("FETCH ERROR:", error);
+            console.log(error);
 
-            alert("Session Expired Please Login Again");
+            alert("Server Error");
 
-            localStorage.clear();
-
-            window.location.href = "index.html";
         }
     }
 
@@ -996,22 +1020,22 @@
             id: Number(userId),
 
             name:
-                document.getElementById("name").value.trim(),
+            document.getElementById("name").value.trim(),
 
             address:
-                document.getElementById("address").value.trim(),
+            document.getElementById("address").value.trim(),
 
             mobile:
-                document.getElementById("mobile").value.trim(),
+            document.getElementById("mobile").value.trim(),
 
             email:
-                document.getElementById("email").value.trim(),
+            document.getElementById("email").value.trim(),
 
             make:
-                document.getElementById("make").value.trim(),
+            document.getElementById("make").value.trim(),
 
             remarks:
-                document.getElementById("remarks").value.trim()
+            document.getElementById("remarks").value.trim()
         };
 
         try {
@@ -1032,7 +1056,7 @@
 
             if (!response.ok) {
 
-                throw new Error("UPDATE FAILED");
+                throw new Error("Update Failed");
             }
 
             document.getElementById("showName").innerHTML =
@@ -1056,10 +1080,6 @@
             showStatus(
                 "⚡ Profile Updated Successfully",
                 true
-            );
-
-            notify(
-                "⚡ Data Updated Successfully"
             );
 
         } catch (error) {
@@ -1111,26 +1131,6 @@
 
             box.style.display = "none";
 
-        }, 4000);
-    }
-
-    /* ================= NOTIFY ================= */
-
-    function notify(text) {
-
-        const popup =
-            document.createElement("div");
-
-        popup.innerHTML = text;
-
-        popup.className = "notify";
-
-        document.body.appendChild(popup);
-
-        setTimeout(() => {
-
-            popup.remove();
-
         }, 3000);
     }
 
@@ -1138,11 +1138,13 @@
 
     function logout() {
 
-        localStorage.clear();
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("userId");
 
         alert("Logout Success");
 
-        window.location.href = "index.html";
+        window.location.replace("index.html");
     }
 
     /* ================= TELEMETRY ================= */
@@ -1172,8 +1174,6 @@
 
         document.getElementById("jobCounterValue").innerHTML =
             completedJobs.toLocaleString();
-
-        notify("Job Completed");
     }
 
     function simulateSystemError() {
@@ -1182,13 +1182,9 @@
 
         document.getElementById("errorCounterValue").innerHTML =
             systemErrors;
-
-        notify("System Error Injected");
     }
 
 </script>
-
-
 
 
 
