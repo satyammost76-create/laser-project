@@ -1,24 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALPHA LASER SYSTEM</title>
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-
         *{
             margin:0;
             padding:0;
@@ -27,414 +17,232 @@
         }
 
         body{
-
             min-height:100vh;
-
             overflow-x:hidden;
-
-            background:
-            linear-gradient(
-                135deg,
-                #020617,
-                #07132b,
-                #0f172a,
-                #111827
-            );
-
+            background: linear-gradient(135deg, #020617, #07132b, #0f172a, #111827);
             color:white;
         }
 
         body::before{
-
             content:"";
-
             position:fixed;
-
             width:100%;
             height:100%;
-
             background-image:
             linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
             linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
-
             background-size:40px 40px;
-
             z-index:-1;
         }
 
         /* NAVBAR */
-
         .navbar{
-
             width:100%;
-
             padding:18px 5%;
-
             display:flex;
-
             justify-content:space-between;
-
             align-items:center;
-
-            background:
-            rgba(255,255,255,0.05);
-
+            background: rgba(255,255,255,0.05);
             backdrop-filter:blur(18px);
-
-            border-bottom:
-            1px solid rgba(255,255,255,0.08);
-
+            border-bottom: 1px solid rgba(255,255,255,0.08);
             position:sticky;
-
             top:0;
-
             z-index:999;
         }
 
         .logo{
-
             display:flex;
-
             align-items:center;
-
             gap:15px;
         }
 
         .logo img{
-
             width:70px;
             height:70px;
-
             border-radius:18px;
-
             background:white;
-
             padding:6px;
         }
 
         .logo h1{
-
             font-size:34px;
-
             font-weight:800;
-
-            background:
-            linear-gradient(
-                to right,
-                white,
-                red,
-                white
-            );
-
+            background: linear-gradient(to right, white, red, white);
             -webkit-background-clip:text;
-
             -webkit-text-fill-color:transparent;
         }
 
         .top-right{
-
             display:flex;
-
             align-items:center;
-
             gap:20px;
         }
 
         #liveClock{
-
             font-size:22px;
-
             font-weight:700;
-
             color:#ff4d4d;
         }
 
         .logout-btn{
-
             padding:14px 24px;
-
             border:none;
-
             border-radius:18px;
-
-            background:
-            linear-gradient(
-                135deg,
-                #ff0000,
-                #ff4d4d
-            );
-
+            background: linear-gradient(135deg, #ff0000, #ff4d4d);
             color:white;
-
             font-size:15px;
-
             font-weight:700;
-
             cursor:pointer;
-
             transition:0.3s;
         }
 
         .logout-btn:hover{
-
             transform:translateY(-3px);
-
-            box-shadow:
-            0 10px 25px rgba(255,0,0,0.4);
+            box-shadow: 0 10px 25px rgba(255,0,0,0.4);
         }
 
         /* HERO */
-
         .hero{
-
             width:100%;
-
             padding:80px 5% 40px;
-
             text-align:center;
-
             position:relative;
         }
 
         .hero h2{
-
             font-size:72px;
-
             font-weight:800;
-
             line-height:1.1;
-
             margin-bottom:25px;
-
-            background:
-            linear-gradient(
-                to right,
-                #ffffff,
-                #ff3b3b,
-                #ffffff
-            );
-
+            background: linear-gradient(to right, #ffffff, #ff3b3b, #ffffff);
             -webkit-background-clip:text;
-
             -webkit-text-fill-color:transparent;
         }
 
         .hero p{
-
             max-width:900px;
-
             margin:auto;
-
             line-height:2;
-
             color:#cbd5e1;
-
             font-size:18px;
         }
 
         /* IMAGE */
-
         .machine-banner{
-
             width:100%;
-
             padding:20px 5% 50px;
-
             display:flex;
-
             justify-content:center;
         }
 
         .machine-banner img{
-
             width:100%;
-
             max-width:1450px;
-
             height:380px;
-
             object-fit:cover;
-
             border-radius:35px;
-
-            border:
-            3px solid rgba(255,0,0,0.3);
-
-            box-shadow:
-            0 0 45px rgba(255,0,0,0.25);
-
+            border: 3px solid rgba(255,0,0,0.3);
+            box-shadow: 0 0 45px rgba(255,0,0,0.25);
             transition:0.4s;
         }
 
         .machine-banner img:hover{
-
             transform:scale(1.01);
         }
 
         /* DASHBOARD */
-
         .dashboard{
-
             width:100%;
-
             padding:20px 5% 80px;
-
             display:grid;
-
             grid-template-columns:1fr 1fr;
-
             gap:35px;
         }
 
         .card{
-
             padding:35px;
-
             border-radius:35px;
-
-            background:
-            rgba(255,255,255,0.06);
-
-            border:
-            1px solid rgba(255,255,255,0.08);
-
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
             backdrop-filter:blur(18px);
-
-            box-shadow:
-            0 0 25px rgba(255,0,0,0.08);
-
+            box-shadow: 0 0 25px rgba(255,0,0,0.08);
             transition:0.3s;
         }
 
         .card:hover{
-
             transform:translateY(-5px);
-
-            box-shadow:
-            0 0 35px rgba(255,0,0,0.18);
+            box-shadow: 0 0 35px rgba(255,0,0,0.18);
         }
 
         .card h2{
-
             font-size:30px;
-
             margin-bottom:28px;
-
             display:flex;
-
             align-items:center;
-
             gap:12px;
         }
 
         .info-box{
-
             padding:18px;
-
             margin-bottom:16px;
-
             border-radius:20px;
-
-            background:
-            rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.05);
         }
 
         .info-box span{
-
             color:#94a3b8;
-
             font-size:13px;
         }
 
         .info-box h3{
-
             margin-top:7px;
-
             font-size:20px;
-
             word-break:break-word;
         }
 
         .card input{
-
             width:100%;
-
             padding:18px;
-
             margin-bottom:16px;
-
             border:none;
-
             outline:none;
-
             border-radius:18px;
-
             background:white;
-
             color:#111827;
-
             font-size:15px;
-
             font-weight:600;
         }
 
         .card input:focus{
-
             border:2px solid red;
         }
 
         .card button{
-
             width:100%;
-
             padding:18px;
-
             border:none;
-
             border-radius:20px;
-
-            background:
-            linear-gradient(
-                135deg,
-                #ff0000,
-                #ff4d4d
-            );
-
+            background: linear-gradient(135deg, #ff0000, #ff4d4d);
             color:white;
-
             font-size:17px;
-
             font-weight:700;
-
             cursor:pointer;
-
             transition:0.3s;
         }
 
         .card button:hover{
-
             transform:scale(1.02);
-
-            box-shadow:
-            0 12px 28px rgba(255,0,0,0.35);
+            box-shadow: 0 12px 28px rgba(255,0,0,0.35);
         }
 
         .status{
-
             margin-top:18px;
-
             padding:14px;
-
             border-radius:18px;
-
             text-align:center;
-
             display:none;
-
             font-weight:700;
         }
-
-        /* NEW EXPANDED UI ELEMENTS (Line 250+) */
 
         .metric-grid {
             display: grid;
@@ -521,259 +329,103 @@
         }
 
         /* NOTIFICATION */
-
         .notify{
-
             position:fixed;
-
             top:30px;
-
             right:30px;
-
             padding:18px 25px;
-
             border-radius:18px;
-
-            background:
-            linear-gradient(
-                135deg,
-                #ff0000,
-                #ff4d4d
-            );
-
+            background: linear-gradient(135deg, #ff0000, #ff4d4d);
             color:white;
-
             font-weight:700;
-
             z-index:9999;
         }
 
         /* RESPONSIVE */
-
         @media(max-width:1000px){
-
             .dashboard{
-
                 grid-template-columns:1fr;
             }
-
             .hero h2{
-
                 font-size:48px;
             }
         }
 
         @media(max-width:700px){
-
             .navbar{
-
                 flex-direction:column;
-
                 gap:15px;
             }
-
             .top-right{
-
                 flex-direction:column;
             }
-
             .hero h2{
-
                 font-size:34px;
             }
-
             .machine-banner img{
-
                 height:240px;
             }
         }
-
     </style>
-
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-
 <div class="navbar">
-
     <div class="logo">
-
-        <img src="logo.png"
-             alt="Logo">
-
+        <img src="logo.png" alt="Logo">
         <h1>ALPHA LASER</h1>
-
     </div>
-
     <div class="top-right">
-
         <div id="liveClock"></div>
-
-        <button class="logout-btn"
-                onclick="logout()">
-
-            <i class="fa-solid fa-power-off"></i>
-
-            Logout
-
+        <button class="logout-btn" onclick="logout()">
+            <i class="fa-solid fa-power-off"></i> Logout
         </button>
-
     </div>
-
 </div>
 
 <!-- HERO -->
-
 <section class="hero">
-
-    <h2>
-
-        Future Industrial <br>
-
-        Laser Machine System
-
-    </h2>
-
-    <p>
-
-        Powerful smart industrial monitoring dashboard
-        with advanced machine profile management,
-        AI based tracking and futuristic cloud control.
-
-    </p>
-
+    <h2>Future Industrial <br> Laser Machine System</h2>
+    <p>Powerful smart industrial monitoring dashboard with advanced machine profile management, AI based tracking and futuristic cloud control.</p>
 </section>
 
 <!-- MACHINE IMAGE -->
-
 <section class="machine-banner">
-
-    <img src="photo.png"
-         alt="Machine Banner">
-
+    <img src="photo.png" alt="Machine Banner">
 </section>
 
 <!-- DASHBOARD -->
-
 <div class="dashboard">
 
     <!-- PROFILE -->
-
     <div class="card">
-
-        <h2>
-
-            <i class="fa-solid fa-user"></i>
-
-            User Profile
-
-        </h2>
-
-        <div class="info-box">
-
-            <span>Name</span>
-
-            <h3 id="showName">Loading...</h3>
-
-        </div>
-
-        <div class="info-box">
-
-            <span>Address</span>
-
-            <h3 id="showAddress">Loading...</h3>
-
-        </div>
-
-        <div class="info-box">
-
-            <span>Mobile</span>
-
-            <h3 id="showMobile">Loading...</h3>
-
-        </div>
-
-        <div class="info-box">
-
-            <span>Email</span>
-
-            <h3 id="showEmail">Loading...</h3>
-
-        </div>
-
-        <div class="info-box">
-
-            <span>Machine Make</span>
-
-            <h3 id="showMake">Loading...</h3>
-
-        </div>
-
-        <div class="info-box">
-
-            <span>Remarks / Problems</span>
-
-            <h3 id="showRemarks">Loading...</h3>
-
-        </div>
-
+        <h2><i class="fa-solid fa-user"></i> User Profile</h2>
+        <div class="info-box"><span>Name</span><h3 id="showName">Loading...</h3></div>
+        <div class="info-box"><span>Address</span><h3 id="showAddress">Loading...</h3></div>
+        <div class="info-box"><span>Mobile</span><h3 id="showMobile">Loading...</h3></div>
+        <div class="info-box"><span>Email</span><h3 id="showEmail">Loading...</h3></div>
+        <div class="info-box"><span>Machine Make</span><h3 id="showMake">Loading...</h3></div>
+        <div class="info-box"><span>Remarks / Problems</span><h3 id="showRemarks">Loading...</h3></div>
     </div>
 
     <!-- UPDATE -->
-
     <div class="card">
-
-        <h2>
-
-            <i class="fa-solid fa-pen"></i>
-
-            Update User Profile
-
-        </h2>
-
-        <input type="text"
-               id="name"
-               placeholder="Enter Name">
-
-        <input type="text"
-               id="address"
-               placeholder="Enter Address">
-
-        <input type="text"
-               id="mobile"
-               placeholder="Enter Mobile">
-
-        <input type="email"
-               id="email"
-               placeholder="Enter Email">
-
-        <input type="text"
-               id="make"
-               placeholder="Enter Machine Make">
-
-        <input type="text"
-               id="remarks"
-               placeholder="Enter Remarks / Problems">
-
-        <button onclick="updateProfile()">
-
-            ⚡ Save Dynamic Changes
-
-        </button>
-
-        <div class="status"
-             id="statusBox"></div>
-
+        <h2><i class="fa-solid fa-pen"></i> Update User Profile</h2>
+        <input type="text" id="name" placeholder="Enter Name">
+        <input type="text" id="address" placeholder="Enter Address">
+        <input type="text" id="mobile" placeholder="Enter Mobile">
+        <input type="email" id="email" placeholder="Enter Email">
+        <input type="text" id="make" placeholder="Enter Machine Make">
+        <input type="text" id="remarks" placeholder="Enter Remarks / Problems">
+        <button onclick="updateProfile()">⚡ Save Dynamic Changes</button>
+        <div class="status" id="statusBox"></div>
     </div>
 
-    <!-- NEW COMPONENT 1: LIVE TELEMETRY STREAM -->
+    <!-- LIVE TELEMETRY STREAM -->
     <div class="card">
-        <h2>
-            <i class="fa-solid fa-gauge-high"></i>
-            Live Machine Telemetry
-        </h2>
+        <h2><i class="fa-solid fa-gauge-high"></i> Live Machine Telemetry</h2>
         <div class="metric-grid">
             <div class="info-box">
                 <span>Laser Power Output</span>
@@ -795,7 +447,6 @@
             </div>
         </div>
 
-        <!-- Interactive Production Operations Counter -->
         <div class="info-box" style="margin-top:15px;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
                 <div>
@@ -814,20 +465,16 @@
         </div>
     </div>
 
-    <!-- NEW COMPONENT 2: DIAGNOSTIC LOGS & PREDICTIVE METRICS -->
+    <!-- DIAGNOSTIC LOGS & PREDICTIVE METRICS -->
     <div class="card">
-        <h2>
-            <i class="fa-solid fa-terminal"></i>
-            Live System Terminal Logs
-        </h2>
+        <h2><i class="fa-solid fa-terminal"></i> Live System Terminal Logs</h2>
         <div class="terminal-container" id="terminalLogs">
             <div class="terminal-line"><span class="terminal-time">[12:00:01]</span> Core laser engine initialized.</div>
             <div class="terminal-line"><span class="terminal-time">[12:00:03]</span> Security access tokens verified via client profile hardware.</div>
         </div>
 
         <h2 style="font-size:22px; margin-top:25px; margin-bottom:15px;">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            Predictive Component Lifespan
+            <i class="fa-solid fa-screwdriver-wrench"></i> Predictive Component Lifespan
         </h2>
 
         <div class="info-box" style="margin-bottom:10px; padding:12px 18px;">
@@ -864,18 +511,15 @@
 </div>
 
 <script>
-
     const BASE_URL = "https://laser-project-k6tt.onrender.com";
 
-    const token = localStorage.getItem("token");
+    // 🌟 सुरक्षा: लोकल स्टोरेज से सभी संभावित नामों से टोकन रीड करना
+    const token = localStorage.getItem("token") || localStorage.getItem("authToken") || localStorage.getItem("jwtToken");
     const userId = localStorage.getItem("userId");
 
     /* ================= CLOCK ================= */
-
     function updateClock() {
-
         const now = new Date();
-
         let hours = now.getHours();
         let minutes = now.getMinutes();
         let seconds = now.getSeconds();
@@ -884,43 +528,32 @@
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        document.getElementById("liveClock").innerHTML =
-            `${hours}:${minutes}:${seconds}`;
+        document.getElementById("liveClock").innerHTML = `${hours}:${minutes}:${seconds}`;
     }
-
     setInterval(updateClock, 1000);
     updateClock();
 
-    /* ================= PAGE LOAD ================= */
-
+    /* ================= PAGE LOAD VALIDATION ================= */
     window.onload = async () => {
-
-        if (!token || !userId) {
-
+        // 🌟 टोकन और यूजर आईडी के सभी अमान्य रूपों (जैसे स्ट्रिंग "undefined") की गहन जाँच
+        if (!token || token === "undefined" || token === "null" || !userId || userId === "undefined" || userId === "null") {
             alert("Please Login First");
-
-            window.location.href = "index.html";
-
+            window.location.replace("index.html"); // replace() का उपयोग लूप रोकने के लिए
             return;
         }
 
         await fetchProfile();
-
         startTelemetryAutomation();
     };
 
     /* ================= FETCH PROFILE ================= */
-
     async function fetchProfile() {
-
         try {
-
             const response = await fetch(
                 `${BASE_URL}/rajeshroy/get/${userId}?t=${new Date().getTime()}`,
                 {
                     method: "GET",
                     cache: "no-store",
-
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
@@ -929,269 +562,151 @@
             );
 
             if (!response.ok) {
-
                 throw new Error("API FAILED");
             }
 
             const data = await response.json();
-
             console.log(data);
 
             const user = data.data || data;
 
-            document.getElementById("showName").innerHTML =
-                user.name || "N/A";
+            document.getElementById("showName").innerHTML = user.name || "N/A";
+            document.getElementById("showAddress").innerHTML = user.address || "N/A";
+            document.getElementById("showMobile").innerHTML = user.mobile || "N/A";
+            document.getElementById("showEmail").innerHTML = user.email || "N/A";
+            document.getElementById("showMake").innerHTML = user.make || "N/A";
+            document.getElementById("showRemarks").innerHTML = user.remarks || "N/A";
 
-            document.getElementById("showAddress").innerHTML =
-                user.address || "N/A";
-
-            document.getElementById("showMobile").innerHTML =
-                user.mobile || "N/A";
-
-            document.getElementById("showEmail").innerHTML =
-                user.email || "N/A";
-
-            document.getElementById("showMake").innerHTML =
-                user.make || "N/A";
-
-            document.getElementById("showRemarks").innerHTML =
-                user.remarks || "N/A";
-
-            document.getElementById("name").value =
-                user.name || "";
-
-            document.getElementById("address").value =
-                user.address || "";
-
-            document.getElementById("mobile").value =
-                user.mobile || "";
-
-            document.getElementById("email").value =
-                user.email || "";
-
-            document.getElementById("make").value =
-                user.make || "";
-
-            document.getElementById("remarks").value =
-                user.remarks || "";
+            document.getElementById("name").value = user.name || "";
+            document.getElementById("address").value = user.address || "";
+            document.getElementById("mobile").value = user.mobile || "";
+            document.getElementById("email").value = user.email || "";
+            document.getElementById("make").value = user.make || "";
+            document.getElementById("remarks").value = user.remarks || "";
 
         } catch (error) {
-
             console.log("FETCH ERROR:", error);
-
             alert("Session Expired Please Login Again");
-
             localStorage.clear();
-
-            window.location.href = "index.html";
+            window.location.replace("index.html");
         }
     }
 
     /* ================= UPDATE PROFILE ================= */
-
     async function updateProfile() {
-
         const payload = {
-
             id: Number(userId),
-
-            name:
-                document.getElementById("name").value.trim(),
-
-            address:
-                document.getElementById("address").value.trim(),
-
-            mobile:
-                document.getElementById("mobile").value.trim(),
-
-            email:
-                document.getElementById("email").value.trim(),
-
-            make:
-                document.getElementById("make").value.trim(),
-
-            remarks:
-                document.getElementById("remarks").value.trim()
+            name: document.getElementById("name").value.trim(),
+            address: document.getElementById("address").value.trim(),
+            mobile: document.getElementById("mobile").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            make: document.getElementById("make").value.trim(),
+            remarks: document.getElementById("remarks").value.trim()
         };
 
         try {
-
             const response = await fetch(
                 `${BASE_URL}/rajeshroy/update/${userId}`,
                 {
                     method: "PUT",
-
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`
                     },
-
                     body: JSON.stringify(payload)
                 }
             );
 
             if (!response.ok) {
-
                 throw new Error("UPDATE FAILED");
             }
 
-            document.getElementById("showName").innerHTML =
-                payload.name;
+            document.getElementById("showName").innerHTML = payload.name;
+            document.getElementById("showAddress").innerHTML = payload.address;
+            document.getElementById("showMobile").innerHTML = payload.mobile;
+            document.getElementById("showEmail").innerHTML = payload.email;
+            document.getElementById("showMake").innerHTML = payload.make;
+            document.getElementById("showRemarks").innerHTML = payload.remarks;
 
-            document.getElementById("showAddress").innerHTML =
-                payload.address;
-
-            document.getElementById("showMobile").innerHTML =
-                payload.mobile;
-
-            document.getElementById("showEmail").innerHTML =
-                payload.email;
-
-            document.getElementById("showMake").innerHTML =
-                payload.make;
-
-            document.getElementById("showRemarks").innerHTML =
-                payload.remarks;
-
-            showStatus(
-                "⚡ Profile Updated Successfully",
-                true
-            );
-
-            notify(
-                "⚡ Data Updated Successfully"
-            );
+            showStatus("⚡ Profile Updated Successfully", true);
+            notify("⚡ Data Updated Successfully");
 
         } catch (error) {
-
             console.log(error);
-
-            showStatus(
-                "⚠ Update Failed",
-                false
-            );
+            showStatus("⚠ Update Failed", false);
         }
     }
 
     /* ================= STATUS ================= */
-
     function showStatus(message, success) {
-
-        const box =
-            document.getElementById("statusBox");
-
+        const box = document.getElementById("statusBox");
         box.style.display = "block";
-
         box.innerHTML = message;
 
         if (success) {
-
-            box.style.background =
-                "rgba(34,197,94,0.12)";
-
-            box.style.border =
-                "1px solid #22c55e";
-
-            box.style.color =
-                "#4ade80";
-
+            box.style.background = "rgba(34,197,94,0.12)";
+            box.style.border = "1px solid #22c55e";
+            box.style.color = "#4ade80";
         } else {
-
-            box.style.background =
-                "rgba(239,68,68,0.12)";
-
-            box.style.border =
-                "1px solid #ef4444";
-
-            box.style.color =
-                "#f87171";
+            box.style.background = "rgba(239,68,68,0.12)";
+            box.style.border = "1px solid #ef4444";
+            box.style.color = "#f87171";
         }
 
         setTimeout(() => {
-
             box.style.display = "none";
-
         }, 4000);
     }
 
     /* ================= NOTIFY ================= */
-
     function notify(text) {
-
-        const popup =
-            document.createElement("div");
-
+        const popup = document.createElement("div");
         popup.innerHTML = text;
-
         popup.className = "notify";
-
         document.body.appendChild(popup);
 
         setTimeout(() => {
-
             popup.remove();
-
         }, 3000);
     }
 
     /* ================= LOGOUT ================= */
-
     function logout() {
-
         localStorage.clear();
-
         alert("Logout Success");
-
-        window.location.href = "index.html";
+        window.location.replace("index.html");
     }
 
     /* ================= TELEMETRY ================= */
-
     let completedJobs = 1424;
     let systemErrors = 0;
 
     function startTelemetryAutomation() {
-
         setInterval(() => {
-
-            document.getElementById("telemetryPower").innerHTML =
-                Math.floor(3950 + Math.random() * 95);
-
-            document.getElementById("telemetryGas").innerHTML =
-                (11.8 + Math.random() * 1.3).toFixed(2);
-
-            document.getElementById("telemetryTemp").innerHTML =
-                (23.5 + Math.random() * 2.8).toFixed(1);
-
+            if(document.getElementById("telemetryPower")) {
+                document.getElementById("telemetryPower").innerHTML = Math.floor(3950 + Math.random() * 95);
+            }
+            if(document.getElementById("telemetryGas")) {
+                document.getElementById("telemetryGas").innerHTML = (11.8 + Math.random() * 1.3).toFixed(2);
+            }
+            if(document.getElementById("telemetryTemp")) {
+                document.getElementById("telemetryTemp").innerHTML = (23.5 + Math.random() * 2.8).toFixed(1);
+            }
         }, 1200);
     }
 
     function triggerJobIncrement() {
-
         completedJobs++;
-
-        document.getElementById("jobCounterValue").innerHTML =
-            completedJobs.toLocaleString();
-
+        document.getElementById("jobCounterValue").innerHTML = completedJobs.toLocaleString();
         notify("Job Completed");
     }
 
     function simulateSystemError() {
-
         systemErrors++;
-
-        document.getElementById("errorCounterValue").innerHTML =
-            systemErrors;
-
+        document.getElementById("errorCounterValue").innerHTML = systemErrors;
         notify("System Error Injected");
     }
-
 </script>
 
-
-
-
-
 </body>
-
 </html>
