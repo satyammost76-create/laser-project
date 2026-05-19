@@ -41,7 +41,7 @@
                 #2563eb
             );
 
-            overflow:hidden;
+            overflow-x:hidden;
 
             padding:20px;
         }
@@ -54,7 +54,10 @@
 
             min-height:750px;
 
-            background:white;
+            background:
+            rgba(255,255,255,0.12);
+
+            backdrop-filter:blur(10px);
 
             border-radius:35px;
 
@@ -64,6 +67,9 @@
 
             box-shadow:
             0 25px 60px rgba(0,0,0,0.7);
+
+            border:
+            1px solid rgba(255,255,255,0.15);
         }
 
         /* LEFT */
@@ -101,18 +107,18 @@
 
             position:absolute;
 
-            width:300px;
+            width:350px;
 
-            height:300px;
+            height:350px;
 
             border-radius:50%;
 
             background:
             rgba(255,255,255,0.06);
 
-            top:-100px;
+            top:-120px;
 
-            left:-100px;
+            left:-120px;
         }
 
         .left::after{
@@ -150,7 +156,7 @@
 
             padding:10px;
 
-            border-radius:20px;
+            border-radius:25px;
 
             box-shadow:
             0 10px 30px rgba(0,0,0,0.4);
@@ -160,7 +166,7 @@
 
             color:white;
 
-            font-size:52px;
+            font-size:55px;
 
             margin-top:20px;
 
@@ -175,7 +181,7 @@
 
             margin-top:10px;
 
-            letter-spacing:3px;
+            letter-spacing:4px;
         }
 
         .machine{
@@ -197,10 +203,17 @@
 
             max-width:700px;
 
-            border-radius:25px;
+            border-radius:30px;
 
             box-shadow:
             0 20px 40px rgba(0,0,0,0.5);
+
+            transition:0.4s;
+        }
+
+        .machine img:hover{
+
+            transform:scale(1.03);
         }
 
         /* RIGHT */
@@ -223,6 +236,15 @@
         .card{
 
             width:100%;
+
+            background:white;
+
+            padding:35px;
+
+            border-radius:30px;
+
+            box-shadow:
+            0 15px 35px rgba(0,0,0,0.08);
         }
 
         .title{
@@ -328,10 +350,12 @@
 
         .btn:hover{
 
-            transform:translateY(-3px);
+            transform:
+            translateY(-4px)
+            scale(1.02);
 
             box-shadow:
-            0 15px 25px rgba(37,99,235,0.4);
+            0 20px 35px rgba(37,99,235,0.45);
         }
 
         .switch{
@@ -375,19 +399,171 @@
             display:none;
         }
 
+        /* =========================
+           TABLET RESPONSIVE
+        ========================= */
+
         @media(max-width:1100px){
 
+            body{
+                padding:10px;
+                overflow:auto;
+            }
+
             .container{
+
                 flex-direction:column;
+
+                min-height:auto;
+
+                border-radius:25px;
             }
 
             .left,
             .right{
+
                 width:100%;
             }
 
+            .left{
+
+                padding:30px 20px;
+            }
+
+            .logo h1{
+
+                font-size:40px;
+            }
+
+            .logo h2{
+
+                font-size:22px;
+            }
+
+            .logo img{
+
+                width:100px;
+            }
+
+            .machine{
+
+                margin-top:25px;
+            }
+
+            .machine img{
+
+                width:100%;
+
+                border-radius:20px;
+            }
+
+            .right{
+
+                padding:25px 18px;
+            }
+
             .title{
-                font-size:42px;
+
+                font-size:40px;
+            }
+
+            .line{
+
+                width:90px;
+                height:4px;
+            }
+        }
+
+        /* =========================
+           MOBILE RESPONSIVE
+        ========================= */
+
+        @media(max-width:600px){
+
+            body{
+
+                padding:8px;
+            }
+
+            .container{
+
+                border-radius:18px;
+            }
+
+            .left{
+
+                padding:20px 15px;
+            }
+
+            .right{
+
+                padding:18px 12px;
+            }
+
+            .card{
+
+                padding:20px;
+                border-radius:20px;
+            }
+
+            .logo h1{
+
+                font-size:30px;
+            }
+
+            .logo h2{
+
+                font-size:16px;
+
+                letter-spacing:2px;
+            }
+
+            .title{
+
+                font-size:28px;
+            }
+
+            .input-box{
+
+                margin-bottom:14px;
+            }
+
+            .input-box label{
+
+                font-size:14px;
+            }
+
+            .input-box input{
+
+                padding:14px;
+
+                font-size:14px;
+
+                border-radius:14px;
+            }
+
+            .btn{
+
+                font-size:17px;
+
+                padding:14px;
+
+                border-radius:14px;
+            }
+
+            .switch{
+
+                font-size:15px;
+            }
+
+            .message{
+
+                font-size:14px;
+            }
+
+            .machine img{
+
+                border-radius:15px;
             }
         }
 
@@ -531,7 +707,6 @@
                       id="switchText">
 
                     Register
-
                 </span>
 
             </div>
@@ -558,7 +733,7 @@
     const REGISTER_API =
     `${BASE_URL}/rajeshroy/auth/register`;
 
-    /* TOGGLE */
+    /* TOGGLE FORM */
 
     function toggleForm(){
 
@@ -589,10 +764,13 @@
             switchText.innerHTML = "Register";
 
             fields.forEach(field => {
+
                 field.style.display = "none";
             });
 
-        } else {
+        }
+
+        else{
 
             title.innerHTML = "Register";
 
@@ -601,6 +779,7 @@
             switchText.innerHTML = "Back To Login";
 
             fields.forEach(field => {
+
                 field.style.display = "block";
             });
         }
@@ -626,7 +805,9 @@
 
             loginUser(button,originalText);
 
-        } else {
+        }
+
+        else{
 
             registerUser(button,originalText);
         }
@@ -665,8 +846,6 @@
             const data =
             await response.json();
 
-            console.log(data);
-
             if(!response.ok){
 
                 throw new Error(
@@ -674,8 +853,6 @@
                     "Invalid Email Or Password"
                 );
             }
-
-            /* SAVE LOGIN DATA */
 
             localStorage.setItem(
                 "token",
@@ -692,13 +869,6 @@
                 localStorage.setItem(
                     "userId",
                     data.data.id
-                );
-
-            } else if(data.id){
-
-                localStorage.setItem(
-                    "userId",
-                    data.id
                 );
             }
 
@@ -729,8 +899,9 @@
 
                     window.location.href =
                     "admin.html";
+                }
 
-                } else {
+                else{
 
                     window.location.href =
                     "user.html";
@@ -741,8 +912,6 @@
         }
 
         catch(error){
-
-            console.log(error);
 
             message.innerHTML =
             error.message;
@@ -832,8 +1001,6 @@
 
         catch(error){
 
-            console.log(error);
-
             message.innerHTML =
             error.message;
 
@@ -849,5 +1016,4 @@
 </script>
 
 </body>
-
 </html>
