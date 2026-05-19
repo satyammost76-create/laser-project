@@ -521,10 +521,22 @@
                 );
             }
 
-            localStorage.setItem(
-                "token",
-                data.token || ""
-            );
+           localStorage.setItem(
+    "token",
+    data.token || ""
+);
+
+localStorage.setItem(
+    "role",
+    data.role || ""
+);
+
+localStorage.setItem(
+    "userId",
+    data.id || data.userId || ""
+);
+
+console.log(data);
 
             localStorage.setItem(
                 "role",
