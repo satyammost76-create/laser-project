@@ -262,11 +262,6 @@
         font-size:16px;
         }
 
-        .search-box input::placeholder{
-
-        color:#cbd5e1;
-        }
-
         .search-btn,
         .reset-btn{
 
@@ -295,12 +290,6 @@
         background:#16a34a;
 
         color:white;
-        }
-
-        .search-btn:hover,
-        .reset-btn:hover{
-
-        transform:translateY(-5px);
         }
 
         .table-box{
@@ -352,17 +341,6 @@
         color:#e2e8f0;
         }
 
-        tbody tr{
-
-        transition:0.4s;
-        }
-
-        tbody tr:hover{
-
-        background:
-        rgba(255,255,255,0.05);
-        }
-
         .action-btn{
 
         border:none;
@@ -376,8 +354,6 @@
         font-weight:700;
 
         margin-right:8px;
-
-        transition:0.4s;
         }
 
         .update-btn{
@@ -394,11 +370,6 @@
         color:white;
         }
 
-        .action-btn:hover{
-
-        transform:scale(1.05);
-        }
-
         .loading{
 
         text-align:center;
@@ -410,45 +381,162 @@
         color:#38bdf8;
         }
 
-        .popup{
+        /* MODAL */
+
+        #updateModal{
+
+        display:none;
 
         position:fixed;
 
-        top:30px;
-        right:30px;
+        top:0;
+        left:0;
+
+        width:100%;
+        height:100%;
+
+        background:
+        rgba(0,0,0,0.75);
+
+        backdrop-filter:blur(8px);
+
+        justify-content:center;
+
+        align-items:center;
+
+        z-index:99999;
+        }
+
+        .modal-box{
+
+        width:95%;
+
+        max-width:750px;
+
+        background:#0f172a;
+
+        padding:35px;
+
+        border-radius:30px;
+
+        border:
+        1px solid rgba(255,255,255,0.1);
+
+        box-shadow:
+        0 0 40px rgba(37,99,235,0.4);
+        }
+
+        .modal-title{
+
+        text-align:center;
+
+        font-size:38px;
+
+        margin-bottom:30px;
+
+        color:#38bdf8;
+
+        font-weight:800;
+        }
+
+        .form-grid{
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:18px;
+        }
+
+        .form-grid input,
+        .form-grid textarea{
+
+        padding:16px;
+
+        border:none;
+
+        border-radius:15px;
+
+        background:#1e293b;
+
+        color:white;
+
+        font-size:16px;
+
+        outline:none;
+        }
+
+        .full{
+
+        grid-column:span 2;
+        }
+
+        .form-grid textarea{
+
+        min-height:120px;
+
+        resize:none;
+        }
+
+        .modal-buttons{
+
+        margin-top:30px;
+
+        display:flex;
+
+        justify-content:center;
+
+        gap:20px;
+
+        flex-wrap:wrap;
+        }
+
+        .save-btn{
+
+        padding:16px 35px;
+
+        border:none;
+
+        border-radius:16px;
 
         background:
         linear-gradient(
         45deg,
-        #16a34a,
-        #15803d
+        #2563eb,
+        #1d4ed8
         );
 
-        padding:18px 28px;
+        color:white;
 
-        border-radius:15px;
+        font-size:18px;
 
         font-weight:700;
 
-        z-index:9999;
-
-        box-shadow:
-        0 0 25px rgba(22,163,74,0.5);
+        cursor:pointer;
         }
 
-        @media(max-width:768px){
+        .cancel-btn{
 
-        .navbar{
+        padding:16px 35px;
 
-        flex-direction:column;
+        border:none;
 
-        gap:15px;
-        }
+        border-radius:16px;
 
-        .search-box{
+        background:
+        linear-gradient(
+        45deg,
+        #ef4444,
+        #dc2626
+        );
 
-        flex-direction:column;
-        }
+        color:white;
+
+        font-size:18px;
+
+        font-weight:700;
+
+        cursor:pointer;
         }
 
     </style>
@@ -466,8 +554,6 @@
     </div>
 
     <div class="nav-right">
-
-        <i class="fas fa-user-shield"></i>
 
         <button class="logout-btn"
                 onclick="logout()">
@@ -559,6 +645,8 @@
                 <th>ADDRESS</th>
                 <th>MOBILE</th>
                 <th>EMAIL</th>
+                <th>MAKE</th>
+                <th>REMARKS</th>
                 <th>ROLE</th>
                 <th>ACTION</th>
 
@@ -574,9 +662,71 @@
 
 </div>
 
+<!-- UPDATE MODAL -->
+
+<div id="updateModal">
+
+    <div class="modal-box">
+
+        <div class="modal-title">
+
+            UPDATE USER PROFILE
+
+        </div>
+
+        <div class="form-grid">
+
+            <input id="uName"
+                   placeholder="Enter Name">
+
+            <input id="uMobile"
+                   placeholder="Enter Mobile">
+
+            <input id="uAddress"
+                   placeholder="Enter Address"
+                   class="full">
+
+            <input id="uEmail"
+                   placeholder="Enter Email"
+                   class="full">
+
+            <input id="uMake"
+                   placeholder="Enter Machine Make">
+
+            <input id="uRole"
+                   placeholder="Enter Role">
+
+            <textarea id="uRemarks"
+                      placeholder="Enter Remarks"
+                      class="full"></textarea>
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button class="save-btn"
+                    onclick="updateUser()">
+
+                SAVE UPDATE
+
+            </button>
+
+            <button class="cancel-btn"
+                    onclick="closeModal()">
+
+                CANCEL
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 <script>
 
-    /* LOGIN CHECK */
+    /* LOGIN */
 
     const token =
     localStorage.getItem("token");
@@ -610,6 +760,8 @@
     const API_URL =
     `${BASE_URL}/rajeshroy/all`;
 
+    let currentUserId = null;
+
     /* PAGE LOAD */
 
     window.onload = function(){
@@ -617,7 +769,7 @@
     loadData();
     };
 
-    /* LOAD DATA */
+    /* LOAD USERS */
 
     async function loadData(){
 
@@ -637,9 +789,6 @@
     method:"GET",
 
     headers:{
-
-    "Content-Type":
-    "application/json",
 
     "Authorization":
     "Bearer " + token
@@ -669,8 +818,6 @@
     showData(data);
 
     }catch(error){
-
-    console.log(error);
 
     document.getElementById(
     "loading"
@@ -706,12 +853,25 @@
 
     <td>${user.email}</td>
 
+    <td>${user.make || ''}</td>
+
+    <td>${user.remarks || ''}</td>
+
     <td>${user.role}</td>
 
     <td>
 
     <button class="action-btn update-btn"
-    onclick="updateUser(${user.id})">
+    onclick="openUpdateModal(
+    ${user.id},
+    '${user.name}',
+    '${user.address}',
+    '${user.mobile}',
+    '${user.email}',
+    '${user.make || ""}',
+    '${user.remarks || ""}',
+    '${user.role}'
+    )">
 
     Update
 
@@ -726,7 +886,8 @@
 
     </td>
 
-    </tr>`;
+    </tr>
+    `;
     });
     }
 
@@ -780,35 +941,73 @@
     }
     }
 
-    /* UPDATE */
+    /* OPEN MODAL */
 
-    async function updateUser(id){
-
-    const name =
-    prompt("Enter New Name");
-
-    const address =
-    prompt("Enter New Address");
-
-    const mobile =
-    prompt("Enter New Mobile");
-
-    if(
-    name == null ||
-    name == ""
+    function openUpdateModal(
+    id,
+    name,
+    address,
+    mobile,
+    email,
+    make,
+    remarks,
+    role
     ){
 
-    alert("Name Required");
+    currentUserId = id;
 
-    return;
+    document.getElementById(
+    "updateModal"
+    ).style.display = "flex";
+
+    document.getElementById(
+    "uName"
+    ).value = name;
+
+    document.getElementById(
+    "uAddress"
+    ).value = address;
+
+    document.getElementById(
+    "uMobile"
+    ).value = mobile;
+
+    document.getElementById(
+    "uEmail"
+    ).value = email;
+
+    document.getElementById(
+    "uMake"
+    ).value = make;
+
+    document.getElementById(
+    "uRemarks"
+    ).value = remarks;
+
+    document.getElementById(
+    "uRole"
+    ).value = role;
     }
+
+    /* CLOSE MODAL */
+
+    function closeModal(){
+
+    document.getElementById(
+    "updateModal"
+    ).style.display = "none";
+    }
+
+    /* UPDATE USER */
+
+    async function updateUser(){
 
     try{
 
     const response =
     await fetch(
 
-    `${BASE_URL}/rajeshroy/update/${id}`,
+    `${BASE_URL}/rajeshroy/update/${currentUserId}`,
 
     {
 
@@ -825,9 +1024,40 @@
 
     body:JSON.stringify({
 
-    name:name,
-    address:address,
-    mobile:mobile
+    name:
+    document.getElementById(
+    "uName"
+    ).value,
+
+    address:
+    document.getElementById(
+    "uAddress"
+    ).value,
+
+    mobile:
+    document.getElementById(
+    "uMobile"
+    ).value,
+
+    email:
+    document.getElementById(
+    "uEmail"
+    ).value,
+
+    make:
+    document.getElementById(
+    "uMake"
+    ).value,
+
+    remarks:
+    document.getElementById(
+    "uRemarks"
+    ).value,
+
+    role:
+    document.getElementById(
+    "uRole"
+    ).value
     })
     });
 
@@ -839,6 +1069,8 @@
     alert(
     "User Updated Successfully"
     );
+
+    closeModal();
 
     loadData();
 
@@ -875,10 +1107,9 @@
     }
     });
 
-    const message =
-    await response.text();
-
-    alert(message);
+    alert(
+    await response.text()
+    );
 
     loadData();
 
@@ -894,40 +1125,10 @@
 
     localStorage.clear();
 
-    const popup =
-    document.createElement("div");
-
-    popup.className =
-    "popup";
-
-    popup.innerHTML =
-    "Logout Successful";
-
-    document.body.appendChild(
-    popup
-    );
-
-    setTimeout(() => {
-
     window.location.replace(
     "index.html"
     );
-
-    },1200);
     }
-
-    /* BLOCK BACK */
-
-    history.pushState(
-    null,
-    null,
-    location.href
-    );
-
-    window.onpopstate = function () {
-
-    history.go(1);
-    };
 
 </script>
 
