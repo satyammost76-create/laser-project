@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Alpha Laser Admin Panel</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+          margin:0;
+          padding:0;
+          box-sizing:border-box;
+          font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+          background:
+          linear-gradient(
+            135deg,
+            #020617,
+            #001845,
+            #0f172a
+          );
+
+          color:white;
+
+          overflow-x:hidden;
+        }
+
+        body::before{
+
+          content:"";
+
+          position:fixed;
+
+          width:500px;
+          height:500px;
+
+          background:#38bdf8;
+
+          filter:blur(150px);
+
+          opacity:0.15;
+
+          top:-150px;
+          left:-150px;
+
+          z-index:-1;
+        }
+
+        body::after{
+
+          content:"";
+
+          position:fixed;
+
+          width:450px;
+          height:450px;
+
+          background:#2563eb;
+
+          filter:blur(150px);
+
+          opacity:0.15;
+
+          bottom:-150px;
+          right:-150px;
+
+          z-index:-1;
+        }
+
+        .navbar{
+
+          width:100%;
+
+          padding:20px 5%;
+
+          display:flex;
+
+          justify-content:space-between;
+
+          align-items:center;
+
+          background:
+          rgba(255,255,255,0.05);
+
+          backdrop-filter:blur(15px);
+
+          position:sticky;
+
+          top:0;
+
+          z-index:1000;
+
+          border-bottom:
+          1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo{
+
+          font-size:32px;
+
+          font-weight:800;
+
+          color:#38bdf8;
+
+          text-shadow:
+          0 0 20px #38bdf8;
+        }
+
+        .admin-box{
+
+          display:flex;
+
+          align-items:center;
+
+          gap:20px;
+        }
+
+        .admin-box i{
+
+          font-size:24px;
+
+          color:#38bdf8;
+        }
+
+        .logout-btn{
+
+          background:
+          linear-gradient(
+            45deg,
+            #ef4444,
+            #dc2626
+          );
+
+          border:none;
+
+          padding:12px 25px;
+
+          border-radius:40px;
+
+          color:white;
+
+          cursor:pointer;
+
+          font-weight:600;
+
+          transition:0.4s;
+        }
+
+        .logout-btn:hover{
+
+          transform:translateY(-5px);
+
+          box-shadow:
+          0 0 20px #ef4444;
+        }
+
+        .container{
+
+          width:95%;
+
+          margin:40px auto;
+        }
+
+        .top-box{
+
+          display:grid;
+
+          grid-template-columns:
+          repeat(auto-fit,minmax(250px,1fr));
+
+          gap:25px;
+
+          margin-bottom:35px;
+        }
+
+        .card{
+
+          background:
+          rgba(255,255,255,0.07);
+
+          border:
+          1px solid rgba(255,255,255,0.08);
+
+          backdrop-filter:blur(15px);
+
+          padding:35px;
+
+          border-radius:25px;
+
+          transition:0.5s;
+        }
+
+        .card:hover{
+
+          transform:translateY(-10px);
+
+          box-shadow:
+          0 0 30px rgba(56,189,248,0.5);
+        }
+
+        .card i{
+
+          font-size:45px;
+
+          color:#38bdf8;
+
+          margin-bottom:15px;
+        }
+
+        .card h1{
+
+          font-size:42px;
+
+          margin-bottom:10px;
+        }
+
+        .card p{
+
+          color:#cbd5e1;
+        }
+
+        .search-box{
+
+          display:flex;
+
+          gap:15px;
+
+          flex-wrap:wrap;
+
+          margin-bottom:25px;
+        }
+
+        .search-box input{
+
+          flex:1;
+
+          min-width:250px;
+
+          padding:15px;
+
+          border:none;
+
+          border-radius:15px;
+
+          background:
+          rgba(255,255,255,0.08);
+
+          color:white;
+
+          outline:none;
+
+          font-size:16px;
+        }
+
+        .search-box input::placeholder{
+
+          color:#cbd5e1;
+        }
+
+        .search-btn,
+        .reset-btn{
+
+          padding:15px 25px;
+
+          border:none;
+
+          border-radius:15px;
+
+          cursor:pointer;
+
+          font-weight:600;
+
+          transition:0.4s;
+        }
+
+        .search-btn{
+
+          background:#2563eb;
+
+          color:white;
+        }
+
+        .reset-btn{
+
+          background:#16a34a;
+
+          color:white;
+        }
+
+        .search-btn:hover,
+        .reset-btn:hover{
+
+          transform:translateY(-5px);
+
+          box-shadow:
+          0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .table-container{
+
+          overflow-x:auto;
+
+          background:
+          rgba(255,255,255,0.06);
+
+          border-radius:25px;
+
+          padding:20px;
+
+          border:
+          1px solid rgba(255,255,255,0.08);
+
+          backdrop-filter:blur(15px);
+        }
+
+        table{
+
+          width:100%;
+
+          border-collapse:collapse;
+        }
+
+        thead{
+
+          background:
+          rgba(37,99,235,0.3);
+        }
+
+        th{
+
+          padding:18px;
+
+          text-align:left;
+
+          color:#38bdf8;
+        }
+
+        td{
+
+          padding:18px;
+
+          border-bottom:
+          1px solid rgba(255,255,255,0.08);
+
+          color:#e2e8f0;
+        }
+
+        tbody tr{
+
+          transition:0.4s;
+        }
+
+        tbody tr:hover{
+
+          background:
+          rgba(255,255,255,0.05);
+        }
+
+        .action-btn{
+
+          border:none;
+
+          padding:10px 16px;
+
+          border-radius:12px;
+
+          cursor:pointer;
+
+          font-weight:600;
+
+          margin-right:8px;
+
+          transition:0.4s;
+        }
+
+        .delete-btn{
+
+          background:#ef4444;
+
+          color:white;
+        }
+
+        .action-btn:hover{
+
+          transform:scale(1.05);
+        }
+
+        .loading{
+
+          text-align:center;
+
+          padding:40px;
+
+          color:#38bdf8;
+
+          font-size:24px;
+        }
+
+        .success-popup{
+
+          position:fixed;
+
+          top:30px;
+          right:30px;
+
+          background:
+          linear-gradient(
+            45deg,
+            #16a34a,
+            #15803d
+          );
+
+          padding:18px 28px;
+
+          border-radius:15px;
+
+          font-weight:600;
+
+          box-shadow:
+          0 0 25px rgba(22,163,74,0.5);
+
+          z-index:9999;
+
+          animation:slide 0.5s ease;
+        }
+
+        @keyframes slide{
+
+          from{
+            transform:translateX(100px);
+            opacity:0;
+          }
+
+          to{
+            transform:translateX(0);
+            opacity:1;
+          }
+        }
+
+        @media(max-width:768px){
+
+          .navbar{
+
+            flex-direction:column;
+
+            gap:15px;
+          }
+
+          .search-box{
+
+            flex-direction:column;
+          }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <div class="logo">
+
+        ALPHA LASER ADMIN
+
+    </div>
+
+    <div class="admin-box">
+
+        <i class="fas fa-user-shield"></i>
+
+        <button class="logout-btn"
+                onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="top-box">
+
+        <div class="card">
+
+            <i class="fas fa-users"></i>
+
+            <h1 id="totalUsers">0</h1>
+
+            <p>Total Users</p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fas fa-user-check"></i>
+
+            <h1>100%</h1>
+
+            <p>System Active</p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fas fa-shield-halved"></i>
+
+            <h1>Secure</h1>
+
+            <p>Database Protected</p>
+
+        </div>
+
+    </div>
+
+    <div class="search-box">
+
+        <input type="number"
+               id="searchId"
+               placeholder="Enter User ID">
+
+        <button class="search-btn"
+                onclick="searchById()">
+
+            Search
+
+        </button>
+
+        <button class="reset-btn"
+                onclick="loadData()">
+
+            Reset
+
+        </button>
+
+    </div>
+
+    <div class="loading"
+         id="loading">
+
+        Loading Data...
+
+    </div>
+
+    <div class="table-container">
+
+        <table id="dataTable"
+               style="display:none;">
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>NAME</th>
+                <th>ADDRESS</th>
+                <th>MOBILE</th>
+                <th>EMAIL</th>
+                <th>MAKE</th>
+                <th>REMARKS</th>
+                <th>ROLE</th>
+                <th>ACTION</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="tableBody"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+    // LOGIN TOKEN
+
+    const token =
+    localStorage.getItem("token");
+
+    if(token == null){
+
+      alert("Please Login First");
+
+      window.location.replace(
+        "index.html"
+      );
+    }
+
+    // RENDER BACKEND URL
+
+    const BASE_URL =
+    "https://laser-project-k6tt.onrender.com";
+
+    // ALL USERS API
+
+    const API_URL =
+    `${BASE_URL}/rajeshroy/all`;
+
+    // PAGE LOAD
+
+    window.onload = function(){
+
+      loadData();
+    };
+
+    // LOAD DATA
+
+    async function loadData(){
+
+      document.getElementById(
+        "loading"
+      ).style.display = "block";
+
+      document.getElementById(
+        "dataTable"
+      ).style.display = "none";
+
+      try{
+
+        const response =
+        await fetch(API_URL,{
+
+          method:"GET",
+
+          headers:{
+
+            "Content-Type":
+            "application/json",
+
+            "Authorization":
+            "Bearer " + token
+          }
+        });
+
+        if(!response.ok){
+
+          throw new Error(
+            "Failed To Load Data"
+          );
+        }
+
+        const data =
+        await response.json();
+
+        document.getElementById(
+          "loading"
+        ).style.display = "none";
+
+        document.getElementById(
+          "dataTable"
+        ).style.display = "table";
+
+        document.getElementById(
+          "totalUsers"
+        ).innerHTML = data.length;
+
+        showData(data);
+
+      }catch(error){
+
+        console.log(error);
+
+        document.getElementById(
+          "loading"
+        ).innerHTML =
+        "Server Error";
+      }
+    }
+
+    // SHOW USERS
+
+    function showData(users){
+
+      const tableBody =
+      document.getElementById(
+        "tableBody"
+      );
+
+      tableBody.innerHTML = "";
+
+      users.forEach(user => {
+
+        tableBody.innerHTML += `
+
+        <tr>
+
+          <td>${user.id}</td>
+
+          <td>${user.name}</td>
+
+          <td>${user.address}</td>
+
+          <td>${user.mobile}</td>
+
+          <td>${user.email}</td>
+
+          <td>${user.make || ''}</td>
+
+          <td>${user.remarks || ''}</td>
+
+          <td>${user.role}</td>
+
+          <td>
+
+            <button
+              class="action-btn delete-btn"
+              onclick="deleteUser(${user.id})">
+
+              Delete
+
+            </button>
+
+          </td>
+
+        </tr>
+
+        `;
+      });
+    }
+
+    // SEARCH USER
+
+    async function searchById(){
+
+      const id =
+      document.getElementById(
+        "searchId"
+      ).value;
+
+      if(id == ""){
+
+        alert("Enter User ID");
+
+        return;
+      }
+
+      try{
+
+        const response =
+        await fetch(
+
+        `${BASE_URL}/rajeshroy/get/` + id,
+
+        {
+
+          method:"GET",
+
+          headers:{
+
+            "Authorization":
+            "Bearer " + token
+          }
+        });
+
+        if(!response.ok){
+
+          throw new Error();
+        }
+
+        const user =
+        await response.json();
+
+        showData([user]);
+
+      }catch(error){
+
+        alert("User Not Found");
+      }
+    }
+
+    // DELETE USER
+
+    async function deleteUser(id){
+
+      if(!confirm("Delete User ?")){
+
+        return;
+      }
+
+      try{
+
+        const response =
+        await fetch(
+
+        `${BASE_URL}/rajeshroy/delete/` + id,
+
+        {
+
+          method:"DELETE",
+
+          headers:{
+
+            "Authorization":
+            "Bearer " + token
+          }
+        });
+
+        const message =
+        await response.text();
+
+        alert(message);
+
+        loadData();
+
+      }catch(error){
+
+        alert("Delete Failed");
+      }
+    }
+
+    // LOGOUT
+
+    function logout(){
+
+      localStorage.removeItem(
+        "token"
+      );
+
+      localStorage.removeItem(
+        "role"
+      );
+
+      const popup =
+      document.createElement("div");
+
+      popup.className =
+      "success-popup";
+
+      popup.innerHTML = `
+
+      <i class="fas fa-check-circle"></i>
+
+      Logout Successful
+
+      `;
+
+      document.body.appendChild(
+        popup
+      );
+
+      setTimeout(() => {
+
+        window.location.replace(
+          "index.html"
+        );
+
+      },1200);
+    }
+
+    // BLOCK BACK BUTTON
+
+    history.pushState(
+      null,
+      null,
+      location.href
+    );
+
+    window.onpopstate =
+    function () {
+
+      history.go(1);
+    };
+
+</script>
+
+</body>
+
+</html>
