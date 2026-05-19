@@ -865,450 +865,332 @@
 
 <script>
 
-    const BASE_URL =
-  "https://laser-project-k6tt.onrender.com";
+    const BASE_URL = "https://laser-project-k6tt.onrender.com";
 
-      const token =
-      localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
 
-      const userId =
-      localStorage.getItem("userId");
+    console.log("TOKEN:", token);
+    console.log("USERID:", userId);
 
-      // CLOCK
+    /* CLOCK */
 
-      function updateClock(){
+    function updateClock() {
 
-          const now = new Date();
+        const now = new Date();
 
-          let hours =
-          now.getHours();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
 
-          let minutes =
-          now.getMinutes();
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-          let seconds =
-          now.getSeconds();
+        document.getElementById("liveClock").innerHTML =
+            `${hours}:${minutes}:${seconds}`;
+    }
 
-          hours =
-          hours < 10 ? "0" + hours : hours;
+    setInterval(updateClock, 1000);
+    updateClock();
 
-          minutes =
-          minutes < 10 ? "0" + minutes : minutes;
+    /* PAGE LOAD */
 
-          seconds =
-          seconds < 10 ? "0" + seconds : seconds;
+    window.onload = async () => {
 
-          document.getElementById("liveClock")
-          .innerHTML =
-          `${hours}:${minutes}:${seconds}`;
-      }
+        try {
 
-      setInterval(updateClock,1000);
+            if (!token || !userId) {
 
-      updateClock();
+                console.log("No token found. Loading demo profile.");
+                loadMockTelemetryProfile();
 
-      // PAGE LOAD
+            } else {
 
-      window.onload = async () => {
+                await fetchProfile();
+            }
 
-          // Fallback mock tokens inside dev sandbox if backend variables don't exist
-          if(!token || !userId){
-              console.log("No authorization configurations found inside storage. Simulating live dashboard profile metrics sandbox variables.");
-              loadMockTelemetryProfile();
-          } else {
-              await fetchProfile();
-          }
+            startTelemetryAutomation();
 
-          // Spin up the loop handlers for automated operational simulation telemetry updates
-          startTelemetryAutomation();
-      };
+        } catch (e) {
 
-      // LOAD MOCK TELEMETRY PROFILE DATA IF API ENVIRONMENT OFFSITE
-      function loadMockTelemetryProfile() {
-          document.getElementById("showName").innerHTML = "Rajesh Roy";
-          document.getElementById("showAddress").innerHTML = "Sector V, Industrial Hub Block C, Kolkata";
-          document.getElementById("showMobile").innerHTML = "+91 98765 43210";
-          document.getElementById("showEmail").innerHTML = "rajesh.roy@alphamachines.io";
-          document.getElementById("showMake").innerHTML = "Alpha Fiber Laser Cutter V4 Pro (4000W)";
-          document.getElementById("showRemarks").innerHTML = "Optimal performance profile active. Mild standard wear detected on assist gas pressure valve nozzle.";
+            console.log("Window Load Error:", e);
+            loadMockTelemetryProfile();
+        }
+    };
 
-          document.getElementById("name").value = "Rajesh Roy";
-          document.getElementById("address").value = "Sector V, Industrial Hub Block C, Kolkata";
-          document.getElementById("mobile").value = "+91 98765 43210";
-          document.getElementById("email").value = "rajesh.roy@alphamachines.io";
-          document.getElementById("make").value = "Alpha Fiber Laser Cutter V4 Pro (4000W)";
-          document.getElementById("remarks").value = "Optimal performance profile active. Mild standard wear detected on assist gas pressure valve nozzle.";
-      }
+    /* MOCK PROFILE */
 
-      // FETCH PROFILE
+    function loadMockTelemetryProfile() {
 
-      async function fetchProfile(){
+        document.getElementById("showName").innerHTML = "Rajesh Roy";
+        document.getElementById("showAddress").innerHTML = "Kolkata";
+        document.getElementById("showMobile").innerHTML = "+91 9876543210";
+        document.getElementById("showEmail").innerHTML = "rajesh@gmail.com";
+        document.getElementById("showMake").innerHTML = "Laser Fiber Machine";
+        document.getElementById("showRemarks").innerHTML = "System Running Perfectly";
 
-          try{
+        document.getElementById("name").value = "Rajesh Roy";
+        document.getElementById("address").value = "Kolkata";
+        document.getElementById("mobile").value = "+91 9876543210";
+        document.getElementById("email").value = "rajesh@gmail.com";
+        document.getElementById("make").value = "Laser Fiber Machine";
+        document.getElementById("remarks").value = "System Running Perfectly";
+    }
 
-              const response =
-              await fetch(
-                  `${BASE_URL}/rajeshroy/get/${userId}?t=${new Date().getTime()}`,
-                  {
-                      method:"GET",
+    /* FETCH PROFILE */
 
-                      cache:"no-store",
+    async function fetchProfile() {
 
-                      headers:{
-                          "Authorization":
-                          `Bearer ${token}`,
+        try {
 
-                          "Content-Type":
-                          "application/json"
-                      }
-                  }
-              );
+            const response = await fetch(
+                `${BASE_URL}/rajeshroy/get/${userId}?t=${new Date().getTime()}`,
+                {
+                    method: "GET",
+                    cache: "no-store",
 
-              const data =
-              await response.json();
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
 
-              const user =
-              data.data || data;
+            console.log("API STATUS:", response.status);
 
-              document.getElementById("showName")
-              .innerHTML =
-              user.name || "N/A";
+            if (!response.ok) {
+                throw new Error("API FAILED");
+            }
 
-              document.getElementById("showAddress")
-              .innerHTML =
-              user.address || "N/A";
+            let data;
 
-              document.getElementById("showMobile")
-              .innerHTML =
-              user.mobile || "N/A";
+            try {
+                data = await response.json();
+            } catch (e) {
 
-              document.getElementById("showEmail")
-              .innerHTML =
-              user.email || "N/A";
+                console.log("JSON ERROR:", e);
+                loadMockTelemetryProfile();
+                return;
+            }
 
-              document.getElementById("showMake")
-              .innerHTML =
-              user.make || "N/A";
+            const user = data.data || data;
 
-              document.getElementById("showRemarks")
-              .innerHTML =
-              user.remarks || "N/A";
+            document.getElementById("showName").innerHTML =
+                user.name || "N/A";
 
-              document.getElementById("name")
-              .value =
-              user.name || "";
+            document.getElementById("showAddress").innerHTML =
+                user.address || "N/A";
 
-              document.getElementById("address")
-              .value =
-              user.address || "";
+            document.getElementById("showMobile").innerHTML =
+                user.mobile || "N/A";
 
-              document.getElementById("mobile")
-              .value =
-              user.mobile || "";
+            document.getElementById("showEmail").innerHTML =
+                user.email || "N/A";
 
-              document.getElementById("email")
-              .value =
-              user.email || "";
+            document.getElementById("showMake").innerHTML =
+                user.make || "N/A";
 
-              document.getElementById("make")
-              .value =
-              user.make || "";
+            document.getElementById("showRemarks").innerHTML =
+                user.remarks || "N/A";
 
-              document.getElementById("remarks")
-              .value =
-              user.remarks || "";
+            document.getElementById("name").value =
+                user.name || "";
 
-          }
+            document.getElementById("address").value =
+                user.address || "";
 
-          catch(error){
+            document.getElementById("mobile").value =
+                user.mobile || "";
 
-              console.log(error);
-              loadMockTelemetryProfile();
-          }
-      }
+            document.getElementById("email").value =
+                user.email || "";
 
-      // UPDATE PROFILE
+            document.getElementById("make").value =
+                user.make || "";
 
-      async function updateProfile(){
+            document.getElementById("remarks").value =
+                user.remarks || "";
 
-          const payload = {
+        } catch (error) {
 
-              id:Number(userId || 101),
+            console.log("FETCH ERROR:", error);
 
-              name:
-              document.getElementById("name")
-              .value.trim(),
+            loadMockTelemetryProfile();
+        }
+    }
 
-              address:
-              document.getElementById("address")
-              .value.trim(),
+    /* UPDATE PROFILE */
 
-              mobile:
-              document.getElementById("mobile")
-              .value.trim(),
+    async function updateProfile() {
 
-              email:
-              document.getElementById("email")
-              .value.trim(),
+        const payload = {
 
-              make:
-              document.getElementById("make")
-              .value.trim(),
+            id: Number(userId || 101),
 
-              remarks:
-              document.getElementById("remarks")
-              .value.trim()
-          };
+            name:
+                document.getElementById("name").value.trim(),
 
-          // Update UI mirror immediately for interactive user response feedback loop
-          document.getElementById("showName").innerHTML = payload.name;
-          document.getElementById("showAddress").innerHTML = payload.address;
-          document.getElementById("showMobile").innerHTML = payload.mobile;
-          document.getElementById("showEmail").innerHTML = payload.email;
-          document.getElementById("showMake").innerHTML = payload.make;
-          document.getElementById("showRemarks").innerHTML = payload.remarks;
+            address:
+                document.getElementById("address").value.trim(),
 
-          try{
+            mobile:
+                document.getElementById("mobile").value.trim(),
 
-              if(token && userId) {
-                  await fetch(
-                      `${BASE_URL}/rajeshroy/update/${userId}`,
-                      {
-                          method:"PUT",
+            email:
+                document.getElementById("email").value.trim(),
 
-                          headers:{
-                              "Content-Type":
-                              "application/json",
+            make:
+                document.getElementById("make").value.trim(),
 
-                              "Authorization":
-                              `Bearer ${token}`
-                          },
+            remarks:
+                document.getElementById("remarks").value.trim()
+        };
 
-                          body:
-                          JSON.stringify(payload)
-                      }
-                  );
-              }
+        document.getElementById("showName").innerHTML = payload.name;
+        document.getElementById("showAddress").innerHTML = payload.address;
+        document.getElementById("showMobile").innerHTML = payload.mobile;
+        document.getElementById("showEmail").innerHTML = payload.email;
+        document.getElementById("showMake").innerHTML = payload.make;
+        document.getElementById("showRemarks").innerHTML = payload.remarks;
 
-              showStatus(
-                  "⚡ Profile Updated Successfully",
-                  true
-              );
+        try {
 
-              notify(
-                  "⚡ Latest Data Saved"
-              );
+            if (token && userId) {
 
-              appendTerminalLog("User configuration map modified. Dynamic changes piped successfully.");
+                const response = await fetch(
+                    `${BASE_URL}/rajeshroy/update/${userId}`,
+                    {
+                        method: "PUT",
 
-              if(token && userId) {
-                  setTimeout(async ()=>{
-                      await fetchProfile();
-                  },1000);
-              }
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
 
-          }
+                        body: JSON.stringify(payload)
+                    }
+                );
 
-          catch(error){
+                if (!response.ok) {
+                    throw new Error("UPDATE FAILED");
+                }
+            }
 
-              console.log(error);
+            showStatus("⚡ Profile Updated Successfully", true);
 
-              showStatus(
-                  "⚠ Update Failed",
-                  false
-              );
-          }
-      }
+            notify("⚡ Latest Data Saved");
 
-      // STATUS
+        } catch (error) {
 
-      function showStatus(message,success){
+            console.log(error);
 
-          const box =
-          document.getElementById("statusBox");
+            showStatus("⚠ Update Failed", false);
+        }
+    }
 
-          box.style.display =
-          "block";
+    /* STATUS */
 
-          box.innerHTML =
-          message;
+    function showStatus(message, success) {
 
-          if(success){
+        const box = document.getElementById("statusBox");
 
-              box.style.background =
-              "rgba(34,197,94,0.12)";
+        box.style.display = "block";
+        box.innerHTML = message;
 
-              box.style.border =
-              "1px solid #22c55e";
+        if (success) {
 
-              box.style.color =
-              "#4ade80";
-          }
+            box.style.background = "rgba(34,197,94,0.12)";
+            box.style.border = "1px solid #22c55e";
+            box.style.color = "#4ade80";
 
-          else{
+        } else {
 
-              box.style.background =
-              "rgba(239,68,68,0.12)";
+            box.style.background = "rgba(239,68,68,0.12)";
+            box.style.border = "1px solid #ef4444";
+            box.style.color = "#f87171";
+        }
 
-              box.style.border =
-              "1px solid #ef4444";
+        setTimeout(() => {
 
-              box.style.color =
-              "#f87171";
-          }
+            box.style.display = "none";
 
-          setTimeout(()=>{
+        }, 4000);
+    }
 
-              box.style.display =
-              "none";
+    /* NOTIFY */
 
-          },4000);
-      }
+    function notify(text) {
 
-      // NOTIFY
+        const popup = document.createElement("div");
 
-      function notify(text){
+        popup.innerHTML = text;
+        popup.className = "notify";
 
-          const popup =
-          document.createElement("div");
+        document.body.appendChild(popup);
 
-          popup.innerHTML =
-          text;
+        setTimeout(() => {
 
-          popup.className =
-          "notify";
+            popup.remove();
 
-          document.body.appendChild(popup);
+        }, 3000);
+    }
 
-          setTimeout(()=>{
+    /* LOGOUT */
 
-              popup.remove();
+    function logout() {
 
-          },3000);
-      }
+        localStorage.clear();
 
-      // LOGOUT
+        notify("Logout Success");
 
-      function logout(){
+        setTimeout(() => {
 
-          localStorage.clear();
-          notify("🔌 Core Machine Cloud Connection Severed");
+            window.location.href = "index.html";
 
-          setTimeout(() => {
-              window.location.href = "index.html";
-          }, 1000);
-      }
+        }, 1000);
+    }
 
-      // NEW TELEMETRY STREAM & LOG INTERACTION ALGORITHMS
-      let completedJobs = 1424;
-      let systemErrors = 0;
+    /* TELEMETRY */
 
-      function startTelemetryAutomation() {
-          // Constantly generate small fluctuations in pressure and heat to simulate a dynamic environment
-          setInterval(() => {
-              if (document.getElementById("telemetryState").innerHTML === "ACTIVE CUTTING") {
-                  const dynamicPower = Math.floor(3950 + Math.random() * 95);
-                  const dynamicGas = (11.8 + Math.random() * 1.3).toFixed(2);
-                  const dynamicTemp = (23.5 + Math.random() * 2.8).toFixed(1);
-
-                  document.getElementById("telemetryPower").innerHTML = dynamicPower;
-                  document.getElementById("telemetryGas").innerHTML = dynamicGas;
-                  document.getElementById("telemetryTemp").innerHTML = dynamicTemp;
-              }
-          }, 1200);
-
-          // Automated log simulator mapping random system status events
-          setInterval(() => {
-              const logs = [
-                  "Optimal cooling water throughput confirmed via auxiliary pump loop.",
-                  "Cloud layer synchronization complete. Data frames pushed.",
-                  "Optical lens stabilization check complete: Zero deflection verified.",
-                  "Assist gas flow rate verified inside standard operating threshold configuration."
-              ];
-              const randomLog = logs[Math.floor(Math.random() * logs.length)];
-              appendTerminalLog(randomLog);
-          }, 15000);
-      }
-
-      function appendTerminalLog(message) {
-          const container = document.getElementById("terminalLogs");
-          const timeStr = new Date().toLocaleTimeString();
-          const logLine = document.createElement("div");
-          logLine.className = "terminal-line";
-          logLine.innerHTML = `<span class="terminal-time">[${timeStr}]</span> ${message}`;
-          container.appendChild(logLine);
-          container.scrollTop = container.scrollHeight;
-      }
-
-      function triggerJobIncrement() {
-          completedJobs++;
-          document.getElementById("jobCounterValue").innerHTML = completedJobs.toLocaleString();
-          notify("🎯 Workpiece Laser Job Cycle Completed Successfully");
-          appendTerminalLog(`CNC Profile executed complete. Part code sequence #${completedJobs} extracted cleanly.`);
-
-          // Tick down components lifespan metrics slowly over actions
-          reduceLifespanMetric("lensLifespanBar", "lensLifespanText", 0.2);
-          reduceLifespanMetric("chillerLifespanBar", "chillerLifespanText", 0.1);
-          reduceLifespanMetric("gasLifespanBar", "gasLifespanText", 0.5);
-      }
-
-      function simulateSystemError() {
-          systemErrors++;
-          document.getElementById("errorCounterValue").innerHTML = systemErrors;
-
-          const stateEl = document.getElementById("telemetryState");
-          stateEl.innerHTML = "EMERGENCY HALT";
-          stateEl.style.background = "rgba(239, 68, 68, 0.2)";
-          stateEl.style.color = "#f87171";
-          stateEl.style.animation = "pulse-red 1s infinite";
-
-          document.getElementById("telemetryPower").innerHTML = "0";
-          document.getElementById("telemetryGas").innerHTML = "0.0";
-
-          appendTerminalLog("🚨 WARNING: High specular back-reflection flash detected on cutting surface. Safety loop disrupted!");
-          notify("⚠️ System Laser Safety Circuit Fault Injected");
-
-          // Inject keyframes style injection dynamically for standard recovery loop alerts
-          if (!document.getElementById("pulseRedCSS")) {
-              const style = document.createElement('style');
-              style.id = "pulseRedCSS";
-              style.innerHTML = `
-                  @keyframes pulse-red {
-                      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-                      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-                      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-                  }
-              `;
-              document.head.appendChild(style);
-          }
-
-          // Automatically clear error flag status block back to runtime state after 6 seconds
-          setTimeout(() => {
-              stateEl.innerHTML = "ACTIVE CUTTING";
-              stateEl.style.background = "rgba(34, 197, 94, 0.2)";
-              stateEl.style.color = "#4ade80";
-              stateEl.style.animation = "pulse-green 2s infinite";
-              appendTerminalLog("System automatic override clearing diagnostic faults. Re-engaging laser control line matrix.");
-          }, 6000);
-      }
-
-      function reduceLifespanMetric(barId, textId, factor) {
-          const bar = document.getElementById(barId);
-          const text = document.getElementById(textId);
-          let currentVal = parseFloat(text.innerHTML);
-
-          let newVal = Math.max(0, currentVal - factor);
-          text.innerHTML = newVal.toFixed(1) + "%";
-          bar.style.width = newVal + "%";
-
-          if (newVal < 50 && newVal > 20) {
-              text.style.color = "#eab308";
-              bar.style.background = "#eab308";
-          } else if (newVal <= 20) {
-              text.style.color = "#ef4444";
-              bar.style.background = "#ef4444";
-          }
-      }
+    let completedJobs = 1424;
+    let systemErrors = 0;
+
+    function startTelemetryAutomation() {
+
+        setInterval(() => {
+
+            document.getElementById("telemetryPower").innerHTML =
+                Math.floor(3950 + Math.random() * 95);
+
+            document.getElementById("telemetryGas").innerHTML =
+                (11.8 + Math.random() * 1.3).toFixed(2);
+
+            document.getElementById("telemetryTemp").innerHTML =
+                (23.5 + Math.random() * 2.8).toFixed(1);
+
+        }, 1200);
+    }
+
+    function triggerJobIncrement() {
+
+        completedJobs++;
+
+        document.getElementById("jobCounterValue").innerHTML =
+            completedJobs.toLocaleString();
+
+        notify("Job Completed");
+    }
+
+    function simulateSystemError() {
+
+        systemErrors++;
+
+        document.getElementById("errorCounterValue").innerHTML =
+            systemErrors;
+
+        notify("System Error Injected");
+    }
 
 </script>
 
