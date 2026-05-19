@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,3 +32,1286 @@
 
             overflow-x:hidden;
 
+            background:
+            linear-gradient(
+                135deg,
+                #020617,
+                #07132b,
+                #0f172a,
+                #111827
+            );
+
+            color:white;
+        }
+
+        body::before{
+
+            content:"";
+
+            position:fixed;
+
+            width:100%;
+            height:100%;
+
+            background-image:
+            linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+            linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+
+            background-size:40px 40px;
+
+            z-index:-1;
+        }
+
+        /* NAVBAR */
+
+        .navbar{
+
+            width:100%;
+
+            padding:18px 5%;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            background:
+            rgba(255,255,255,0.05);
+
+            backdrop-filter:blur(18px);
+
+            border-bottom:
+            1px solid rgba(255,255,255,0.08);
+
+            position:sticky;
+
+            top:0;
+
+            z-index:999;
+        }
+
+        .logo{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:15px;
+        }
+
+        .logo img{
+
+            width:70px;
+            height:70px;
+
+            border-radius:18px;
+
+            background:white;
+
+            padding:6px;
+        }
+
+        .logo h1{
+
+            font-size:34px;
+
+            font-weight:800;
+
+            background:
+            linear-gradient(
+                to right,
+                white,
+                red,
+                white
+            );
+
+            -webkit-background-clip:text;
+
+            -webkit-text-fill-color:transparent;
+        }
+
+        .top-right{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:20px;
+        }
+
+        #liveClock{
+
+            font-size:22px;
+
+            font-weight:700;
+
+            color:#ff4d4d;
+        }
+
+        .logout-btn{
+
+            padding:14px 24px;
+
+            border:none;
+
+            border-radius:18px;
+
+            background:
+            linear-gradient(
+                135deg,
+                #ff0000,
+                #ff4d4d
+            );
+
+            color:white;
+
+            font-size:15px;
+
+            font-weight:700;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .logout-btn:hover{
+
+            transform:translateY(-3px);
+
+            box-shadow:
+            0 10px 25px rgba(255,0,0,0.4);
+        }
+
+        /* HERO */
+
+        .hero{
+
+            width:100%;
+
+            padding:80px 5% 40px;
+
+            text-align:center;
+
+            position:relative;
+        }
+
+        .hero h2{
+
+            font-size:72px;
+
+            font-weight:800;
+
+            line-height:1.1;
+
+            margin-bottom:25px;
+
+            background:
+            linear-gradient(
+                to right,
+                #ffffff,
+                #ff3b3b,
+                #ffffff
+            );
+
+            -webkit-background-clip:text;
+
+            -webkit-text-fill-color:transparent;
+        }
+
+        .hero p{
+
+            max-width:900px;
+
+            margin:auto;
+
+            line-height:2;
+
+            color:#cbd5e1;
+
+            font-size:18px;
+        }
+
+        /* IMAGE */
+
+        .machine-banner{
+
+            width:100%;
+
+            padding:20px 5% 50px;
+
+            display:flex;
+
+            justify-content:center;
+        }
+
+        .machine-banner img{
+
+            width:100%;
+
+            max-width:1450px;
+
+            height:380px;
+
+            object-fit:cover;
+
+            border-radius:35px;
+
+            border:
+            3px solid rgba(255,0,0,0.3);
+
+            box-shadow:
+            0 0 45px rgba(255,0,0,0.25);
+
+            transition:0.4s;
+        }
+
+        .machine-banner img:hover{
+
+            transform:scale(1.01);
+        }
+
+        /* DASHBOARD */
+
+        .dashboard{
+
+            width:100%;
+
+            padding:20px 5% 80px;
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            gap:35px;
+        }
+
+        .card{
+
+            padding:35px;
+
+            border-radius:35px;
+
+            background:
+            rgba(255,255,255,0.06);
+
+            border:
+            1px solid rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(18px);
+
+            box-shadow:
+            0 0 25px rgba(255,0,0,0.08);
+
+            transition:0.3s;
+        }
+
+        .card:hover{
+
+            transform:translateY(-5px);
+
+            box-shadow:
+            0 0 35px rgba(255,0,0,0.18);
+        }
+
+        .card h2{
+
+            font-size:30px;
+
+            margin-bottom:28px;
+
+            display:flex;
+
+            align-items:center;
+
+            gap:12px;
+        }
+
+        .info-box{
+
+            padding:18px;
+
+            margin-bottom:16px;
+
+            border-radius:20px;
+
+            background:
+            rgba(255,255,255,0.05);
+        }
+
+        .info-box span{
+
+            color:#94a3b8;
+
+            font-size:13px;
+        }
+
+        .info-box h3{
+
+            margin-top:7px;
+
+            font-size:20px;
+
+            word-break:break-word;
+        }
+
+        .card input{
+
+            width:100%;
+
+            padding:18px;
+
+            margin-bottom:16px;
+
+            border:none;
+
+            outline:none;
+
+            border-radius:18px;
+
+            background:white;
+
+            color:#111827;
+
+            font-size:15px;
+
+            font-weight:600;
+        }
+
+        .card input:focus{
+
+            border:2px solid red;
+        }
+
+        .card button{
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:20px;
+
+            background:
+            linear-gradient(
+                135deg,
+                #ff0000,
+                #ff4d4d
+            );
+
+            color:white;
+
+            font-size:17px;
+
+            font-weight:700;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .card button:hover{
+
+            transform:scale(1.02);
+
+            box-shadow:
+            0 12px 28px rgba(255,0,0,0.35);
+        }
+
+        .status{
+
+            margin-top:18px;
+
+            padding:14px;
+
+            border-radius:18px;
+
+            text-align:center;
+
+            display:none;
+
+            font-weight:700;
+        }
+
+        /* NEW EXPANDED UI ELEMENTS (Line 250+) */
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .metric-unit {
+            font-size: 14px;
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .telemetry-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 12px 28px rgba(255,255,255,0.1) !important;
+        }
+
+        .terminal-container {
+            background: #020617;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+            height: 180px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #38bdf8;
+        }
+
+        .terminal-line {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .terminal-time {
+            color: #64748b;
+            margin-right: 8px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff4d4d);
+            width: 100%;
+            transition: width 0.5s;
+        }
+
+        /* NOTIFICATION */
+
+        .notify{
+
+            position:fixed;
+
+            top:30px;
+
+            right:30px;
+
+            padding:18px 25px;
+
+            border-radius:18px;
+
+            background:
+            linear-gradient(
+                135deg,
+                #ff0000,
+                #ff4d4d
+            );
+
+            color:white;
+
+            font-weight:700;
+
+            z-index:9999;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1000px){
+
+            .dashboard{
+
+                grid-template-columns:1fr;
+            }
+
+            .hero h2{
+
+                font-size:48px;
+            }
+        }
+
+        @media(max-width:700px){
+
+            .navbar{
+
+                flex-direction:column;
+
+                gap:15px;
+            }
+
+            .top-right{
+
+                flex-direction:column;
+            }
+
+            .hero h2{
+
+                font-size:34px;
+            }
+
+            .machine-banner img{
+
+                height:240px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+
+        <img src="logo.png"
+             alt="Logo">
+
+        <h1>ALPHA LASER</h1>
+
+    </div>
+
+    <div class="top-right">
+
+        <div id="liveClock"></div>
+
+        <button class="logout-btn"
+                onclick="logout()">
+
+            <i class="fa-solid fa-power-off"></i>
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h2>
+
+        Future Industrial <br>
+
+        Laser Machine System
+
+    </h2>
+
+    <p>
+
+        Powerful smart industrial monitoring dashboard
+        with advanced machine profile management,
+        AI based tracking and futuristic cloud control.
+
+    </p>
+
+</section>
+
+<!-- MACHINE IMAGE -->
+
+<section class="machine-banner">
+
+    <img src="photo.png"
+         alt="Machine Banner">
+
+</section>
+
+<!-- DASHBOARD -->
+
+<div class="dashboard">
+
+    <!-- PROFILE -->
+
+    <div class="card">
+
+        <h2>
+
+            <i class="fa-solid fa-user"></i>
+
+            User Profile
+
+        </h2>
+
+        <div class="info-box">
+
+            <span>Name</span>
+
+            <h3 id="showName">Loading...</h3>
+
+        </div>
+
+        <div class="info-box">
+
+            <span>Address</span>
+
+            <h3 id="showAddress">Loading...</h3>
+
+        </div>
+
+        <div class="info-box">
+
+            <span>Mobile</span>
+
+            <h3 id="showMobile">Loading...</h3>
+
+        </div>
+
+        <div class="info-box">
+
+            <span>Email</span>
+
+            <h3 id="showEmail">Loading...</h3>
+
+        </div>
+
+        <div class="info-box">
+
+            <span>Machine Make</span>
+
+            <h3 id="showMake">Loading...</h3>
+
+        </div>
+
+        <div class="info-box">
+
+            <span>Remarks / Problems</span>
+
+            <h3 id="showRemarks">Loading...</h3>
+
+        </div>
+
+    </div>
+
+    <!-- UPDATE -->
+
+    <div class="card">
+
+        <h2>
+
+            <i class="fa-solid fa-pen"></i>
+
+            Update User Profile
+
+        </h2>
+
+        <input type="text"
+               id="name"
+               placeholder="Enter Name">
+
+        <input type="text"
+               id="address"
+               placeholder="Enter Address">
+
+        <input type="text"
+               id="mobile"
+               placeholder="Enter Mobile">
+
+        <input type="email"
+               id="email"
+               placeholder="Enter Email">
+
+        <input type="text"
+               id="make"
+               placeholder="Enter Machine Make">
+
+        <input type="text"
+               id="remarks"
+               placeholder="Enter Remarks / Problems">
+
+        <button onclick="updateProfile()">
+
+            ⚡ Save Dynamic Changes
+
+        </button>
+
+        <div class="status"
+             id="statusBox"></div>
+
+    </div>
+
+    <!-- NEW COMPONENT 1: LIVE TELEMETRY STREAM -->
+    <div class="card">
+        <h2>
+            <i class="fa-solid fa-gauge-high"></i>
+            Live Machine Telemetry
+        </h2>
+        <div class="metric-grid">
+            <div class="info-box">
+                <span>Laser Power Output</span>
+                <h3><span id="telemetryPower">4000</span><span class="metric-unit">W</span></h3>
+            </div>
+            <div class="info-box">
+                <span>Assist Gas Pressure</span>
+                <h3><span id="telemetryGas">12.4</span><span class="metric-unit">Bar</span></h3>
+            </div>
+            <div class="info-box">
+                <span>Cutting Head Temp</span>
+                <h3><span id="telemetryTemp">24.2</span><span class="metric-unit">°C</span></h3>
+            </div>
+            <div class="info-box">
+                <span>System Run State</span>
+                <div style="margin-top:8px;">
+                    <span class="telemetry-status" id="telemetryState">ACTIVE CUTTING</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Production Operations Counter -->
+        <div class="info-box" style="margin-top:15px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <span>Completed Jobs Counter</span>
+                    <h3 id="jobCounterValue">1,424</h3>
+                </div>
+                <div style="text-align:right;">
+                    <span>Error Exception Flag</span>
+                    <h3 id="errorCounterValue" style="color:#ef4444;">0</h3>
+                </div>
+            </div>
+        </div>
+        <div class="btn-row">
+            <button onclick="triggerJobIncrement()">Trigger Job Cycle</button>
+            <button class="logout-btn btn-secondary" onclick="simulateSystemError()">Inject Test Error</button>
+        </div>
+    </div>
+
+    <!-- NEW COMPONENT 2: DIAGNOSTIC LOGS & PREDICTIVE METRICS -->
+    <div class="card">
+        <h2>
+            <i class="fa-solid fa-terminal"></i>
+            Live System Terminal Logs
+        </h2>
+        <div class="terminal-container" id="terminalLogs">
+            <div class="terminal-line"><span class="terminal-time">[12:00:01]</span> Core laser engine initialized.</div>
+            <div class="terminal-line"><span class="terminal-time">[12:00:03]</span> Security access tokens verified via client profile hardware.</div>
+        </div>
+
+        <h2 style="font-size:22px; margin-top:25px; margin-bottom:15px;">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            Predictive Component Lifespan
+        </h2>
+
+        <div class="info-box" style="margin-bottom:10px; padding:12px 18px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+                <span style="color:#94a3b8;">Lens Focal Alignment Quality</span>
+                <span id="lensLifespanText" style="font-weight:700; color:#4ade80;">94%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="lensLifespanBar" style="width: 94%; background: #22c55e;"></div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-bottom:10px; padding:12px 18px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+                <span style="color:#94a3b8;">Chiller Cleanliness Level</span>
+                <span id="chillerLifespanText" style="font-weight:700; color:#eab308;">78%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="chillerLifespanBar" style="width: 78%; background: #eab308;"></div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-bottom:0px; padding:12px 18px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+                <span style="color:#94a3b8;">Assist Gas Reservoir Volume</span>
+                <span id="gasLifespanText" style="font-weight:700; color:#ef4444;">42%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="gasLifespanBar" style="width: 42%; background: #ef4444;"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    const BASE_URL =
+  "https://laser-project-k6tt.onrender.com";
+
+      const token =
+      localStorage.getItem("token");
+
+      const userId =
+      localStorage.getItem("userId");
+
+      // CLOCK
+
+      function updateClock(){
+
+          const now = new Date();
+
+          let hours =
+          now.getHours();
+
+          let minutes =
+          now.getMinutes();
+
+          let seconds =
+          now.getSeconds();
+
+          hours =
+          hours < 10 ? "0" + hours : hours;
+
+          minutes =
+          minutes < 10 ? "0" + minutes : minutes;
+
+          seconds =
+          seconds < 10 ? "0" + seconds : seconds;
+
+          document.getElementById("liveClock")
+          .innerHTML =
+          `${hours}:${minutes}:${seconds}`;
+      }
+
+      setInterval(updateClock,1000);
+
+      updateClock();
+
+      // PAGE LOAD
+
+      window.onload = async () => {
+
+          // Fallback mock tokens inside dev sandbox if backend variables don't exist
+          if(!token || !userId){
+              console.log("No authorization configurations found inside storage. Simulating live dashboard profile metrics sandbox variables.");
+              loadMockTelemetryProfile();
+          } else {
+              await fetchProfile();
+          }
+
+          // Spin up the loop handlers for automated operational simulation telemetry updates
+          startTelemetryAutomation();
+      };
+
+      // LOAD MOCK TELEMETRY PROFILE DATA IF API ENVIRONMENT OFFSITE
+      function loadMockTelemetryProfile() {
+          document.getElementById("showName").innerHTML = "Rajesh Roy";
+          document.getElementById("showAddress").innerHTML = "Sector V, Industrial Hub Block C, Kolkata";
+          document.getElementById("showMobile").innerHTML = "+91 98765 43210";
+          document.getElementById("showEmail").innerHTML = "rajesh.roy@alphamachines.io";
+          document.getElementById("showMake").innerHTML = "Alpha Fiber Laser Cutter V4 Pro (4000W)";
+          document.getElementById("showRemarks").innerHTML = "Optimal performance profile active. Mild standard wear detected on assist gas pressure valve nozzle.";
+
+          document.getElementById("name").value = "Rajesh Roy";
+          document.getElementById("address").value = "Sector V, Industrial Hub Block C, Kolkata";
+          document.getElementById("mobile").value = "+91 98765 43210";
+          document.getElementById("email").value = "rajesh.roy@alphamachines.io";
+          document.getElementById("make").value = "Alpha Fiber Laser Cutter V4 Pro (4000W)";
+          document.getElementById("remarks").value = "Optimal performance profile active. Mild standard wear detected on assist gas pressure valve nozzle.";
+      }
+
+      // FETCH PROFILE
+
+      async function fetchProfile(){
+
+          try{
+
+              const response =
+              await fetch(
+                  `${BASE_URL}/rajeshroy/get/${userId}?t=${new Date().getTime()}`,
+                  {
+                      method:"GET",
+
+                      cache:"no-store",
+
+                      headers:{
+                          "Authorization":
+                          `Bearer ${token}`,
+
+                          "Content-Type":
+                          "application/json"
+                      }
+                  }
+              );
+
+              const data =
+              await response.json();
+
+              const user =
+              data.data || data;
+
+              document.getElementById("showName")
+              .innerHTML =
+              user.name || "N/A";
+
+              document.getElementById("showAddress")
+              .innerHTML =
+              user.address || "N/A";
+
+              document.getElementById("showMobile")
+              .innerHTML =
+              user.mobile || "N/A";
+
+              document.getElementById("showEmail")
+              .innerHTML =
+              user.email || "N/A";
+
+              document.getElementById("showMake")
+              .innerHTML =
+              user.make || "N/A";
+
+              document.getElementById("showRemarks")
+              .innerHTML =
+              user.remarks || "N/A";
+
+              document.getElementById("name")
+              .value =
+              user.name || "";
+
+              document.getElementById("address")
+              .value =
+              user.address || "";
+
+              document.getElementById("mobile")
+              .value =
+              user.mobile || "";
+
+              document.getElementById("email")
+              .value =
+              user.email || "";
+
+              document.getElementById("make")
+              .value =
+              user.make || "";
+
+              document.getElementById("remarks")
+              .value =
+              user.remarks || "";
+
+          }
+
+          catch(error){
+
+              console.log(error);
+              loadMockTelemetryProfile();
+          }
+      }
+
+      // UPDATE PROFILE
+
+      async function updateProfile(){
+
+          const payload = {
+
+              id:Number(userId || 101),
+
+              name:
+              document.getElementById("name")
+              .value.trim(),
+
+              address:
+              document.getElementById("address")
+              .value.trim(),
+
+              mobile:
+              document.getElementById("mobile")
+              .value.trim(),
+
+              email:
+              document.getElementById("email")
+              .value.trim(),
+
+              make:
+              document.getElementById("make")
+              .value.trim(),
+
+              remarks:
+              document.getElementById("remarks")
+              .value.trim()
+          };
+
+          // Update UI mirror immediately for interactive user response feedback loop
+          document.getElementById("showName").innerHTML = payload.name;
+          document.getElementById("showAddress").innerHTML = payload.address;
+          document.getElementById("showMobile").innerHTML = payload.mobile;
+          document.getElementById("showEmail").innerHTML = payload.email;
+          document.getElementById("showMake").innerHTML = payload.make;
+          document.getElementById("showRemarks").innerHTML = payload.remarks;
+
+          try{
+
+              if(token && userId) {
+                  await fetch(
+                      `${BASE_URL}/rajeshroy/update/${userId}`,
+                      {
+                          method:"PUT",
+
+                          headers:{
+                              "Content-Type":
+                              "application/json",
+
+                              "Authorization":
+                              `Bearer ${token}`
+                          },
+
+                          body:
+                          JSON.stringify(payload)
+                      }
+                  );
+              }
+
+              showStatus(
+                  "⚡ Profile Updated Successfully",
+                  true
+              );
+
+              notify(
+                  "⚡ Latest Data Saved"
+              );
+
+              appendTerminalLog("User configuration map modified. Dynamic changes piped successfully.");
+
+              if(token && userId) {
+                  setTimeout(async ()=>{
+                      await fetchProfile();
+                  },1000);
+              }
+
+          }
+
+          catch(error){
+
+              console.log(error);
+
+              showStatus(
+                  "⚠ Update Failed",
+                  false
+              );
+          }
+      }
+
+      // STATUS
+
+      function showStatus(message,success){
+
+          const box =
+          document.getElementById("statusBox");
+
+          box.style.display =
+          "block";
+
+          box.innerHTML =
+          message;
+
+          if(success){
+
+              box.style.background =
+              "rgba(34,197,94,0.12)";
+
+              box.style.border =
+              "1px solid #22c55e";
+
+              box.style.color =
+              "#4ade80";
+          }
+
+          else{
+
+              box.style.background =
+              "rgba(239,68,68,0.12)";
+
+              box.style.border =
+              "1px solid #ef4444";
+
+              box.style.color =
+              "#f87171";
+          }
+
+          setTimeout(()=>{
+
+              box.style.display =
+              "none";
+
+          },4000);
+      }
+
+      // NOTIFY
+
+      function notify(text){
+
+          const popup =
+          document.createElement("div");
+
+          popup.innerHTML =
+          text;
+
+          popup.className =
+          "notify";
+
+          document.body.appendChild(popup);
+
+          setTimeout(()=>{
+
+              popup.remove();
+
+          },3000);
+      }
+
+      // LOGOUT
+
+      function logout(){
+
+          localStorage.clear();
+          notify("🔌 Core Machine Cloud Connection Severed");
+
+          setTimeout(() => {
+              window.location.href = "index.html";
+          }, 1000);
+      }
+
+      // NEW TELEMETRY STREAM & LOG INTERACTION ALGORITHMS
+      let completedJobs = 1424;
+      let systemErrors = 0;
+
+      function startTelemetryAutomation() {
+          // Constantly generate small fluctuations in pressure and heat to simulate a dynamic environment
+          setInterval(() => {
+              if (document.getElementById("telemetryState").innerHTML === "ACTIVE CUTTING") {
+                  const dynamicPower = Math.floor(3950 + Math.random() * 95);
+                  const dynamicGas = (11.8 + Math.random() * 1.3).toFixed(2);
+                  const dynamicTemp = (23.5 + Math.random() * 2.8).toFixed(1);
+
+                  document.getElementById("telemetryPower").innerHTML = dynamicPower;
+                  document.getElementById("telemetryGas").innerHTML = dynamicGas;
+                  document.getElementById("telemetryTemp").innerHTML = dynamicTemp;
+              }
+          }, 1200);
+
+          // Automated log simulator mapping random system status events
+          setInterval(() => {
+              const logs = [
+                  "Optimal cooling water throughput confirmed via auxiliary pump loop.",
+                  "Cloud layer synchronization complete. Data frames pushed.",
+                  "Optical lens stabilization check complete: Zero deflection verified.",
+                  "Assist gas flow rate verified inside standard operating threshold configuration."
+              ];
+              const randomLog = logs[Math.floor(Math.random() * logs.length)];
+              appendTerminalLog(randomLog);
+          }, 15000);
+      }
+
+      function appendTerminalLog(message) {
+          const container = document.getElementById("terminalLogs");
+          const timeStr = new Date().toLocaleTimeString();
+          const logLine = document.createElement("div");
+          logLine.className = "terminal-line";
+          logLine.innerHTML = `<span class="terminal-time">[${timeStr}]</span> ${message}`;
+          container.appendChild(logLine);
+          container.scrollTop = container.scrollHeight;
+      }
+
+      function triggerJobIncrement() {
+          completedJobs++;
+          document.getElementById("jobCounterValue").innerHTML = completedJobs.toLocaleString();
+          notify("🎯 Workpiece Laser Job Cycle Completed Successfully");
+          appendTerminalLog(`CNC Profile executed complete. Part code sequence #${completedJobs} extracted cleanly.`);
+
+          // Tick down components lifespan metrics slowly over actions
+          reduceLifespanMetric("lensLifespanBar", "lensLifespanText", 0.2);
+          reduceLifespanMetric("chillerLifespanBar", "chillerLifespanText", 0.1);
+          reduceLifespanMetric("gasLifespanBar", "gasLifespanText", 0.5);
+      }
+
+      function simulateSystemError() {
+          systemErrors++;
+          document.getElementById("errorCounterValue").innerHTML = systemErrors;
+
+          const stateEl = document.getElementById("telemetryState");
+          stateEl.innerHTML = "EMERGENCY HALT";
+          stateEl.style.background = "rgba(239, 68, 68, 0.2)";
+          stateEl.style.color = "#f87171";
+          stateEl.style.animation = "pulse-red 1s infinite";
+
+          document.getElementById("telemetryPower").innerHTML = "0";
+          document.getElementById("telemetryGas").innerHTML = "0.0";
+
+          appendTerminalLog("🚨 WARNING: High specular back-reflection flash detected on cutting surface. Safety loop disrupted!");
+          notify("⚠️ System Laser Safety Circuit Fault Injected");
+
+          // Inject keyframes style injection dynamically for standard recovery loop alerts
+          if (!document.getElementById("pulseRedCSS")) {
+              const style = document.createElement('style');
+              style.id = "pulseRedCSS";
+              style.innerHTML = `
+                  @keyframes pulse-red {
+                      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+                      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+                      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+                  }
+              `;
+              document.head.appendChild(style);
+          }
+
+          // Automatically clear error flag status block back to runtime state after 6 seconds
+          setTimeout(() => {
+              stateEl.innerHTML = "ACTIVE CUTTING";
+              stateEl.style.background = "rgba(34, 197, 94, 0.2)";
+              stateEl.style.color = "#4ade80";
+              stateEl.style.animation = "pulse-green 2s infinite";
+              appendTerminalLog("System automatic override clearing diagnostic faults. Re-engaging laser control line matrix.");
+          }, 6000);
+      }
+
+      function reduceLifespanMetric(barId, textId, factor) {
+          const bar = document.getElementById(barId);
+          const text = document.getElementById(textId);
+          let currentVal = parseFloat(text.innerHTML);
+
+          let newVal = Math.max(0, currentVal - factor);
+          text.innerHTML = newVal.toFixed(1) + "%";
+          bar.style.width = newVal + "%";
+
+          if (newVal < 50 && newVal > 20) {
+              text.style.color = "#eab308";
+              bar.style.background = "#eab308";
+          } else if (newVal <= 20) {
+              text.style.color = "#ef4444";
+              bar.style.background = "#ef4444";
+          }
+      }
+
+</script>
+
+</body>
+
+</html>
