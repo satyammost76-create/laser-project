@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -868,38 +867,29 @@
 
     const BASE_URL = "https://laser-project-k6tt.onrender.com";
 
-    /* ================= TOKEN ================= */
-
+    /* ================= ANCHOR PROTECTION SECURITY CHECK ================= */
+    // Yahan hum strictly check kar rahe hain ki tokens exist karte hain ya nahi execution se pehle
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
-    /* ================= LOGIN CHECK ================= */
-
-    if (!token) {
-
-        alert("Please Login First");
-
+    if (!token || !userId) {
+        console.log("Authorization credentials missing! Redirecting to index.html...");
         window.location.replace("index.html");
     }
 
-    /* ================= AUTO REFRESH FIX ================= */
-
-    window.addEventListener("pageshow", function () {
-
+    /* ================= AUTO REFRESH / PAGESHOW INTERCEPTOR ================= */
+    window.addEventListener("pageshow", function (event) {
         const checkToken = localStorage.getItem("token");
+        const checkUser = localStorage.getItem("userId");
 
-        if (!checkToken) {
-
+        if (!checkToken || !checkUser) {
             window.location.replace("index.html");
         }
     });
 
-    /* ================= CLOCK ================= */
-
+    /* ================= REALTIME SYNCHRONIZED CLOCK ================= */
     function updateClock() {
-
         const now = new Date();
-
         let h = now.getHours();
         let m = now.getMinutes();
         let s = now.getSeconds();
@@ -908,36 +898,31 @@
         m = m < 10 ? "0" + m : m;
         s = s < 10 ? "0" + s : s;
 
-        document.getElementById("liveClock").innerHTML =
-            `${h}:${m}:${s}`;
+        const clockEl = document.getElementById("liveClock");
+        if(clockEl) {
+            clockEl.innerHTML = `${h}:${m}:${s}`;
+        }
     }
-
     setInterval(updateClock, 1000);
-
     updateClock();
 
-    /* ================= PAGE LOAD ================= */
-
+    /* ================= MAIN ENGINE EXECUTION OVERRIDE ================= */
     window.onload = async function () {
+        // Double protective shield if window loads without local storage mapping
+        if (!token || !userId) return;
 
         await fetchProfile();
-
         startTelemetryAutomation();
     };
 
-    /* ================= FETCH PROFILE ================= */
-
+    /* ================= FETCH PROFILE DATA ENGINE ================= */
     async function fetchProfile() {
-
         try {
-
             const response = await fetch(
                 `${BASE_URL}/rajeshroy/get/${userId}?t=${Date.now()}`,
                 {
                     method: "GET",
-
                     cache: "no-store",
-
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
@@ -945,248 +930,234 @@
                 }
             );
 
-            if (response.status === 401 ||
-                response.status === 403) {
-
+            if (response.status === 401 || response.status === 403) {
                 localStorage.clear();
-
-                alert("Session Expired");
-
+                alert("Session Expired or Token Mismatched.");
                 window.location.replace("index.html");
-
                 return;
             }
 
             if (!response.ok) {
-
-                throw new Error("Profile Fetch Failed");
+                throw new Error("Profile Fetch Engine Failed");
             }
 
             const data = await response.json();
-
             const user = data.data || data;
 
-            document.getElementById("showName").innerHTML =
-                user.name || "N/A";
+            document.getElementById("showName").innerHTML = user.name || "N/A";
+            document.getElementById("showAddress").innerHTML = user.address || "N/A";
+            document.getElementById("showMobile").innerHTML = user.mobile || "N/A";
+            document.getElementById("showEmail").innerHTML = user.email || "N/A";
+            document.getElementById("showMake").innerHTML = user.make || "N/A";
+            document.getElementById("showRemarks").innerHTML = user.remarks || "N/A";
 
-            document.getElementById("showAddress").innerHTML =
-                user.address || "N/A";
-
-            document.getElementById("showMobile").innerHTML =
-                user.mobile || "N/A";
-
-            document.getElementById("showEmail").innerHTML =
-                user.email || "N/A";
-
-            document.getElementById("showMake").innerHTML =
-                user.make || "N/A";
-
-            document.getElementById("showRemarks").innerHTML =
-                user.remarks || "N/A";
-
-            document.getElementById("name").value =
-                user.name || "";
-
-            document.getElementById("address").value =
-                user.address || "";
-
-            document.getElementById("mobile").value =
-                user.mobile || "";
-
-            document.getElementById("email").value =
-                user.email || "";
-
-            document.getElementById("make").value =
-                user.make || "";
-
-            document.getElementById("remarks").value =
-                user.remarks || "";
+            document.getElementById("name").value = user.name || "";
+            document.getElementById("address").value = user.address || "";
+            document.getElementById("mobile").value = user.mobile || "";
+            document.getElementById("email").value = user.email || "";
+            document.getElementById("make").value = user.make || "";
+            document.getElementById("remarks").value = user.remarks || "";
 
         } catch (error) {
-
-            console.log(error);
-
-            alert("Server Error");
-
+            console.log("Critical Error during profile resolution: ", error);
+            // Alert user of server failure instead of hard routing loops
+            showStatus("⚠ Server Error: Remote instance unreachable", false);
         }
     }
 
-    /* ================= UPDATE PROFILE ================= */
-
+    /* ================= UPDATE ENGINE ================= */
     async function updateProfile() {
-
         const payload = {
-
             id: Number(userId),
-
-            name:
-            document.getElementById("name").value.trim(),
-
-            address:
-            document.getElementById("address").value.trim(),
-
-            mobile:
-            document.getElementById("mobile").value.trim(),
-
-            email:
-            document.getElementById("email").value.trim(),
-
-            make:
-            document.getElementById("make").value.trim(),
-
-            remarks:
-            document.getElementById("remarks").value.trim()
+            name: document.getElementById("name").value.trim(),
+            address: document.getElementById("address").value.trim(),
+            mobile: document.getElementById("mobile").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            make: document.getElementById("make").value.trim(),
+            remarks: document.getElementById("remarks").value.trim()
         };
 
         try {
-
             const response = await fetch(
                 `${BASE_URL}/rajeshroy/update/${userId}`,
                 {
                     method: "PUT",
-
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`
                     },
-
                     body: JSON.stringify(payload)
                 }
             );
 
             if (!response.ok) {
-
-                throw new Error("Update Failed");
+                throw new Error("Payload update execution failed");
             }
 
-            document.getElementById("showName").innerHTML =
-                payload.name;
+            document.getElementById("showName").innerHTML = payload.name;
+            document.getElementById("showAddress").innerHTML = payload.address;
+            document.getElementById("showMobile").innerHTML = payload.mobile;
+            document.getElementById("showEmail").innerHTML = payload.email;
+            document.getElementById("showMake").innerHTML = payload.make;
+            document.getElementById("showRemarks").innerHTML = payload.remarks;
 
-            document.getElementById("showAddress").innerHTML =
-                payload.address;
-
-            document.getElementById("showMobile").innerHTML =
-                payload.mobile;
-
-            document.getElementById("showEmail").innerHTML =
-                payload.email;
-
-            document.getElementById("showMake").innerHTML =
-                payload.make;
-
-            document.getElementById("showRemarks").innerHTML =
-                payload.remarks;
-
-            showStatus(
-                "⚡ Profile Updated Successfully",
-                true
-            );
+            showStatus("⚡ Profile Updated Successfully", true);
+            addTerminalLog(`Operator credentials modified for ID: ${userId}`);
 
         } catch (error) {
-
             console.log(error);
-
-            showStatus(
-                "⚠ Update Failed",
-                false
-            );
+            showStatus("⚠ Update Operation Failed", false);
         }
     }
 
-    /* ================= STATUS ================= */
-
+    /* ================= NOTIFICATION GRAPHICS STATUS ================= */
     function showStatus(message, success) {
-
-        const box =
-            document.getElementById("statusBox");
+        const box = document.getElementById("statusBox");
+        if (!box) return;
 
         box.style.display = "block";
-
         box.innerHTML = message;
 
         if (success) {
-
-            box.style.background =
-                "rgba(34,197,94,0.12)";
-
-            box.style.border =
-                "1px solid #22c55e";
-
-            box.style.color =
-                "#4ade80";
-
+            box.style.background = "rgba(34,197,94,0.12)";
+            box.style.border = "1px solid #22c55e";
+            box.style.color = "#4ade80";
         } else {
-
-            box.style.background =
-                "rgba(239,68,68,0.12)";
-
-            box.style.border =
-                "1px solid #ef4444";
-
-            box.style.color =
-                "#f87171";
+            box.style.background = "rgba(239,68,68,0.12)";
+            box.style.border = "1px solid #ef4444";
+            box.style.color = "#f87171";
         }
 
         setTimeout(() => {
-
             box.style.display = "none";
-
         }, 3000);
     }
 
-    /* ================= LOGOUT ================= */
-
+    /* ================= SECURE FLUSH LOGOUT ================= */
     function logout() {
-
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("userId");
-
+        localStorage.clear(); // Pure keys safely scrubbed
         alert("Logout Success");
-
         window.location.replace("index.html");
     }
 
-    /* ================= TELEMETRY ================= */
-
+    /* ================= DYNAMIC TELEMETRY SIMULATOR ENGINE ================= */
     let completedJobs = 1424;
     let systemErrors = 0;
 
+    let lensHealth = 94;
+    let chillerHealth = 78;
+    let gasHealth = 42;
+
     function startTelemetryAutomation() {
+        // Real-time fluctuation system
+        setInterval(() => {
+            if (document.getElementById("telemetryPower")) {
+                document.getElementById("telemetryPower").innerHTML = Math.floor(3950 + Math.random() * 95);
+            }
+            if (document.getElementById("telemetryGas")) {
+                document.getElementById("telemetryGas").innerHTML = (11.8 + Math.random() * 1.3).toFixed(2);
+            }
+            if (document.getElementById("telemetryTemp")) {
+                document.getElementById("telemetryTemp").innerHTML = (23.5 + Math.random() * 2.8).toFixed(1);
+            }
+        }, 1200);
+
+        // Degradation timeline simulator over idle wear down
+        setInterval(() => {
+            if (lensHealth > 5) lensHealth -= (Math.random() * 0.04);
+            if (chillerHealth > 2) chillerHealth -= (Math.random() * 0.08);
+            if (gasHealth > 1) gasHealth -= (Math.random() * 0.15);
+
+            updateLifespanBars();
+        }, 4000);
+
+        // Passive logs structural deployment
+        const passiveFeeds = [
+            "Optics stream telemetry nominal.",
+            "Assist gas pressure check complete.",
+            "Chiller internal circuit flow calibrated.",
+            "AI predictive module verifying dataset stability."
+        ];
 
         setInterval(() => {
-
-            document.getElementById("telemetryPower").innerHTML =
-                Math.floor(3950 + Math.random() * 95);
-
-            document.getElementById("telemetryGas").innerHTML =
-                (11.8 + Math.random() * 1.3).toFixed(2);
-
-            document.getElementById("telemetryTemp").innerHTML =
-                (23.5 + Math.random() * 2.8).toFixed(1);
-
-        }, 1200);
+            if (Math.random() > 0.5) {
+                const randomMsg = passiveFeeds[Math.floor(Math.random() * passiveFeeds.length)];
+                addTerminalLog(randomMsg);
+            }
+        }, 8000);
     }
 
+    /* ================= OPERATIONS TRIGGERS IMPLEMENTATION ================= */
     function triggerJobIncrement() {
-
         completedJobs++;
+        document.getElementById("jobCounterValue").innerHTML = completedJobs.toLocaleString();
 
-        document.getElementById("jobCounterValue").innerHTML =
-            completedJobs.toLocaleString();
+        addTerminalLog(`Job Process Cycle Executed successfully. Units: ${completedJobs}`);
+
+        // Strain machine slightly on massive manual trigger execution
+        if (lensHealth > 10) lensHealth -= 0.15;
+        if (gasHealth > 4) gasHealth -= 0.45;
+        updateLifespanBars();
     }
 
     function simulateSystemError() {
-
         systemErrors++;
+        document.getElementById("errorCounterValue").innerHTML = systemErrors;
 
-        document.getElementById("errorCounterValue").innerHTML =
-            systemErrors;
+        const stateEl = document.getElementById("telemetryState");
+        if(stateEl) {
+            stateEl.innerHTML = "EXCEPTION CRITICAL";
+            stateEl.style.background = "rgba(239, 68, 68, 0.2)";
+            stateEl.style.color = "#f87171";
+            stateEl.style.animation = "none";
+        }
+
+        addTerminalLog(`CRITICAL ERROR DETECTED: [CODE: L-ERR-${200 + systemErrors}] Beam alignment deflection out of tolerance bounds!`, true);
+
+        // Auto recover standard operational UI layout state after brief cooling period
+        setTimeout(() => {
+            if(stateEl) {
+                stateEl.innerHTML = "ACTIVE CUTTING";
+                stateEl.style.background = "rgba(34, 197, 94, 0.2)";
+                stateEl.style.color = "#4ade80";
+                stateEl.style.animation = "pulse-green 2s infinite";
+            }
+        }, 3500);
+    }
+
+    /* ================= TERMINAL RENDERING UTILITIES ================= */
+    function addTerminalLog(message, isError = false) {
+        const terminal = document.getElementById("terminalLogs");
+        if (!terminal) return;
+
+        const now = new Date();
+        const timeStr = now.toTimeString().split(' ')[0];
+
+        const line = document.createElement("div");
+        line.className = "terminal-line";
+        if(isError) {
+            line.style.color = "#f87171";
+        }
+
+        line.innerHTML = `<span class="terminal-time">[${timeStr}]</span> ${message}`;
+        terminal.appendChild(line);
+
+        // Auto shift scroll down smoothly to align tracking logs feed
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function updateLifespanBars() {
+        document.getElementById("lensLifespanText").innerHTML = `${Math.floor(lensHealth)}%`;
+        document.getElementById("lensLifespanBar").style.width = `${lensHealth}%`;
+
+        document.getElementById("chillerLifespanText").innerHTML = `${Math.floor(chillerHealth)}%`;
+        document.getElementById("chillerLifespanBar").style.width = `${chillerHealth}%`;
+
+        document.getElementById("gasLifespanText").innerHTML = `${Math.floor(gasHealth)}%`;
+        document.getElementById("gasLifespanBar").style.width = `${gasHealth}%`;
     }
 
 </script>
-
-
 
 </body>
 
