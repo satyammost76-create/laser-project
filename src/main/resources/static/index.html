@@ -2,1012 +2,650 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Alpha Laser Login</title>
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Laser Login System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, Helvetica, sans-serif;
+        /* ==========================================================================
+           RESET & BASE STYLES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        html{
-            scroll-behavior:smooth;
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top right, #1e3a8a, #0f172a, #020617);
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px;
+            color: #f8fafc;
         }
 
-        body{
-
-            width:100%;
-            min-height:100vh;
-
-            background:
-            linear-gradient(
-                135deg,
-                #020617,
-                #001233,
-                #003566,
-                #2563eb
-            );
-
-            display:flex;
-
-            justify-content:center;
-
-            align-items:flex-start;
-
-            overflow-x:hidden;
-
-            overflow-y:auto;
-
-            padding:10px;
+        /* ==========================================================================
+           MAIN CONTAINER (GLASSMORPHISM)
+           ========================================================================== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            display: flex;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            transition: all 0.4s ease;
         }
 
-        /* CONTAINER */
-
-        .container{
-
-            width:100%;
-
-            max-width:1400px;
-
-            display:flex;
-
-            background:
-            rgba(255,255,255,0.12);
-
-            backdrop-filter:blur(12px);
-
-            border-radius:30px;
-
-            overflow:hidden;
-
-            box-shadow:
-            0 20px 50px rgba(0,0,0,0.5);
-
-            border:
-            1px solid rgba(255,255,255,0.1);
+        /* ==========================================================================
+           LEFT PANEL (BRANDING & VISUAL)
+           ========================================================================== */
+        .left {
+            width: 50%;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(17, 24, 39, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 50px;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* LEFT */
-
-        .left{
-
-            width:55%;
-
-            background:
-            linear-gradient(
-                135deg,
-                #001845,
-                #003566,
-                #00509d
-            );
-
-            padding:40px;
-
-            display:flex;
-
-            flex-direction:column;
-
-            justify-content:center;
-
-            align-items:center;
-
-            position:relative;
+        .left::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
+            top: -50px;
+            left: -50px;
         }
 
-        .left::before{
-
-            content:"";
-
-            position:absolute;
-
-            width:300px;
-
-            height:300px;
-
-            border-radius:50%;
-
-            background:
-            rgba(255,255,255,0.06);
-
-            top:-120px;
-
-            left:-120px;
+        .logo {
+            z-index: 5;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .left::after{
-
-            content:"";
-
-            position:absolute;
-
-            width:220px;
-
-            height:220px;
-
-            border-radius:50%;
-
-            background:
-            rgba(255,255,255,0.05);
-
-            bottom:-100px;
-
-            right:-80px;
+        .logo img {
+            width: 110px;
+            height: auto;
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
-        /* LOGO */
-
-        .logo{
-
-            text-align:center;
-
-            z-index:2;
+        .logo h1 {
+            color: #ffffff;
+            font-size: 38px;
+            margin-top: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .logo img{
-
-            width:130px;
-
-            background:white;
-
-            padding:10px;
-
-            border-radius:22px;
-
-            box-shadow:
-            0 10px 25px rgba(0,0,0,0.3);
+        .logo h2 {
+            color: #38bdf8;
+            font-size: 16px;
+            margin-top: 5px;
+            letter-spacing: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .logo h1{
-
-            color:white;
-
-            font-size:55px;
-
-            margin-top:20px;
-
-            font-weight:900;
+        .machine {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 5;
         }
 
-        .logo h2{
-
-            color:#38bdf8;
-
-            font-size:24px;
-
-            margin-top:8px;
-
-            letter-spacing:4px;
+        .machine img {
+            width: 85%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* MACHINE */
-
-        .machine{
-
-            width:100%;
-
-            margin-top:35px;
-
-            display:flex;
-
-            justify-content:center;
-
-            z-index:2;
+        .machine img:hover {
+            transform: translateY(-5px) scale(1.02);
         }
 
-        .machine img{
-
-            width:100%;
-
-            max-width:650px;
-
-            border-radius:25px;
-
-            object-fit:cover;
-
-            box-shadow:
-            0 20px 40px rgba(0,0,0,0.4);
-
-            transition:0.4s;
+        /* ==========================================================================
+           RIGHT PANEL (FORM SYSTEM)
+           ========================================================================== */
+        .right {
+            width: 50%;
+            background: rgba(15, 23, 42, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
         }
 
-        .machine img:hover{
-
-            transform:scale(1.02);
+        .card {
+            width: 100%;
+            max-width: 460px;
         }
 
-        /* RIGHT */
-
-        .right{
-
-            width:45%;
-
-            background:#f8fafc;
-
-            padding:35px;
-
-            display:flex;
-
-            justify-content:center;
-
-            align-items:center;
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
         }
 
-        /* CARD */
-
-        .card{
-
-            width:100%;
-
-            background:white;
-
-            border-radius:28px;
-
-            padding:30px;
-
-            box-shadow:
-            0 10px 30px rgba(0,0,0,0.08);
+        .line {
+            width: 60px;
+            height: 4px;
+            background: #2563eb;
+            margin: 12px auto 35px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
         }
 
-        /* TITLE */
-
-        .title{
-
-            text-align:center;
-
-            font-size:50px;
-
-            font-weight:900;
-
-            color:#001845;
+        /* ==========================================================================
+           INPUT FIELDS SYSTEM
+           ========================================================================== */
+        .input-box {
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        .line{
-
-            width:90px;
-
-            height:5px;
-
-            background:#2563eb;
-
-            border-radius:20px;
-
-            margin:15px auto 30px;
+        .input-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
         }
 
-        /* INPUT */
-
-        .input-box{
-
-            margin-bottom:16px;
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
-        .input-box label{
-
-            display:block;
-
-            margin-bottom:7px;
-
-            font-weight:bold;
-
-            color:#001845;
-
-            font-size:15px;
+        .input-container i {
+            position: absolute;
+            left: 16px;
+            color: #64748b;
+            font-size: 16px;
+            transition: color 0.3s;
         }
 
-        .input-box input{
-
-            width:100%;
-
-            padding:16px;
-
-            border:none;
-
-            border-radius:16px;
-
-            background:#dbeafe;
-
-            outline:none;
-
-            font-size:15px;
-
-            transition:0.3s;
+        .input-box input {
+            width: 100%;
+            padding: 15px 16px 15px 48px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.5);
+            font-size: 15px;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s ease;
         }
 
-        .input-box input:focus{
-
-            background:white;
-
-            transform:scale(1.01);
-
-            box-shadow:
-            0 0 12px rgba(37,99,235,0.25);
+        .input-box input::placeholder {
+            color: #475569;
         }
 
-        /* BUTTON */
-
-        .btn{
-
-            width:100%;
-
-            padding:16px;
-
-            border:none;
-
-            border-radius:18px;
-
-            background:
-            linear-gradient(
-                135deg,
-                #0b5cff,
-                #0047ff
-            );
-
-            color:white;
-
-            font-size:20px;
-
-            font-weight:bold;
-
-            cursor:pointer;
-
-            transition:0.3s;
+        .input-box input:focus {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
         }
 
-        .btn:hover{
-
-            transform:translateY(-3px);
-
-            box-shadow:
-            0 12px 25px rgba(37,99,235,0.4);
+        .input-box input:focus + i {
+            color: #38bdf8;
         }
 
-        /* SWITCH */
-
-        .switch{
-
-            text-align:center;
-
-            margin-top:18px;
-
-            font-size:16px;
+        /* ==========================================================================
+           BUTTONS & ACTIONS
+           ========================================================================== */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
-        .switch span{
-
-            color:#0047ff;
-
-            font-weight:bold;
-
-            cursor:pointer;
+        .btn:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
-        /* MESSAGE */
-
-        .message{
-
-            margin-top:15px;
-
-            text-align:center;
-
-            font-weight:bold;
+        .btn:disabled {
+            background: #334155;
+            color: #64748b;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
-        .success{
-            color:#16a34a;
+        .switch {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+            color: #94a3b8;
         }
 
-        .error{
-            color:red;
+        .switch span {
+            color: #38bdf8;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: color 0.3s;
         }
 
-        /* REGISTER */
-
-        .register-field{
-            display:none;
+        .switch span:hover {
+            color: #7dd3fc;
+            text-decoration: underline;
         }
 
-        /* TABLET */
+        .register-field {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
 
-        @media(max-width:1000px){
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-            .container{
+        /* ==========================================================================
+           API NOTIFICATION MESSAGES
+           ========================================================================== */
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
 
-                flex-direction:column;
+        .success {
+            display: block;
+            background: rgba(22, 163, 74, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(22, 163, 74, 0.3);
+        }
+
+        .error {
+            display: block;
+            background: rgba(220, 38, 38, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
+        /* ==========================================================================
+           TABLET RESPONSIVE (1024px or less)
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            body {
+                padding: 40px 20px;
             }
 
-            .left,
-            .right{
-
-                width:100%;
+            .container {
+                flex-direction: column;
+                max-width: 600px;
+                overflow: visible;
             }
 
-            .left{
-
-                padding:25px 20px;
+            .left, .right {
+                width: 100%;
+                padding: 40px;
             }
 
-            .right{
-
-                padding:20px 15px;
+            .left {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             }
 
-            .logo img{
-
-                width:100px;
-            }
-
-            .logo h1{
-
-                font-size:38px;
-            }
-
-            .logo h2{
-
-                font-size:18px;
-            }
-
-            .machine{
-
-                margin-top:20px;
-            }
-
-            .machine img{
-
-                max-height:280px;
-            }
-
-            .title{
-
-                font-size:38px;
-            }
+            .logo h1 { font-size: 32px; }
+            .machine img { max-width: 320px; }
         }
 
-        /* MOBILE */
-
-        @media(max-width:600px){
-
-            body{
-
-                padding:5px;
+        /* ==========================================================================
+           MOBILE RESPONSIVE (600px or less - COMPLETE SCROLL FIX)
+           ========================================================================== */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+                display: block;
             }
 
-            .container{
-
-                border-radius:18px;
+            .container {
+                border-radius: 16px;
+                background: rgba(15, 23, 42, 0.8);
+                display: block;
+                overflow: visible;
             }
 
-            .left{
-
-                padding:20px 15px;
+            .left {
+                padding: 30px 20px 20px 20px;
             }
 
-            .right{
+            .logo img { width: 85px; padding: 8px; border-radius: 14px;}
+            .logo h1 { font-size: 26px; margin-top: 10px; }
+            .logo h2 { font-size: 13px; letter-spacing: 4px; }
 
-                padding:15px 10px;
+            .machine { display: none; }
+
+            .right {
+                padding: 24px 20px 35px 20px;
+                display: block;
             }
 
-            .card{
-
-                padding:18px;
-
-                border-radius:18px;
+            .card {
+                max-width: 100%;
             }
 
-            .logo img{
+            .title { font-size: 28px; }
+            .line { margin-bottom: 25px; }
 
-                width:80px;
-            }
+            .input-box { margin-bottom: 16px; }
+            .input-box input { padding: 14px 14px 14px 44px; font-size: 14px; border-radius: 10px; }
+            .input-container i { left: 14px; font-size: 14px; }
 
-            .logo h1{
-
-                font-size:28px;
-            }
-
-            .logo h2{
-
-                font-size:14px;
-
-                letter-spacing:2px;
-            }
-
-            .machine img{
-
-                max-height:200px;
-
-                border-radius:15px;
-            }
-
-            .title{
-
-                font-size:28px;
-            }
-
-            .line{
-
-                width:70px;
-
-                height:4px;
-
-                margin-bottom:20px;
-            }
-
-            .input-box{
-
-                margin-bottom:13px;
-            }
-
-            .input-box label{
-
-                font-size:13px;
-            }
-
-            .input-box input{
-
-                padding:13px;
-
-                font-size:14px;
-
-                border-radius:12px;
-            }
-
-            .btn{
-
-                padding:13px;
-
-                font-size:16px;
-
-                border-radius:14px;
-            }
-
-            .switch{
-
-                font-size:14px;
-            }
-
-            .message{
-
-                font-size:13px;
-            }
+            .btn { padding: 14px; font-size: 15px; border-radius: 10px; }
+            .switch { font-size: 14px; }
         }
-
     </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- LEFT -->
-
+    <!-- LEFT PANEL (BRANDING) -->
     <div class="left">
-
         <div class="logo">
-
-            <img src="logo.png">
-
+            <img src="logo.png" alt="Logo">
             <h1>ALPHA LASER</h1>
-
             <h2>SYSTEM</h2>
-
         </div>
-
         <div class="machine">
-
-            <img src="machine.png">
-
+            <img src="machine.png" alt="Machine">
         </div>
-
     </div>
 
-    <!-- RIGHT -->
-
+    <!-- RIGHT PANEL (FORMS) -->
     <div class="right">
-
         <div class="card">
-
-            <div class="title"
-                 id="formTitle">
-
-                Login
-
-            </div>
-
+            <div class="title" id="formTitle">Login</div>
             <div class="line"></div>
 
-            <form id="authForm"
-                  onsubmit="submitForm(event)">
+            <form id="authForm" onsubmit="submitForm(event)">
 
-                <!-- REGISTER -->
-
+                <!-- REGISTER FIELDS (HIDDEN BY DEFAULT) -->
                 <div class="input-box register-field">
-
                     <label>Name</label>
-
-                    <input type="text"
-                           id="name"
-                           placeholder="Enter Name">
-
+                    <div class="input-container">
+                        <input type="text" id="name" placeholder="Enter Name">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Address</label>
-
-                    <input type="text"
-                           id="address"
-                           placeholder="Enter Address">
-
+                    <div class="input-container">
+                        <input type="text" id="address" placeholder="Enter Address">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Mobile</label>
-
-                    <input type="text"
-                           id="mobile"
-                           placeholder="Enter Mobile">
-
+                    <div class="input-container">
+                        <input type="text" id="mobile" placeholder="Enter Mobile">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Machine Make</label>
-
-                    <input type="text"
-                           id="make"
-                           placeholder="Enter Machine Make">
-
+                    <div class="input-container">
+                        <input type="text" id="make" placeholder="Enter Machine Make">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
                 </div>
 
                 <div class="input-box register-field">
-
                     <label>Remarks</label>
-
-                    <input type="text"
-                           id="remarks"
-                           placeholder="Enter Remarks">
-
+                    <div class="input-container">
+                        <input type="text" id="remarks" placeholder="Enter Remarks">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
                 </div>
 
-                <!-- COMMON -->
-
+                <!-- COMMON FIELDS (ALWAYS VISIBLE) -->
                 <div class="input-box">
-
-                    <label>Email</label>
-
-                    <input type="email"
-                           id="email"
-                           placeholder="Enter Email"
-                           required>
-
+                    <label>Email Address</label>
+                    <div class="input-container">
+                        <input type="email" id="email" placeholder="Enter Email" required>
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
                 </div>
 
                 <div class="input-box">
-
                     <label>Password</label>
-
-                    <input type="password"
-                           id="password"
-                           placeholder="Enter Password"
-                           required>
-
+                    <div class="input-container">
+                        <input type="password" id="password" placeholder="Enter Password" required>
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
                 </div>
 
-                <button type="submit"
-                        class="btn"
-                        id="mainBtn">
-
-                    Login
-
-                </button>
-
+                <button type="submit" class="btn" id="mainBtn">Login</button>
             </form>
 
             <div class="switch">
-
-                <span onclick="toggleForm()"
-                      id="switchText">
-
-                    Register
-
-                </span>
-
+                <span id="switchPrompt">Don't have an account?</span>
+                <span onclick="toggleForm()" id="switchText">Register</span>
             </div>
 
-            <div class="message"
-                 id="loginMessage"></div>
-
+            <div class="message" id="loginMessage"></div>
         </div>
-
     </div>
 
 </div>
 
+<!-- ==========================================================================
+     JAVASCRIPT LOGIC
+     ========================================================================== -->
 <script>
-
     let isLogin = true;
 
-    const BASE_URL =
-    "https://laser-project-k6tt.onrender.com";
+    const BASE_URL = "https://laser-project-k6tt.onrender.com";
+    const LOGIN_API = `${BASE_URL}/rajeshroy/auth/login`;
+    const REGISTER_API = `${BASE_URL}/rajeshroy/auth/register`;
 
-    const LOGIN_API =
-    `${BASE_URL}/rajeshroy/auth/login`;
+    /* 🌟 जैसे ही लॉगिन पेज लोड हो, पुराने टोकन्स साफ़ करें ताकि "Login First" का लूप न बने */
+    document.addEventListener("DOMContentLoaded", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("role");
+    });
 
-    const REGISTER_API =
-    `${BASE_URL}/rajeshroy/auth/register`;
-
-    /* TOGGLE */
-
+    /* TOGGLE BETWEEN LOGIN & REGISTER */
     function toggleForm(){
-
         isLogin = !isLogin;
 
-        const fields =
-        document.querySelectorAll(".register-field");
-
-        const title =
-        document.getElementById("formTitle");
-
-        const button =
-        document.getElementById("mainBtn");
-
-        const switchText =
-        document.getElementById("switchText");
+        const fields = document.querySelectorAll(".register-field");
+        const title = document.getElementById("formTitle");
+        const button = document.getElementById("mainBtn");
+        const switchPrompt = document.getElementById("switchPrompt");
+        const switchText = document.getElementById("switchText");
+        const message = document.getElementById("loginMessage");
 
         document.getElementById("authForm").reset();
-
-        document.getElementById("loginMessage").innerHTML = "";
+        message.style.display = "none";
+        message.innerHTML = "";
 
         if(isLogin){
-
             title.innerHTML = "Login";
-
             button.innerHTML = "Login";
-
+            switchPrompt.innerHTML = "Don't have an account?";
             switchText.innerHTML = "Register";
 
             fields.forEach(field => {
-
                 field.style.display = "none";
             });
-
-        }else{
-
+        }
+        else{
             title.innerHTML = "Register";
-
             button.innerHTML = "Register";
-
+            switchPrompt.innerHTML = "Already have an account?";
             switchText.innerHTML = "Back To Login";
 
             fields.forEach(field => {
-
                 field.style.display = "block";
             });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
-    /* SUBMIT */
-
+    /* SUBMIT FORM CONTROL */
     function submitForm(event){
-
         event.preventDefault();
 
-        const button =
-        document.getElementById("mainBtn");
-
-        const originalText =
-        button.innerHTML;
+        const button = document.getElementById("mainBtn");
+        const originalText = button.innerHTML;
 
         button.disabled = true;
-
-        button.innerHTML = "Processing...";
+        button.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Processing...";
 
         if(isLogin){
-
-            loginUser(button,originalText);
-
-        }else{
-
-            registerUser(button,originalText);
+            loginUser(button, originalText);
+        }
+        else{
+            registerUser(button, originalText);
         }
     }
 
-    /* LOGIN */
-
-    async function loginUser(button,originalText){
-
-        const email =
-        document.getElementById("email").value.trim();
-
-        const password =
-        document.getElementById("password").value.trim();
-
-        const message =
-        document.getElementById("loginMessage");
+    /* LOGIN INTEGRATION */
+    async function loginUser(button, originalText){
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const message = document.getElementById("loginMessage");
 
         try{
-
-            const response =
-            await fetch(LOGIN_API,{
-
-                method:"POST",
-
-                headers:{
-                    "Content-Type":"application/json"
-                },
-
-                body:JSON.stringify({
-                    email:email,
-                    password:password
-                })
+            const response = await fetch(LOGIN_API, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email, password: password })
             });
 
-            const data =
-            await response.json();
+            const data = await response.json();
 
             if(!response.ok){
-
-                throw new Error(
-                    data.message ||
-                    "Invalid Email Or Password"
-                );
+                throw new Error(data.message || "Invalid Email or Password");
             }
 
-            localStorage.setItem(
-                "token",
-                data.token || ""
-            );
+            // सुरक्षा के लिए टोकन को सभी संभावित की-नेम्स के साथ सेव करना
+            const tokenValue = data.token || data.jwtToken || data.accessToken || "";
 
-            localStorage.setItem(
-                "role",
-                data.role || ""
-            );
+            localStorage.setItem("token", tokenValue);
+            localStorage.setItem("authToken", tokenValue);
+            localStorage.setItem("jwtToken", tokenValue);
+            localStorage.setItem("role", data.role || "");
 
-            message.innerHTML =
-            "⚡ Login Successful";
+            if(data.data && data.data.id) localStorage.setItem("userId", data.data.id);
+            if(data.data && data.data.name) localStorage.setItem("userName", data.data.name);
 
-            message.className =
-            "message success";
+            message.innerHTML = "⚡ Login Successful! Redirecting...";
+            message.className = "message success";
 
-            button.disabled = false;
-
-            button.innerHTML = originalText;
-
+            // 🌟 window.location.replace का यूज़ ताकि ब्राउज़र पुराना सेशन कैश न करे
             setTimeout(() => {
+                let userRole = data.role ? data.role.toUpperCase() : "";
 
-                if(
-                    data.role === "ADMIN" ||
-                    data.role === "ROLE_ADMIN"
-                ){
-
-                    window.location.href =
-                    "admin.html";
-
-                }else{
-
-                    window.location.href =
-                    "user.html";
+                if(userRole === "ADMIN" || userRole === "ROLE_ADMIN"){
+                    window.location.replace("admin.html");
+                } else {
+                    window.location.replace("user.html");
                 }
-
-            },1000);
+            }, 1000);
 
         }
-
         catch(error){
-
-            message.innerHTML =
-            error.message;
-
-            message.className =
-            "message error";
-
+            message.innerHTML = `❌ ${error.message}`;
+            message.className = "message error";
             button.disabled = false;
-
             button.innerHTML = originalText;
         }
     }
 
-    /* REGISTER */
-
-    async function registerUser(button,originalText){
-
+    /* REGISTER INTEGRATION */
+    async function registerUser(button, originalText){
         const body = {
-
-            name:
-            document.getElementById("name").value.trim(),
-
-            address:
-            document.getElementById("address").value.trim(),
-
-            mobile:
-            document.getElementById("mobile").value.trim(),
-
-            make:
-            document.getElementById("make").value.trim(),
-
-            remarks:
-            document.getElementById("remarks").value.trim(),
-
-            email:
-            document.getElementById("email").value.trim(),
-
-            password:
-            document.getElementById("password").value.trim()
+            name: document.getElementById("name").value.trim(),
+            address: document.getElementById("address").value.trim(),
+            mobile: document.getElementById("mobile").value.trim(),
+            make: document.getElementById("make").value.trim(),
+            remarks: document.getElementById("remarks").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            password: document.getElementById("password").value.trim()
         };
 
-        const message =
-        document.getElementById("loginMessage");
+        const message = document.getElementById("loginMessage");
 
         try{
-
-            const response =
-            await fetch(REGISTER_API,{
-
-                method:"POST",
-
-                headers:{
-                    "Content-Type":"application/json"
-                },
-
-                body:JSON.stringify(body)
+            const response = await fetch(REGISTER_API, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
             });
 
-            const textData =
-            await response.text();
+            const textData = await response.text();
 
             if(!response.ok){
-
-                throw new Error(
-                    textData ||
-                    "Registration Failed"
-                );
+                throw new Error(textData || "Registration Failed");
             }
 
-            message.innerHTML =
-            "⚡ Registration Successful";
-
-            message.className =
-            "message success";
-
-            button.disabled = false;
-
-            button.innerHTML = originalText;
+            message.innerHTML = "⚡ Registration Successful! Going to login...";
+            message.className = "message success";
 
             setTimeout(() => {
-
                 toggleForm();
-
-            },1200);
+            }, 1500);
 
         }
-
         catch(error){
-
-            message.innerHTML =
-            error.message;
-
-            message.className =
-            "message error";
-
+            message.innerHTML = `❌ ${error.message}`;
+            message.className = "message error";
             button.disabled = false;
-
             button.innerHTML = originalText;
         }
     }
-
 </script>
 
 </body>
