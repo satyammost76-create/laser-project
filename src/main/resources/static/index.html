@@ -8,14 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* ==========================================================================
-           RESET & BASE STYLES
-           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
@@ -23,356 +20,353 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at top right, #1e3a8a, #0f172a, #020617);
+            background: linear-gradient(135deg, #020617, #001233, #003566, #2563eb);
+            /* मोबाइल में पूरी स्क्रीन पर स्क्रॉलिंग चालू रखने के लिए */
+            overflow-x: hidden;
             overflow-y: auto;
             padding: 20px;
-            color: #f8fafc;
         }
 
-        /* ==========================================================================
-           MAIN CONTAINER (GLASSMORPHISM)
-           ========================================================================== */
         .container {
             width: 100%;
-            max-width: 1200px;
-            background: rgba(15, 23, 42, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px;
-            display: flex;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            max-width: 1450px;
+            min-height: 750px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 35px;
             overflow: hidden;
-            transition: all 0.4s ease;
+            display: flex;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* ==========================================================================
-           LEFT PANEL (BRANDING & VISUAL)
-           ========================================================================== */
+        /* LEFT PANEL */
         .left {
-            width: 50%;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(17, 24, 39, 0.9));
+            width: 55%;
+            background: linear-gradient(135deg, #001845, #003566, #00509d);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 50px;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            padding: 40px;
         }
 
-        /* Decorative Glow Orbs */
         .left::before {
             content: "";
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
-            top: -50px;
-            left: -50px;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            top: -120px;
+            left: -120px;
+        }
+
+        .left::after {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            bottom: -80px;
+            right: -80px;
         }
 
         .logo {
             z-index: 5;
             text-align: center;
-            margin-bottom: 30px;
         }
 
         .logo img {
-            width: 110px;
-            height: auto;
-            background: #ffffff;
-            padding: 12px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 140px;
+            background: white;
+            padding: 10px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .logo h1 {
-            color: #ffffff;
-            font-size: 38px;
-            margin-top: 15px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            color: white;
+            font-size: 55px;
+            margin-top: 20px;
+            font-weight: 900;
         }
 
         .logo h2 {
             color: #38bdf8;
-            font-size: 16px;
-            margin-top: 5px;
-            letter-spacing: 6px;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-size: 28px;
+            margin-top: 10px;
+            letter-spacing: 4px;
         }
 
         .machine {
             width: 100%;
             display: flex;
             justify-content: center;
+            margin-top: 40px;
             z-index: 5;
         }
 
         .machine img {
-            width: 85%;
-            max-width: 450px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 90%;
+            max-width: 700px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: 0.4s;
         }
 
         .machine img:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: scale(1.03);
         }
 
-        /* ==========================================================================
-           RIGHT PANEL (FORM SYSTEM)
-           ========================================================================== */
+        /* RIGHT PANEL */
         .right {
-            width: 50%;
-            background: rgba(15, 23, 42, 0.2);
+            width: 45%;
+            background: #f8fafc;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 50px;
+            padding: 40px;
         }
 
         .card {
             width: 100%;
-            max-width: 460px;
+            background: white;
+            padding: 35px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
         }
 
         .title {
             text-align: center;
-            font-size: 36px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.5px;
+            font-size: 55px;
+            font-weight: 900;
+            color: #001845;
         }
 
         .line {
-            width: 60px;
-            height: 4px;
+            width: 120px;
+            height: 5px;
             background: #2563eb;
-            margin: 12px auto 35px auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
+            margin: 15px auto 35px auto;
+            border-radius: 20px;
         }
 
-        /* ==========================================================================
-           INPUT FIELDS SYSTEM
-           ========================================================================== */
         .input-box {
-            margin-bottom: 20px;
-            position: relative;
+            margin-bottom: 18px;
         }
 
         .input-box label {
             display: block;
             margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #94a3b8;
-            letter-spacing: 0.5px;
-        }
-
-        .input-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-container i {
-            position: absolute;
-            left: 16px;
-            color: #64748b;
             font-size: 16px;
-            transition: color 0.3s;
+            font-weight: bold;
+            color: #001845;
         }
 
         .input-box input {
             width: 100%;
-            padding: 15px 16px 15px 48px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            background: rgba(30, 41, 59, 0.5);
-            font-size: 15px;
-            color: #ffffff;
+            padding: 18px;
+            border: none;
+            border-radius: 18px;
+            background: #dbeafe;
+            font-size: 16px;
             outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .input-box input::placeholder {
-            color: #475569;
+            transition: 0.3s;
         }
 
         .input-box input:focus {
-            background: rgba(30, 41, 59, 0.8);
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+            background: white;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
         }
 
-        .input-box input:focus + i {
-            color: #38bdf8;
-        }
-
-        /* ==========================================================================
-           BUTTONS & ACTIONS
-           ========================================================================== */
         .btn {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 700;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #0b5cff, #0047ff);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
             cursor: pointer;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            margin-top: 10px;
+            transition: 0.3s;
         }
 
         .btn:hover {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
-
-        .btn:disabled {
-            background: #334155;
-            color: #64748b;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 35px rgba(37, 99, 235, 0.45);
         }
 
         .switch {
             text-align: center;
             margin-top: 25px;
-            font-size: 15px;
-            color: #94a3b8;
+            font-size: 18px;
         }
 
         .switch span {
-            color: #38bdf8;
-            font-weight: 600;
+            color: #0047ff;
+            font-weight: bold;
             cursor: pointer;
-            margin-left: 5px;
-            transition: color 0.3s;
         }
 
-        .switch span:hover {
-            color: #7dd3fc;
-            text-decoration: underline;
-        }
-
-        /* Dynamic Field Toggle Animation */
-        .register-field {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ==========================================================================
-           API NOTIFICATION MESSAGES
-           ========================================================================== */
         .message {
-            margin-top: 20px;
+            margin-top: 18px;
             text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
+            font-size: 17px;
+            font-weight: bold;
         }
 
         .success {
-            display: block;
-            background: rgba(22, 163, 74, 0.15);
-            color: #4ade80;
-            border: 1px solid rgba(22, 163, 74, 0.3);
+            color: #16a34a;
         }
 
         .error {
-            display: block;
-            background: rgba(220, 38, 38, 0.15);
-            color: #f87171;
-            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: red;
+        }
+
+        .register-field {
+            display: none;
         }
 
         /* ==========================================================================
-           TABLET RESPONSIVE (1024px or less)
+           TABLET RESPONSIVE (Fixes height and lets page scroll)
            ========================================================================== */
-        @media (max-width: 1024px) {
+        @media(max-width:1100px) {
             body {
-                padding: 40px 20px;
+                padding: 10px;
+                overflow-y: auto; /* स्क्रॉलिंग सुनिश्चित करने के लिए */
             }
 
             .container {
                 flex-direction: column;
-                max-width: 600px;
+                min-height: auto;
+                border-radius: 25px;
+                overflow: visible; /* केंटेनर के बाहर कंटेंट स्क्रॉल हो सके */
             }
 
-            .left, .right {
+            .left,
+            .right {
                 width: 100%;
-                padding: 40px;
             }
 
             .left {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 30px 20px;
             }
 
-            .logo h1 { font-size: 32px; }
-            .machine img { max-width: 320px; }
+            .logo h1 {
+                font-size: 40px;
+            }
+
+            .logo h2 {
+                font-size: 22px;
+            }
+
+            .logo img {
+                width: 100px;
+            }
+
+            .machine {
+                margin-top: 25px;
+            }
+
+            .machine img {
+                width: 100%;
+                border-radius: 20px;
+            }
+
+            .right {
+                padding: 25px 18px;
+            }
+
+            .title {
+                font-size: 40px;
+            }
+
+            .line {
+                width: 90px;
+                height: 4px;
+            }
         }
 
         /* ==========================================================================
-           MOBILE RESPONSIVE (600px or less)
+           MOBILE RESPONSIVE (Perfect Touch & Scrolling Fix)
            ========================================================================== */
-        @media (max-width: 600px) {
+        @media(max-width:600px) {
             body {
-                padding: 10px;
-                align-items: flex-start;
+                padding: 8px;
+                display: block; /* मोबाइल पर फ्लेक्स बॉक्स हटाकर ब्लॉक किया ताकि नेचुरल स्क्रॉल बने */
             }
 
             .container {
-                border-radius: 16px;
-                background: rgba(15, 23, 42, 0.8);
+                border-radius: 18px;
+                overflow: visible;
+                display: block; /* कार्ड्स एक के नीचे एक आराम से स्क्रॉल होंगे */
             }
 
             .left {
-                padding: 30px 20px 20px 20px;
+                padding: 20px 15px;
             }
 
-            .logo img { width: 85px; padding: 8px; border-radius: 14px;}
-            .logo h1 { font-size: 26px; margin-top: 10px; }
-            .logo h2 { font-size: 13px; letter-spacing: 4px; }
-
-            .machine { display: none; }
-
             .right {
-                padding: 24px 20px 35px 20px;
+                padding: 18px 12px;
             }
 
             .card {
-                max-width: 100%;
+                padding: 20px;
+                border-radius: 20px;
             }
 
-            .title { font-size: 28px; }
-            .line { margin-bottom: 25px; }
+            .logo h1 {
+                font-size: 30px;
+            }
 
-            .input-box { margin-bottom: 16px; }
-            .input-box input { padding: 14px 14px 14px 44px; font-size: 14px; border-radius: 10px; }
-            .input-container i { left: 14px; font-size: 14px; }
+            .logo h2 {
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
 
-            .btn { padding: 14px; font-size: 15px; border-radius: 10px; }
-            .switch { font-size: 14px; }
+            .title {
+                font-size: 28px;
+            }
+
+            .input-box {
+                margin-bottom: 14px;
+            }
+
+            .input-box label {
+                font-size: 14px;
+            }
+
+            .input-box input {
+                padding: 14px;
+                font-size: 14px;
+                border-radius: 14px;
+            }
+
+            .btn {
+                font-size: 17px;
+                padding: 14px;
+                border-radius: 14px;
+            }
+
+            .switch {
+                font-size: 15px;
+            }
+
+            .message {
+                font-size: 14px;
+            }
+
+            .machine img {
+                border-radius: 15px;
+            }
         }
     </style>
 </head>
@@ -381,7 +375,7 @@
 
 <div class="container">
 
-    <!-- LEFT PANEL (BRANDING) -->
+    <!-- LEFT PANEL -->
     <div class="left">
         <div class="logo">
             <img src="logo.png" alt="Logo">
@@ -393,7 +387,7 @@
         </div>
     </div>
 
-    <!-- RIGHT PANEL (FORMS) -->
+    <!-- RIGHT PANEL -->
     <div class="right">
         <div class="card">
             <div class="title" id="formTitle">Login</div>
@@ -401,69 +395,47 @@
 
             <form id="authForm" onsubmit="submitForm(event)">
 
-                <!-- REGISTER FIELDS (HIDDEN BY DEFAULT) -->
+                <!-- REGISTER FIELDS -->
                 <div class="input-box register-field">
                     <label>Name</label>
-                    <div class="input-container">
-                        <input type="text" id="name" placeholder="Enter Name">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
+                    <input type="text" id="name" placeholder="Enter Name">
                 </div>
 
                 <div class="input-box register-field">
                     <label>Address</label>
-                    <div class="input-container">
-                        <input type="text" id="address" placeholder="Enter Address">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </div>
+                    <input type="text" id="address" placeholder="Enter Address">
                 </div>
 
                 <div class="input-box register-field">
                     <label>Mobile</label>
-                    <div class="input-container">
-                        <input type="text" id="mobile" placeholder="Enter Mobile">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
+                    <input type="text" id="mobile" placeholder="Enter Mobile">
                 </div>
 
                 <div class="input-box register-field">
                     <label>Machine Make</label>
-                    <div class="input-container">
-                        <input type="text" id="make" placeholder="Enter Machine Make">
-                        <i class="fa-solid fa-gear"></i>
-                    </div>
+                    <input type="text" id="make" placeholder="Enter Machine Make">
                 </div>
 
                 <div class="input-box register-field">
                     <label>Remarks</label>
-                    <div class="input-container">
-                        <input type="text" id="remarks" placeholder="Enter Remarks">
-                        <i class="fa-solid fa-comment-dots"></i>
-                    </div>
+                    <input type="text" id="remarks" placeholder="Enter Remarks">
                 </div>
 
-                <!-- COMMON FIELDS (ALWAYS VISIBLE) -->
+                <!-- COMMON FIELDS -->
                 <div class="input-box">
-                    <label>Email Address</label>
-                    <div class="input-container">
-                        <input type="email" id="email" placeholder="Enter Email" required>
-                        <i class="fa-solid fa-envelope"></i>
-                    </div>
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="Enter Email" required>
                 </div>
 
                 <div class="input-box">
                     <label>Password</label>
-                    <div class="input-container">
-                        <input type="password" id="password" placeholder="Enter Password" required>
-                        <i class="fa-solid fa-lock"></i>
-                    </div>
+                    <input type="password" id="password" placeholder="Enter Password" required>
                 </div>
 
                 <button type="submit" class="btn" id="mainBtn">Login</button>
             </form>
 
             <div class="switch">
-                <span id="switchPrompt">Don't have an account?</span>
                 <span onclick="toggleForm()" id="switchText">Register</span>
             </div>
 
@@ -473,9 +445,6 @@
 
 </div>
 
-<!-- ==========================================================================
-     JAVASCRIPT LOGIC
-     ========================================================================== -->
 <script>
     let isLogin = true;
 
@@ -483,25 +452,21 @@
     const LOGIN_API = `${BASE_URL}/rajeshroy/auth/login`;
     const REGISTER_API = `${BASE_URL}/rajeshroy/auth/register`;
 
-    /* TOGGLE BETWEEN LOGIN & REGISTER */
+    /* TOGGLE FORM */
     function toggleForm(){
         isLogin = !isLogin;
 
         const fields = document.querySelectorAll(".register-field");
         const title = document.getElementById("formTitle");
         const button = document.getElementById("mainBtn");
-        const switchPrompt = document.getElementById("switchPrompt");
         const switchText = document.getElementById("switchText");
-        const message = document.getElementById("loginMessage");
 
         document.getElementById("authForm").reset();
-        message.style.display = "none";
-        message.innerHTML = "";
+        document.getElementById("loginMessage").innerHTML = "";
 
         if(isLogin){
             title.innerHTML = "Login";
             button.innerHTML = "Login";
-            switchPrompt.innerHTML = "Don't have an account?";
             switchText.innerHTML = "Register";
 
             fields.forEach(field => {
@@ -511,18 +476,18 @@
         else{
             title.innerHTML = "Register";
             button.innerHTML = "Register";
-            switchPrompt.innerHTML = "Already have an account?";
             switchText.innerHTML = "Back To Login";
 
             fields.forEach(field => {
                 field.style.display = "block";
             });
 
+            // मोबाइल में रजिस्ट्रेशन फॉर्म खुलने पर स्क्रीन को ऑटोमैटिकली ऊपर ले जाने के लिए
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
-    /* SUBMIT FORM CONTROL */
+    /* SUBMIT CONTROL */
     function submitForm(event){
         event.preventDefault();
 
@@ -530,7 +495,7 @@
         const originalText = button.innerHTML;
 
         button.disabled = true;
-        button.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Processing...";
+        button.innerHTML = "Processing...";
 
         if(isLogin){
             loginUser(button, originalText);
@@ -556,29 +521,39 @@
             const data = await response.json();
 
             if(!response.ok){
-                throw new Error(data.message || "Invalid Email or Password");
+                throw new Error(data.message || "Invalid Email Or Password");
             }
 
+            // रीडायरेक्शन फिक्स करने के लिए दोनों की (Keys) स्टोर की गयी हैं
             localStorage.setItem("token", data.token || "");
+            localStorage.setItem("authToken", data.token || "");
             localStorage.setItem("role", data.role || "");
 
-            if(data.data && data.data.id) localStorage.setItem("userId", data.data.id);
-            if(data.data && data.data.name) localStorage.setItem("userName", data.data.name);
+            if(data.data && data.data.id){
+                localStorage.setItem("userId", data.data.id);
+            }
+            if(data.data && data.data.name){
+                localStorage.setItem("userName", data.data.name);
+            }
 
-            message.innerHTML = "⚡ Login Successful! Redirecting...";
+            message.innerHTML = "⚡ Login Successful";
             message.className = "message success";
 
+            button.disabled = false;
+            button.innerHTML = originalText;
+
             setTimeout(() => {
-                if(data.role === "ADMIN" || data.role === "ROLE_ADMIN"){
-                    window.location.href = "admin.html";
-                } else {
-                    window.location.href = "user.html";
+                let currentRole = data.role ? data.role.toUpperCase() : "";
+                if(currentRole === "ADMIN" || currentRole === "ROLE_ADMIN"){
+                    window.location.replace("admin.html");
+                }
+                else{
+                    window.location.replace("user.html");
                 }
             }, 1000);
-
         }
         catch(error){
-            message.innerHTML = `❌ ${error.message}`;
+            message.innerHTML = error.message;
             message.className = "message error";
             button.disabled = false;
             button.innerHTML = originalText;
@@ -612,16 +587,18 @@
                 throw new Error(textData || "Registration Failed");
             }
 
-            message.innerHTML = "⚡ Registration Successful! Going to login...";
+            message.innerHTML = "⚡ Registration Successful";
             message.className = "message success";
+
+            button.disabled = false;
+            button.innerHTML = originalText;
 
             setTimeout(() => {
                 toggleForm();
-            }, 1500);
-
+            }, 1200);
         }
         catch(error){
-            message.innerHTML = `❌ ${error.message}`;
+            message.innerHTML = error.message;
             message.className = "message error";
             button.disabled = false;
             button.innerHTML = originalText;
