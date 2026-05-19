@@ -333,17 +333,17 @@
         }
 
         /* ==========================================================================
-           MOBILE RESPONSIVE (600px or less) - SCROLL PROBLEM FIXED HERE
+           MOBILE RESPONSIVE (600px or less)
            ========================================================================== */
         @media (max-width: 600px) {
             body {
                 padding: 10px;
-                align-items: flex-start; /* टॉप से स्पेसिंग बेहतर रखने के लिए */
+                align-items: flex-start;
             }
 
             .container {
                 border-radius: 16px;
-                background: rgba(15, 23, 42, 0.8); /* मोबाइल पर ब्लैक बैकग्राउंड विजिबिलिटी बढ़ाएगा */
+                background: rgba(15, 23, 42, 0.8);
             }
 
             .left {
@@ -354,7 +354,7 @@
             .logo h1 { font-size: 26px; margin-top: 10px; }
             .logo h2 { font-size: 13px; letter-spacing: 4px; }
 
-            .machine { display: none; } /* मोबाइल पर स्पेस बचाने के लिए मशीन की इमेज छुपा दी गई है */
+            .machine { display: none; }
 
             .right {
                 padding: 24px 20px 35px 20px;
@@ -475,7 +475,7 @@
 
 <!-- ==========================================================================
      JAVASCRIPT LOGIC
-     ========================================================================== */ -->
+     ========================================================================== -->
 <script>
     let isLogin = true;
 
@@ -518,7 +518,6 @@
                 field.style.display = "block";
             });
 
-            // मोबाइल पर रजिस्टर दबाने के बाद स्मूथ स्क्रॉल करके फॉर्म के टॉप पर ले जाने के लिए
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
@@ -541,7 +540,7 @@
         }
     }
 
-    /* AXIOS/FETCH LOGIN INTEGRATION */
+    /* LOGIN INTEGRATION */
     async function loginUser(button, originalText){
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
@@ -586,7 +585,7 @@
         }
     }
 
-    /* AXIOS/FETCH REGISTER INTEGRATION */
+    /* REGISTER INTEGRATION */
     async function registerUser(button, originalText){
         const body = {
             name: document.getElementById("name").value.trim(),
