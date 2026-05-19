@@ -384,7 +384,6 @@
 
 <div class="container">
 
-    <!-- LEFT PANEL (BRANDING) -->
     <div class="left">
         <div class="logo">
             <img src="logo.png" alt="Logo">
@@ -396,7 +395,6 @@
         </div>
     </div>
 
-    <!-- RIGHT PANEL (FORMS) -->
     <div class="right">
         <div class="card">
             <div class="title" id="formTitle">Login</div>
@@ -404,7 +402,6 @@
 
             <form id="authForm" onsubmit="submitForm(event)">
 
-                <!-- REGISTER FIELDS (HIDDEN BY DEFAULT) -->
                 <div class="input-box register-field">
                     <label>Name</label>
                     <div class="input-container">
@@ -445,7 +442,6 @@
                     </div>
                 </div>
 
-                <!-- COMMON FIELDS (ALWAYS VISIBLE) -->
                 <div class="input-box">
                     <label>Email Address</label>
                     <div class="input-container">
@@ -476,23 +472,12 @@
 
 </div>
 
-<!-- ==========================================================================
-     JAVASCRIPT LOGIC
-     ========================================================================== -->
 <script>
     let isLogin = true;
 
     const BASE_URL = "https://laser-project-k6tt.onrender.com";
     const LOGIN_API = `${BASE_URL}/rajeshroy/auth/login`;
     const REGISTER_API = `${BASE_URL}/rajeshroy/auth/register`;
-
-    /* 🌟 जैसे ही लॉगिन पेज लोड हो, पुराने टोकन्स साफ़ करें ताकि "Login First" का लूप न बने */
-    document.addEventListener("DOMContentLoaded", () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("jwtToken");
-        localStorage.removeItem("role");
-    });
 
     /* TOGGLE BETWEEN LOGIN & REGISTER */
     function toggleForm(){
@@ -570,12 +555,10 @@
                 throw new Error(data.message || "Invalid Email or Password");
             }
 
-            // सुरक्षा के लिए टोकन को सभी संभावित की-नेम्स के साथ सेव करना
+            // सुरक्षा के लिए टोकन को स्टोर करना
             const tokenValue = data.token || data.jwtToken || data.accessToken || "";
 
             localStorage.setItem("token", tokenValue);
-            localStorage.setItem("authToken", tokenValue);
-            localStorage.setItem("jwtToken", tokenValue);
             localStorage.setItem("role", data.role || "");
 
             if(data.data && data.data.id) localStorage.setItem("userId", data.data.id);
@@ -584,16 +567,14 @@
             message.innerHTML = "⚡ Login Successful! Redirecting...";
             message.className = "message success";
 
-            // 🌟 window.location.replace का यूज़ ताकि ब्राउज़र पुराना सेशन कैश न करे
-            setTimeout(() => {
-                let userRole = data.role ? data.role.toUpperCase() : "";
+            // 🌟 डिले और रिमूव ब्लॉक हटा दिया गया है ताकि तुरंत फ्रेश रिप्लेसमेंट हो
+            let userRole = data.role ? data.role.toUpperCase() : "";
 
-                if(userRole === "ADMIN" || userRole === "ROLE_ADMIN"){
-                    window.location.replace("admin.html");
-                } else {
-                    window.location.replace("user.html");
-                }
-            }, 1000);
+            if(userRole === "ADMIN" || userRole === "ROLE_ADMIN"){
+                window.location.replace("admin.html");
+            } else {
+                window.location.replace("user.html");
+            }
 
         }
         catch(error){
